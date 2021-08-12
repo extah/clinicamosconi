@@ -16,7 +16,7 @@
 
 <div class="container-fluid">
     <div class="justify-content-center" style="text-align:center;">
-        <h1 style="color:#183a68">Clinica Mosconi</h1>
+        <h1 style="color:#183a68">-Clinica Mosconi-</h1>
     </div>
     
 
