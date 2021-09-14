@@ -52,6 +52,10 @@ Route::group(array('prefix' => 'cooperativa'), function(){
 
 });
 
+Route::group(array('prefix' => 'portaldelpaciente'), function(){
+	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
+
+});
 
 // Route::get('/laboratorio', function(){
 // 	return	view('laboratorio.laboratorio');
