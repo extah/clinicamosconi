@@ -1,0 +1,18 @@
+.__titulo-seccion-diagnostico {
+    background-color: #04205f;
+}
+
+.__titulo {
+    padding: 5px 8px!important;
+}
+
+
+.__subtitulo {
+    color: #04205f;
+}
+
+.__imagenes-estudios a:hover {
+    color: #000!important;
+    text-decoration: underline;
+}
+

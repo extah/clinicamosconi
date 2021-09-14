@@ -34,7 +34,7 @@ header .__menu-mobile ul li a:hover
     
 }
 
-.__menu-mobile ul li.active a {
+.__menu-mobile ul li .active a {
     color: #04205f!important;
 }
 

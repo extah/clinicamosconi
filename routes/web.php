@@ -52,6 +52,12 @@ Route::group(array('prefix' => 'cooperativa'), function(){
 
 });
 
+// Ruta de sección 'Diagnóstico por Imágenes'
+Route::group(array('prefix' => 'diagnostico'), function(){
+	Route::get('/',	'diagnostico\DiagnosticoController@index')->name('diagnostico.index');
+
+});
+
 Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
 
