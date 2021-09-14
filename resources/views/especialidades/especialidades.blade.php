@@ -1,14 +1,11 @@
 @extends('template/template')
 
 @section('css')
-<<<<<<< HEAD
+
     <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"> -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css"> -->
-=======
-    <!-- <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}"> -->
->>>>>>> 8d5c0e5da4d2f7c209dc6a7d2309b8139111b625
 
 @endsection
 

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
-
     @yield('css')
 
 
@@ -54,9 +53,9 @@
                       <button class="navbar-toggler mr-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
-                      <div class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
+                      <div id="menu" class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
                         <ul class="col-sm-12 navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-between justify-content-lg-start mb-2 mb-lg-0 mt-md-2">
-                          <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
+                          <li class="active nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('especialidades.index')}}">Especialidades</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
@@ -167,6 +166,8 @@
 
 <script src="{{ asset('assets/fontawesome-5.15.3/js/all.js') }}"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="{{asset('js/template.js')}}"></script>
 
   @yield('js')
 </body>
