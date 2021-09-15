@@ -1,18 +1,12 @@
 @extends('template/template')
 
 @section('css')
-{{-- <link rel="stylesheet" href="{{ asset('assets/MDB5-STANDARD-UI-KIT-Free-3.9.0/css/mdb.min.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
-    
-<style type="text/css">
-/* .container { max-width: 1200px} */
-.container-datatable { max-width: 1024px}
-.modal-header{color: rgb(255, 255, 255);background-color: rgb(54, 105, 199)}
-.table-striped {
-   background-color: rgba(189, 189, 189, 0.816);
-}
 
-</style>
+    <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css"> -->
+
 @endsection
 
 @section('content')

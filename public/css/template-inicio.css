@@ -27,13 +27,17 @@ header .__navbar .__navbar-2 ul li a {
     transition: 0.1s;
 }
 
-header .__navbar .__navbar-2 ul li:active {
+header .__menu-mobile ul li:active, 
+header .__menu-mobile ul li a:hover
+ {
+    color: #04205f!important;
+    
+}
+
+.__menu-mobile ul li .active a {
     color: #04205f!important;
 }
 
-header .__navbar .__navbar-2 ul li a:hover {
-    color: #04205f!important;
-}
 
 header .__navbar .__navbar-2 .navbar-toggler, header .__navbar .__navbar-2 .navbar-toggler .__menu-mobile {
     transition: 0.3s!important;

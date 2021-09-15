@@ -12,12 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.0.5/css/scroller.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.3/css/fixedColumns.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.5.4/css/colReorder.bootstrap5.min.css">
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.bootstrap5.min.css">
-
     @yield('css')
 
 
@@ -69,7 +63,7 @@
                             <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('laboratorio.index')}}">Laboratorio</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="#">Diagnóstico por Imágenes</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('diagnostico.index')}}">Diagnóstico por Imágenes</a>
                           </li>
                         </ul>
                       </div>
@@ -177,6 +171,8 @@
 
 <script src="{{ asset('assets/fontawesome-5.15.3/js/all.js') }}"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="{{asset('js/template.js')}}"></script>
 
   @yield('js')
 </body>
