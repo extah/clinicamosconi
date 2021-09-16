@@ -58,8 +58,10 @@ Route::group(array('prefix' => 'diagnostico'), function(){
 
 });
 
-Route::group(array('prefix' => 'portaldelpaciente'), function(){
-	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
+
+
+Route::group(array('prefix' => 'galeria'), function(){
+	Route::get('/',	'galeria\GaleriaController@index')->name('galeria.index');
 
 });
 

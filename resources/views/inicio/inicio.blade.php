@@ -14,27 +14,37 @@
 
 
         <div id="carouselExampleDark" class="carousel carousel-dark slide m-0 p-0" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <div class="d-none d-md-block">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="3000">
+          <div class="carousel-inner active">
+            <div class="carousel-item active" data-bs-interval="6500">
+              <img class="img-fluid px-0" src="images/img/banner-inicio.png" alt="Imagen de portada">
+              {{-- <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div> --}}
+            </div>
+            <div class="carousel-item" data-bs-interval="3500">
               <img class="img-fluid px-0" src="images/img/banner-slider-1.png" alt="Imagen de portada">
               {{-- <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Some representative placeholder content for the first slide.</p>
               </div> --}}
             </div>
-            <div class="carousel-item" data-bs-interval="3000">
+            <div class="carousel-item" data-bs-interval="3500">
               <img class="img-fluid px-0" src="images/img/banner-slider-2.png" alt="Imagen de portada">
               {{-- <div class="carousel-caption d-none d-md-block">
                 <h5>Second slide label</h5>
                 <p>Some representative placeholder content for the second slide.</p>
               </div> --}}
             </div>
-            <div class="carousel-item" data-bs-interval="3000">
+            <div class="carousel-item" data-bs-interval="3500">
               <img class="img-fluid px-0" src="images/img/banner-slider-3.png" alt="Imagen de portada">
               {{-- <div class="carousel-caption d-none d-md-block">
                 <h5>Third slide label</h5>
@@ -52,7 +62,7 @@
           </button>
         </div>
         
-        {{-- Carousel Principal Home --}}
+        {{-- Fin Carousel Principal Home --}}
 
         <article class="__botones-portada-home mx-0 px-0 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
           <a class="col-12 col-sm-12 col-md-4 col-lg-4 nav-link d-flex d-inline-block p-0 m-0" href="#"><img class="img-fluid px-0" src="images/botones/portal-paciente-grande.jpg" alt="Portal del paciente"></a>
@@ -61,7 +71,6 @@
         </article>
         <article class="col-12 __noticia-portada-home bg-white d-flex flex-column flex-sm-column flex-md-column flex-lg-row mx-0 px-0">
 
-          
 
             {{-- Carousel Noticias --}}
 

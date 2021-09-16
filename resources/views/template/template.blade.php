@@ -94,7 +94,7 @@
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('laclinica.index')}}">La clínica</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Galería</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('galeria.index')}}">Galería</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Novedades</a>

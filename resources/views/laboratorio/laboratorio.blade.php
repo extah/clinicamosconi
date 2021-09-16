@@ -1,7 +1,7 @@
 @extends('template/template')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/laboratorio.css') }}">
 @endsection
 
 @section('content')
@@ -9,9 +9,9 @@
     <section class="mx-0 px-0">
         <article class="mx-auto px-0">
             <div class="row mx-0 px-0">
-                <img class="img-fluid px-0" src={{ asset("images/img/banner-laboratorio.png")}} alt="Imagen de portada de Especialidades">
+                <img class="img-fluid px-0" src={{ asset("images/img/banner-laboratorio.png")}} alt="Imagen de portada de Laboratorio">
                 <div class="d-flex flex-column m-0 p-0">
-                    <div class="__titulo-seccion-especialidades col-12 col-sm-12 col-md-6 col-lg-4 d-block d-flex justify-content-center justify-content-sm-center justify-content-md-end justify-content-lg-end my-1">
+                    <div class="__titulo-seccion-laboratorio col-12 col-sm-12 col-md-6 col-lg-4 d-block d-flex justify-content-center justify-content-sm-center justify-content-md-end justify-content-lg-end my-1">
                         <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto">Laboratorio</h5>
                     </div>
                 </div>

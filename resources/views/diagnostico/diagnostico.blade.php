@@ -23,39 +23,39 @@
                         
                         <div class="col-10 col-sm-10 col-md-6 col-lg-4 px-lg-2 mx-auto mx-sm-auto mx-md-auto mx-lg-2 d-flex flex-column">
                             <img class="container img-fluid mx-auto px-auto pt-md-1 pt-lg-3" src="{{ asset('images/iconos/tipo-de-imagenes.png')}}" alt="Tipo de imagenes">
-                            <div class="container d-flex flex-column justify-content-center mt-lg-2">
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Abdominal</a>
+                            <div class="container d-flex flex-column justify-content-center mt-lg-2 pt-lg-1">
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Abdominal</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Caderas</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Caderas</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Ginecológicas</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Ginecológicas</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Mamarias</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Mamarias</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Obstétricas</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Obstétricas</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Partes blandas</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Partes blandas</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Prostática Suprapúbica</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Prostática Suprapúbica</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Renal</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Renal</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Testicular</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Testicular</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Tiroides</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Tiroides</p>
                                 </div>
-                                <div class="__imagenes-estudios col-12 px-2 d-flex flex-row py-0 my-0 py-0">
-                                    <a class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-1 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Vesical</a>
+                                <div class="col-12 px-2 d-flex flex-row py-0 my-0 py-0">
+                                    <p class="col-12 nav-link d-inline px-3 px-sm-3 px-md-3 px-lg-0 py-lg-0 text-dark text-center text-sm-center text-md-center text-lg-start" href=""><i class="fas fa-caret-right d-inline mx-1 my-auto"></i>Vesical</p>
                                 </div>
                             </div>
                         </div>
