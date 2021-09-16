@@ -1,0 +1,37 @@
+.__titulo-seccion-galeria {
+    background-color: #04205f;
+}
+
+.__titulo {
+    padding: 5px 8px!important;
+}
+
+
+.__subtitulo {
+    color: #04205f;
+}
+
+.photo-gallery .photos a img {
+    border-radius: 10px!important;
+    transition: all 0.2s ease-in-out;
+}
+
+.photo-gallery .photos .item a img:hover {
+    box-shadow: 0 9px 25px rgba(0, 0, 0, 0.6), 0 10px 7px rgba(0, 0, 0, 0.09)!important;
+}
+
+.photo-gallery {
+    background-color:#fff;
+}
+  
+  
+.photo-gallery .photos {
+    padding-bottom:20px;
+}
+  
+.photo-gallery .item {
+    padding-bottom:30px;
+}
+  
+  
+
