@@ -3,10 +3,6 @@
 @section('css')
 
     <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css"> -->
-
 @endsection
 
 @section('content')
@@ -27,13 +23,6 @@
                     <div class="col-8 d-flex flex-row justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-center mx-auto p-2">
                         <h6 class="__subtitulo d-flex d-inline-block text-center text-sm-center text-md-center text-lg-center pl-lg-3">Encuentre la especialidad o el médico que necesita</h6>
                     </div>
-
-                    {{-- <div class="d-grid gap-2 col-4 mx-auto">
-                      <button class="btn btn-primary" type="button"><i class="fas fa-search-plus"></i> Buscar por Especialidad</button>
-                      <button class="btn btn-primary" type="button"><i class="fas fa-search-plus"></i> Buscar por Medico</button>
-                    </div> --}}
-
-                    {{-- <div class="col-8 d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-center justify-content-sm-center justify-content-md-between justify-content-between mx-auto p-0"> --}}
                         <div class="d-grid gap-2 col-4 mx-auto">
                                     
                             <button type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalEspecialidad">
@@ -140,32 +129,9 @@
 
     </section>
 
-
-    {{-- <div id ="tabla" class="container" >
-      <table id="tablaturnos" class="table table-striped table-hover dt-responsive nowrap" style="width:100%">
-        <meta name="csrf-token_feriado" content="{{ csrf_token() }}">  
-        <thead class="thead-dark" style="background-color: rgb(54, 105, 199)">
-              <tr>
-                  <th style="color: blanchedalmond">ESPECIALIDAD</th>
-                  <th style="color: blanchedalmond">NOMBRE</th>
-                  <th style="color: blanchedalmond">DIAS Y HORARIOS DE ATENCION</th>
-                  <th style="color: blanchedalmond">PAMI</th>
-                  <th style="color: blanchedalmond">OBRAS SOCIALES</th>
-                  <th style="color: blanchedalmond">CONSULTA PARTICULAR</th>
-                  <th style="color: blanchedalmond">OTROS</th>
-              </tr>
-          </thead>
-          <!-- <tbody>
-
-          </tbody> -->
-      </table>
-
-</div> --}}
-
 @endsection
 
 @section('js')
-{{-- <script src="{{ asset('assets/MDB5-STANDARD-UI-KIT-Free-3.9.0/js/mdb.min.js') }}"></script> --}}
 
 <script>
 
@@ -173,7 +139,6 @@ $(document).ready(function() {
 
   var fecha, opcion;
         opcion = 2;
-  // tablaturnos = $('#tablaturnos').DataTable(
     
     tablaturnos = $('#tablaturnos').DataTable( 
         {
@@ -184,8 +149,7 @@ $(document).ready(function() {
                         { data: "pami" , },
                         { data: "obra_social" ,  },
                         { data: "consulta_particular" , },   
-                        { data: "otros" ,  },                                             
-                        // { data: "Apellido" },
+                        { data: "otros" ,  },      
                     ],
           responsive: {
                         details: {
@@ -200,25 +164,17 @@ $(document).ready(function() {
                             } )
                         }
                     },
-        //             scrollY:        300,
-        // scrollCollapse: true,
-        // paging:         false,
-        // "scrollX": false,
         select: true,
         colReorder: true,
         "autoWidth": false,
          "order": [[ 0, "asc" ]],
-        //  "paging":   false,
+         "paging":   true,
          "ordering": true,
-        //  "responsive": true,
          "info":     false,
          "dom": 'Bfrtilp',
          'columnDefs': [
                           {'max-width': '20%', 'targets': 0}
                        ],
-        //  "data": dataSet,
-
-        //  "buttons": [ 'copy', 'csv', 'excel', 'pdf', 'print' ],
          "language": {
                         "sProcessing":     "Procesando...",
                         "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -244,30 +200,9 @@ $(document).ready(function() {
                             "copy": "Copiar",
                             "colvis": "Visibilidad"
                         }
-                    },
-
-            // "buttons":[
-            //     {
-            //         extend:    'excelHtml5',
-            //         text:      '<i class="fas fa-file-excel"></i> EXCEL ',
-            //         titleAttr: 'Exportar a Excel',
-            //         className: 'btn btn-success'
-            //     },
-            //     {
-            //         extend:    'pdfHtml5',
-            //         text:      '<i class="fas fa-file-pdf"></i> PDF',
-            //         titleAttr: 'Exportar a PDF',
-            //         className: 'btn btn-danger'
-            //     },
-            //     {
-            //         extend:    'print',
-            //         text:      '<i class="fa fa-print"></i> IMPRIMIR',
-            //         titleAttr: 'Imprimir',
-            //         className: 'btn btn-info'
-            //     },
-            //  ]                 
+                    },              
         });
-        // opcion = 1;
+
         $('#formTurnosPorEspecialidad').submit(function(e){                         
                 e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
                 
@@ -288,19 +223,13 @@ $(document).ready(function() {
                         select_especialidades:select_especialidades, opcion:opcion},    
 
                     success: function(data) {
-                        // console.log(data);
 
                         var text = data;
                         var data = JSON.parse(text);
 
                         tablaturnos.rows.add(data).draw();
-
-                        // swal("Se genero el feriado con Exito!", "", "success"); 
                     },
-                });	
-                // responsive = true;
-                // $('#exampleModal').modal('hide');	 
-            // $('#modalCRUD').modal('hide');											     			
+                });											     			
         });
 
         $('#formTurnosPorMedico').submit(function(e){                         
@@ -308,8 +237,8 @@ $(document).ready(function() {
                 
                 select_medicos =  $.trim($('#select_medicos').val());
                 opcion = 3; 
-                $('#tablaturnos').DataTable().clear().draw();  
-                // $('#tabla').show(); 
+                $('#tablaturnos').DataTable().clear().draw(); 
+
                 document.getElementById("tabla").style.visibility = "visible";
                 $.ajax({
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -321,19 +250,14 @@ $(document).ready(function() {
                         select_medicos:select_medicos, opcion:opcion},    
 
                     success: function(data) {
-                        // console.log(data);
 
                         var text = data;
                         var data = JSON.parse(text);
 
                         tablaturnos.rows.add(data).draw();
-
-                        // swal("Se genero el feriado con Exito!", "", "success"); 
                     },
                 });	
-
-                // $('#exampleModal').modal('hide');	 
-            // $('#modalCRUD').modal('hide');											     			
+										     			
         });
         
 

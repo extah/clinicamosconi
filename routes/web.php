@@ -26,6 +26,13 @@ Route::group(array('prefix' => 'inicio'), function(){
 
 });
 
+//portal del paciente
+Route::group(array('prefix' => 'portaldelpaciente'), function(){
+	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
+
+});
+
+
 // Ruta de sección 'Especialidades'
 // Route::get('/especialidades', 'Especialidades\SpecialtiesController@specialties');
 Route::group(array('prefix' => 'especialidades'), function(){

@@ -16,6 +16,26 @@ class PortaldelpacienteController extends Controller
         // dd("hola");
         $usuario = $request->session()->get('usuario');
         $result = $this->isUsuario($usuario);
+        // dd($result);
+        if($result == "OK")
+        {
+            $inicio ="";
+            $status_ok = false;
+            $esPaciente = true;
+            $message = "";
+            return view('portaldelpaciente.iniciarsesion', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario'));
+
+        }
+	    $inicio = "";    
+		$status_error = false;
+        $esPaciente = false;
+    	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
+    }
+
+    public function iniciarsesion(Request $request){
+        dd("hola");
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
 
         if($result == "OK")
         {
@@ -23,13 +43,13 @@ class PortaldelpacienteController extends Controller
             $status_ok = false;
             $esPaciente = true;
             $message = "";
-            return view('portaldelpaciente.portaldelpaciente', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario'));
+            return view('portaldelpaciente.iniciarsesion', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario'));
 
         }
 	    $inicio = "";    
 		$status_error = false;
         $esPaciente = false;
-    	return view('portaldelpaciente.portaldelpacienteiniciarsesion', compact('inicio','status_error', 'esPaciente'));
+    	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
     }
 
     function isUsuario($usuario)
@@ -37,11 +57,7 @@ class PortaldelpacienteController extends Controller
         # code...
         if($usuario == null)
         {
-            $inicio = ""; 
-            $status_error = false;
-            $esPaciente = false;
-
-            return view('portaldelpaciente.portaldelpacienteiniciarsesion', compact('inicio','status_error', 'esPaciente'));
+            return "NO OK";
         }
  
         return "OK";
