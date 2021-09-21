@@ -33,7 +33,7 @@ class PortaldelpacienteController extends Controller
     }
 
     public function iniciarsesion(Request $request){
-        dd("hola");
+        // dd("hola");
         $usuario = $request->session()->get('usuario');
         $result = $this->isUsuario($usuario);
 

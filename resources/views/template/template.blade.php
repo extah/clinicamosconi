@@ -47,7 +47,7 @@
                               <span class="d-flex mt-1 pt-1 mx-1">Guardia pediátrica</span>
                             </a>                          </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link text-uppercase" href="#">
+                            <a class="nav-link text-uppercase" href="{{route('turno.index')}}">
                               <img src="{{asset('images/iconos/turnos-off.png')}}" width="36" height="38" class="d-flex" loading="lazy" alt="turnos">
                               <img src="{{asset('images/iconos/turnos-on.png')}}" width="36" height="38" class="d-flex __oculto" loading="lazy" alt="turnos">
                               <span class="d-flex mt-1 pt-1 mx-1">Turnos</span>

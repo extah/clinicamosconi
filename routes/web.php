@@ -31,6 +31,11 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
 
 });
+//turnos web
+Route::group(array('prefix' => 'turno'), function(){
+	Route::get('/',	'turno\TurnoController@index')->name('turno.index');
+
+});
 
 
 // Ruta de sección 'Especialidades'

@@ -150,34 +150,6 @@ span a{
             </div>    
         </div>
     </div>
-
-        {{-- <div class="row justify-content-center">
-            <div class="col-md-6">
-               <div class="col-md-12">
-                <form id="sign-in"action="">
-                    <div id="form-content">
-                    <input type="text" value="@AmJustSam"><br>
-                    <input type="password" placeholder="your password"><br>
-                    <input type="submit" value="SIGN IN"><br>
-                    <span><a href="#">Forgot Password?</a></span>
-                   </div>
-                  </form>
-               </div>
-            </div>
-            <div class="col-md-6">
-               <div class="col-md-12">
-                <form id="sign-up" action="">
-                    <div id="form-content">
-                    <input type="text" value="@AmJustSam"><br>
-                    <input type="password" placeholder="your password"><br>
-                    <input type="submit" value="SIGN UP"><br>
-                    <span><a href="#">Already have an account?</a></span>
-                   </div>
-                  </form>
-               </div>
-            </div>
-          </div> --}}
-    {{-- </div> --}}
 </article>
 
 @endsection
