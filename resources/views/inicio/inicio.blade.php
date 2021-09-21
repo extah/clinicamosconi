@@ -1,7 +1,7 @@
 @extends('template/template')
 
 @section('css')
-
+  <link rel="stylesheet" href="{{ asset('css/inicio.css') }}">
 @endsection
 
 @section('content')
@@ -12,9 +12,12 @@
 
         {{-- Carousel Principal Home --}}
 
+        <div class="__contenedor-gradient col-12 p-0 m-0">
+          <span class="__gradient-banner d-block"></span>
+        </div>
 
         <div id="carouselExampleDark" class="carousel carousel-dark slide m-0 p-0" data-bs-ride="carousel">
-          <div class="d-none d-md-block">
+          <div class="d-none">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -23,8 +26,8 @@
             </div>
           </div>
           <div class="carousel-inner active">
-            <div class="carousel-item active" data-bs-interval="6500">
-              <img class="img-fluid px-0" src="images/img/banner-inicio.png" alt="Imagen de portada">
+            <div class="carousel-item active" data-bs-interval="7000">
+              <img class="img-fluid px-0" src="images/img/banner-slider-0.png" alt="Imagen de portada">
               {{-- <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Some representative placeholder content for the first slide.</p>
@@ -53,11 +56,11 @@
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
         </div>
@@ -74,9 +77,9 @@
 
             {{-- Carousel Noticias --}}
 
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel">
               <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="3000">
+                <div class="carousel-item active" data-bs-interval="3500">
                   <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-block w-100 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
                       <img class="img-fluid d-block w-100 d-flex p-2" src="{{ asset('images/noticias/noticia-novedades-1.png')}}" alt="Clínica Renovada">
@@ -88,7 +91,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item"data-bs-interval="3000">
+                <div class="carousel-item"data-bs-interval="3500">
                   <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-block w-100 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
                       <img class="img-fluid d-block w-100 d-flex p-2" src="{{ asset('images/noticias/noticia-novedades-2.png')}}" alt="Guardia Web">
@@ -100,7 +103,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item"data-bs-interval="3000">
+                <div class="carousel-item"data-bs-interval="3500">
                   <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-block w-100 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
                       <img class="img-fluid d-block w-100 d-flex p-2" src="{{ asset('images/noticias/noticia-novedades-3.png')}}" alt="Incorporamos Diabetología">
@@ -113,12 +116,12 @@
                   </div>
                 </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="next">
+                <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
             </div>

@@ -65,10 +65,15 @@ Route::group(array('prefix' => 'diagnostico'), function(){
 
 });
 
-
-
+// Ruta de sección 'Galería'
 Route::group(array('prefix' => 'galeria'), function(){
 	Route::get('/',	'galeria\GaleriaController@index')->name('galeria.index');
+
+});
+
+// Ruta de sección 'Novedades'
+Route::group(array('prefix' => 'novedades'), function(){
+	Route::get('/',	'novedades\NovedadesController@index')->name('novedades.index');
 
 });
 

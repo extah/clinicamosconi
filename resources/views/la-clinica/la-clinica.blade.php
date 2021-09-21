@@ -1,7 +1,7 @@
 @extends('template/template')
 
 @section('css')
-    {{-- <link rel="stylesheet" href="{{ asset('css/') }}"> --}}
+<link rel="stylesheet" href="{{ asset('css/laclinica.css') }}">
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
             <div class="row mx-0 px-0">
                 <img class="img-fluid px-0" src={{ asset("images/img/banner-la-clinica.png")}} alt="Imagen de portada La Clínica">
                 <div class="d-flex flex-column m-0 p-0">
-                    <div class="__titulo-seccion-especialidades col-12 col-sm-12 col-md-6 col-lg-4 d-block d-flex justify-content-center justify-content-sm-center justify-content-md-end justify-content-lg-end my-1">
+                    <div class="__titulo-seccion-laclinica col-12 col-sm-12 col-md-6 col-lg-4 d-block d-flex justify-content-center justify-content-sm-center justify-content-md-end justify-content-lg-end my-1">
                         <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto">La Clínica</h5>
                     </div>
                 </div>

@@ -1,16 +1,10 @@
-.__titulo-seccion-laboratorio {
+.__titulo-seccion-laclinica {
     background-color: #04205f;
 }
 
 .__titulo {
     padding: 5px 8px!important;
 }
-
-
-.__subtitulo {
-    color: #04205f;
-}
-
 .__botones-servicios {
     overflow: hidden!important;
 }
@@ -23,4 +17,3 @@
     -webkit-transform:scale(1.05)!important;
     transform:scale(1.05)!important;
 }
-

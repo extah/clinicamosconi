@@ -25,7 +25,7 @@
       <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center __logo px-0 my-auto">
                 <a class="navbar-brand d-flex mt-md-2 mx-auto" href="{{route('inicio.index')}}">
-                    <img src="images/logos/logo_mosconi.png" width="200" height="70" class="d-inline-block align-top px-0 m-auto" alt="" loading="lazy">
+                    <img src="{{asset('images/logos/logo_mosconi.png')}}" width="200" height="70" class="d-inline-block align-top px-0 m-auto" alt="" loading="lazy">
                     
                   </a>
             </div>
@@ -34,17 +34,30 @@
                   <div class="__navbar-1 col-12 d-block d-flex pl-4 my-1">
                       <ul class="col-12 d-flex justify-content-center nav">
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-web-off.png" onMouseOver="this.src='images/iconos/guardia-web-on.png'"onMouseOut="this.src='images/iconos/guardia-web-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="guardia-web"></a>
+                            <a class="nav-link text-uppercase" href="#">
+                              <img src="{{asset('images/iconos/guardia-web-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="guardia-web">
+                              <img src="{{asset('images/iconos/guardia-web-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="guardia-web">
+                              <span class="d-flex mt-1 pt-1 mx-1">Guardia web</span>
+                            </a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/guardia-pediatrica-off.png" onMouseOver="this.src='images/iconos/guardia-pediatrica-on.png'"onMouseOut="this.src='images/iconos/guardia-pediatrica-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="guardia-pediatrica"></a>
-                          </li>
+                            <a class="nav-link text-uppercase" href="#">
+                              <img src="{{asset('images/iconos/guardia-pediatrica-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="guardia-pediatrica">
+                              <img src="{{asset('images/iconos/guardia-pediatrica-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="guardia-pediatrica">
+                              <span class="d-flex mt-1 pt-1 mx-1">Guardia pediátrica</span>
+                            </a>                          </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/turnos-off.png" onMouseOver="this.src='images/iconos/turnos-on.png'"onMouseOut="this.src='images/iconos/turnos-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="turnos"></a>
-                          </li>
+                            <a class="nav-link text-uppercase" href="#">
+                              <img src="{{asset('images/iconos/turnos-off.png')}}" width="36" height="38" class="d-flex" loading="lazy" alt="turnos">
+                              <img src="{{asset('images/iconos/turnos-on.png')}}" width="36" height="38" class="d-flex __oculto" loading="lazy" alt="turnos">
+                              <span class="d-flex mt-1 pt-1 mx-1">Turnos</span>
+                            </a>                          </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link" href="#"><img src="images/iconos/contacto-off.png" onMouseOver="this.src='images/iconos/contacto-on.png'"onMouseOut="this.src='images/iconos/contacto-off.png'" width="140" height="50" class="d-flex" loading="lazy" alt="contacto"></a>
-                          </li>
+                            <a class="nav-link text-uppercase" href="#">
+                              <img src="{{asset('images/iconos/contacto-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="contacto">
+                              <img src="{{asset('images/iconos/contacto-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="contacto">
+                              <span class="d-flex mt-1 pt-1 mx-1">Contacto</span>
+                            </a>                          </li>
                         </ul>
                   </div>
 
@@ -55,15 +68,15 @@
                         <span class="navbar-toggler-icon"></span>
                       </button>
                       <div class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
-                        <ul class="col-sm-12 navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-between justify-content-lg-start mb-2 mb-lg-0 mt-md-2">
+                        <ul class="col-sm-12 navbar-nav d-flex justify-content-center justify-content-sm-center justify-content-md-between justify-content-lg-start mb-2 mb-lg-0 mt-md-2 ml-lg-0">
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('especialidades.index')}}">Especialidades</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{route('especialidades.index')}}">Especialidades</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('laboratorio.index')}}">Laboratorio</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary px-3" href="{{route('laboratorio.index')}}">Laboratorio</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary" href="{{route('diagnostico.index')}}">Diagnóstico por Imágenes</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{route('diagnostico.index')}}">Diagnóstico por Imágenes</a>
                           </li>
                         </ul>
                       </div>
@@ -97,7 +110,7 @@
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('galeria.index')}}">Galería</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Novedades</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('novedades.index')}}">Novedades</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Cómo llegar</a>
