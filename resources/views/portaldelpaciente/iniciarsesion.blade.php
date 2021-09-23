@@ -28,13 +28,10 @@
       <div class="col-10 d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-center">
         <div class="col-10 col-sm-10 col-md-6 col-lg-5 mx-lg-4 d-flex justify-content-center mx-auto mx-sm-auto mx-md-4 mx-lg-4">
           <div class="col-12 justify-content-center mx-auto">
-              <h6 class="__title-form col-12 text-center text-uppercase fw-bolder">Si ya se registró, ingrese su email y contraseña</h6>
               <form class="__form container my-3 py-4">
+                @csrf
                 <div class="col-12 d-flex justify-content-start my-2">
                   <h4 class="fw-bolder">Ingresar</h4>
-                </div>
-                <div class="mb-3">
-                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputName1" placeholder="Nombre y Apellido" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
                   <input type="email" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputEmail1" placeholder="Correo electrónico" aria-describedby="emailHelp">
@@ -48,22 +45,25 @@
       </div>
       <div class="col-10 col-sm-10 col-md-6 col-lg-5 mx-lg-4 d-flex justify-content-center mx-auto mx-sm-auto mx-md-4 mx-lg-4">
           <div class="col-12 justify-content-center mx-auto">
-              <h6 class="__title-form col-12 text-center text-uppercase fw-bolder">Para registrarse, complete los siguientes campos</h6>
               <form class="__form container my-3 py-4">
+                @csrf
                 <div class="col-12 d-flex justify-content-start my-2">
                   <h4 class="fw-bolder">Registrarse</h4>
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputName1" placeholder="Nombre y Apellido" aria-describedby="emailHelp">
+                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputName1" placeholder="Nombre" aria-describedby="">
+                </div>
+                <div class="mb-3">
+                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputSurame1" placeholder="Apellido" aria-describedby="">
                 </div>
                 <div class="mb-3">
                   <input type="email" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputEmail1" placeholder="Correo electrónico" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputTel1" placeholder="Teléfono" aria-describedby="emailHelp">
+                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputTel1" placeholder="Teléfono" aria-describedby="">
                 </div>
                 <div class="mb-3">
-                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputDNI1" placeholder="DNI" aria-describedby="emailHelp">
+                  <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="exampleInputDNI1" placeholder="DNI" aria-describedby="">
                 </div>
                 <div class="mb-3">
                   <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Contraseña" id="exampleInputPassword1">

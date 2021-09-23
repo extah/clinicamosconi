@@ -29,11 +29,13 @@ Route::group(array('prefix' => 'inicio'), function(){
 //portal del paciente
 Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
-
 });
+
+Route::get('/portaldelpaciente/usuario',	'portaldelpaciente\PortaldelpacienteController@usuario')->name('portaldelpaciente.usuario');
+
 //turnos web
-Route::group(array('prefix' => 'turno'), function(){
-	Route::get('/',	'turno\TurnoController@index')->name('turno.index');
+Route::group(array('prefix' => 'turnos'), function(){
+	Route::get('/',	'turnos\TurnosController@index')->name('turnos.index');
 
 });
 

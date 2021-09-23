@@ -47,7 +47,7 @@
                               <span class="d-flex mt-1 pt-1 mx-1">Guardia pediátrica</span>
                             </a>                          </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link text-uppercase" href="{{route('turno.index')}}">
+                            <a class="nav-link text-uppercase" href="{{route('turnos.index')}}">
                               <img src="{{asset('images/iconos/turnos-off.png')}}" width="36" height="38" class="d-flex" loading="lazy" alt="turnos">
                               <img src="{{asset('images/iconos/turnos-on.png')}}" width="36" height="38" class="d-flex __oculto" loading="lazy" alt="turnos">
                               <span class="d-flex mt-1 pt-1 mx-1">Turnos</span>
@@ -161,7 +161,7 @@
         </div>
 
           <div class="col-12 col-md-5 col-lg-3 d-flex justify-content-md-center justify-content-lg-end __logo-footer mx-auto mx-md-auto mx-lg-0 my-4 my-sm-4 my-md-auto my-lg-0 align-items-lg-end">
-            <img class="d-flex mx-auto mx-lg-0 mb-lg-4" src="images/logos/logo_negativo.jpg" width="220" height="85" alt="logo_mosconi" loading="lazy">
+            <img class="d-flex mx-auto mx-lg-0 mb-lg-4" src="{{asset('images/logos/logo_negativo.jpg')}}" width="220" height="85" alt="logo_mosconi" loading="lazy">
           </div>
     </div>
   </div>

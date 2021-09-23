@@ -1,0 +1,21 @@
+.__titulo-seccion-usuario {
+    background-color: #04205f;
+}
+
+.__titulo {
+    padding: 5px 8px!important;
+}
+
+.__botonera-delpaciente {
+    background-color: #e7e7e9;
+    overflow: hidden!important;
+}
+
+.__botonera-delpaciente a img {
+    transition: all 0.2s ease-in-out;
+}
+
+.__botonera-delpaciente a img:hover{
+    -webkit-transform:scale(1.05)!important;
+    transform:scale(1.05)!important;
+}

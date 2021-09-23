@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\portaldelpaciente;
+namespace App\Http\Controllers\Portaldelpaciente;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -63,4 +63,11 @@ class PortaldelpacienteController extends Controller
         return "OK";
 
     }
+
+    public function usuario() {
+
+        return view('portaldelpaciente.usuario');
+
+    }
+
 }
