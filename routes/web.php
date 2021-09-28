@@ -39,6 +39,10 @@ Route::group(array('prefix' => 'turnos'), function(){
 
 });
 
+Route::group(array('prefix' => 'contacto'), function(){
+	Route::get('/',	'contacto\ContactoController@index')->name('contacto.index');
+
+});
 
 // Ruta de sección 'Especialidades'
 // Route::get('/especialidades', 'Especialidades\SpecialtiesController@specialties');

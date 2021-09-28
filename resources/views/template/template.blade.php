@@ -53,7 +53,7 @@
                               <span class="d-flex mt-1 pt-1 mx-1">Turnos</span>
                             </a>                          </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link text-uppercase" href="#">
+                            <a class="nav-link text-uppercase" href="{{route('contacto.index')}}">
                               <img src="{{asset('images/iconos/contacto-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="contacto">
                               <img src="{{asset('images/iconos/contacto-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="contacto">
                               <span class="d-flex mt-1 pt-1 mx-1">Contacto</span>
