@@ -165,7 +165,42 @@ class PortaldelpacienteController extends Controller
             }
         }
     }
+    public function cerrarsesion(Request $request)
+    {
 
+        $id = session()->getId();
+
+        $directory = 'C:\xampp\htdocs\recibodesueldo\storage\framework\sessions';
+        $ignoreFiles = ['.gitignore', '.', '..'];
+        $files = scandir($directory);
+        
+        foreach ($files as $file) {
+            $var = $file;
+            if($var == $id)
+            {
+                if(!in_array($file,$ignoreFiles)) unlink($directory . '/' . $file);
+            }
+            else {
+
+            }
+            // if(!in_array($file,$ignoreFiles)) unlink($directory . '/' . $file);
+        }
+
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+            $request->session()->flush();
+        }
+        $inicio = "";    
+        $esEmp = false;
+        $status_error = false;
+        $status_info = false;
+        // return view('inicio.inicio', compact('inicio','status_error', 'esEmp', 'status_info'));
+        return redirect('portaldelpaciente');
+
+    }
     function isUsuario($usuario)
     {
         # code...
