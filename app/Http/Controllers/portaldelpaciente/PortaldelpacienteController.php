@@ -87,6 +87,26 @@ class PortaldelpacienteController extends Controller
         }
     }
 
+    public function iniciarsesionGet(Request $request){
+        // dd("hola");
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+        // dd($result);
+        if($result == "OK")
+        {
+            $inicio ="";
+            $status_ok = false;
+            $esPaciente = true;
+            $message = "";
+            return view('portaldelpaciente.usuario', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario'));
+
+        }
+	    $inicio = "";    
+		$status_error = false;
+        $esPaciente = false;
+    	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
+    }
+
     public function registrarse(Request $request)
     {
         $nombre = $request->nombre;
@@ -135,7 +155,7 @@ class PortaldelpacienteController extends Controller
                             return redirect('portaldelpaciente')->with(['status_info' => $status_error, 'message' => $message,]);
             }
             else {
-                dd("no es igual");
+                // dd("no es igual");
                 $message = "No coinciden las contraseñas";
                 $status_error = true;
                 $status_ok = false;

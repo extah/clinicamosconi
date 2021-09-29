@@ -30,6 +30,7 @@ Route::group(array('prefix' => 'inicio'), function(){
 Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
 	Route::post('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesion')->name('portaldelpaciente.iniciarsesion');
+	Route::get('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesionGet')->name('portaldelpaciente.iniciarsesionGet');
 	Route::post('/',	'portaldelpaciente\PortaldelpacienteController@registrarse')->name('portaldelpaciente.registrarse');
 });
 
