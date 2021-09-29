@@ -1,0 +1,26 @@
+.__titulo-seccion-contacto {
+    background-color: #04205f;
+}
+
+.__titulo {
+    padding: 5px 8px!important;
+}
+
+
+.__subtitulo, .__numeros-de-telefono, .__titulo-internos, .__interno {
+    color: #04205f;
+}
+
+
+.__botones-servicios {
+    overflow: hidden!important;
+}
+
+.__botones-servicios a img {
+    transition: all 0.2s ease-in-out;
+}
+
+.__botones-servicios a img:hover{
+    -webkit-transform:scale(1.05)!important;
+    transform:scale(1.05)!important;
+}

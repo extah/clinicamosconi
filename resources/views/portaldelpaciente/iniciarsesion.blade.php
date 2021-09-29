@@ -39,6 +39,9 @@
                 <div class="mb-3">
                   <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Contraseña" id="password" name="password" required>
                 </div>
+                <div class="col-12 d-flex mb-3">
+                  <a class="col-10  text-nowrap text-center mx-auto py-2" href="#" id="olvideContraseña">Olvidaste tu contraseña?</a>
+                </div>
                 <button type="submit" class="__btn-submit col-12 btn btn-primary btn-block rounded-0">Ingresar</button>
               </form>
           </div>
