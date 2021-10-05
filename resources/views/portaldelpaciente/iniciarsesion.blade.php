@@ -48,7 +48,7 @@
       </div>
       <div class="col-10 col-sm-10 col-md-6 col-lg-5 mx-lg-4 d-flex justify-content-center mx-auto mx-sm-auto mx-md-4 mx-lg-4">
           <div class="col-12 justify-content-center mx-auto">
-              <form class="__form container my-3 py-4" action="{{route('portaldelpaciente.registrarse')}}" method="post">
+              <form class="__form container my-3 py-4" id="form-register" action="{{route('portaldelpaciente.registrarse')}}" method="post" onsubmit="return validar();">
                 @csrf
                 <div class="col-12 d-flex justify-content-start my-2">
                   <h4 class="fw-bolder">Registrarse</h4>
@@ -87,5 +87,14 @@
 @endsection
 
 @section('js')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+
+<script src="{{asset('js/traducciones.js')}}"></script>
+<script src="{{asset('js/validar.js')}}"></script>
 
 @endsection
