@@ -97,4 +97,27 @@ crossorigin="anonymous"></script>
 <script src="{{asset('js/traducciones.js')}}"></script>
 <script src="{{asset('js/validar.js')}}"></script>
 
+
+<script>
+  @if (Session::get('status_error'))
+          toastr.error( '{{ session('message') }}', 'ERROR', {
+              // "progressBar": true,
+              "closeButton": true,
+              "positionClass": "toast-bottom-right",
+              "timeOut": "10000",
+          });   
+  @endif 
+</script>
+
+<script>
+  @if (Session::get('status_info'))
+          toastr.info( '{{ session('message') }}', 'ATENCIÓN', {
+              // "progressBar": true,
+              "closeButton": true,
+              "positionClass": "toast-bottom-right",
+              "timeOut": "10000",
+          });   
+  @endif 
+</script>
+
 @endsection
