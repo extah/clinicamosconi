@@ -18,25 +18,25 @@ $("#form-register").validate({
         telefono: {
             required: true,
             number: true,
-            min: 10,
-            max: 10
+            minlength: 10,
+            maxlength: 10
         },
         dni: {
             required: true,
             number: true,
-            min: 8,
-            max: 8
+            minlength: 8,
+            maxlength: 8
         },
-        password : {
-            minlength: 5,
-            maxlength: 16,
-            required: true
-        },
-        confirmpassword : {
-            minlength: 5,
-            maxlength: 16,
+        password: {
             required: true,
-            equalTo : "#password"
+            minlength: 5,
+            maxlength: 16,
+        },
+        confirmpassword: {
+            minlength: 5,
+            maxlength: 16,
+            equalTo: "#pass",
+            required: true            
         }
 
     }

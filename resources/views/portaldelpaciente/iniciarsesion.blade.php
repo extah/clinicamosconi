@@ -69,7 +69,7 @@
                   <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="dni" name="dni"  placeholder="DNI" aria-describedby="">
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Contraseña" id="password" name="password" >
+                  <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Contraseña" id="pass" name="password" >
                 </div>
                 <div class="mb-3">
                   <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Confirmar Contraseña" id="confirmpassword" name="confirmpassword" >
