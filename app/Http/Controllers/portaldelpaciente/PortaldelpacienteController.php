@@ -120,11 +120,11 @@ class PortaldelpacienteController extends Controller
         if($nombre == null || $apellido == null || $email == null || $dni  == null || $contrasena == null || $confirmpassword  == null)
         {
 			$message = "Para Registrarse, complete todos los datos del formulario";
-			$status_error = true;
-            $status_ok = false;
+			$status_error = false;
+            $status_info = true;
             $esPasc = false;
             // dd("vacio");
-			return view('portaldelpaciente.iniciarsesion', compact('message', 'status_error', 'esPasc'));
+			return view('portaldelpaciente.iniciarsesion', compact('message', 'status_error', 'status_info', 'esPasc'));
             // return redirect('inicio')->with(['status_info' => $status_error, 'message' => $message,]);
         }
 
@@ -133,12 +133,12 @@ class PortaldelpacienteController extends Controller
         if(count($existe) >= 1)
 		{
 			$message = "Usted ya posee una cuenta";
-			$status_error = true;
-            $status_ok = false;
+			$status_error = false;
+            $status_info = true;
             $esEmp = false;
-            $dd("Usted ya posee una cuenta");
+            // $dd("Usted ya posee una cuenta");
 			
-            // return redirect('inicio')->with(['status_info' => $status_error, 'message' => $message,]);
+            return redirect('portaldelpaciente')->with(['status_info' => $status_info, 'message' => $message,]);
 		}
         else {
             if ($contrasena == $confirmpassword) {
@@ -170,21 +170,21 @@ class PortaldelpacienteController extends Controller
 
         $id = session()->getId();
 
-        $directory = 'C:\xampp\htdocs\recibodesueldo\storage\framework\sessions';
-        $ignoreFiles = ['.gitignore', '.', '..'];
-        $files = scandir($directory);
+        // $directory = 'C:\xampp\htdocs\recibodesueldo\storage\framework\sessions';
+        // $ignoreFiles = ['.gitignore', '.', '..'];
+        // $files = scandir($directory);
         
-        foreach ($files as $file) {
-            $var = $file;
-            if($var == $id)
-            {
-                if(!in_array($file,$ignoreFiles)) unlink($directory . '/' . $file);
-            }
-            else {
+        // foreach ($files as $file) {
+        //     $var = $file;
+        //     if($var == $id)
+        //     {
+        //         if(!in_array($file,$ignoreFiles)) unlink($directory . '/' . $file);
+        //     }
+        //     else {
 
-            }
+        //     }
             // if(!in_array($file,$ignoreFiles)) unlink($directory . '/' . $file);
-        }
+        // }
 
         $usuario = $request->session()->get('usuario');
         $result = $this->isUsuario($usuario);

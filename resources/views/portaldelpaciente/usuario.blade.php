@@ -17,6 +17,13 @@
         </div>
     </div>
 </article>
+<article class="">
+    <div class="col-12 text-end">
+        <a href="{{route('portaldelpaciente.cerrarsesion')}}" class="btn btn-lg btn-primary">Cerrar Sesión</a>
+    </div>
+</article>
+
+
 
 <article class="container mx-auto p-0 my-4">
   <div class="row justify-content-center p-1">
@@ -44,5 +51,15 @@
 @endsection
 
 @section('js')
-
+<script>
+    @if ($status_ok)
+            toastr.success("{{ $nombre }}", ' {{  $message }} ', {
+                // "progressBar": true,
+                "closeButton": true,
+                "positionClass": "toast-bottom-right",
+                "progressBar": true,
+                "timeOut": "20000",
+            });   
+    @endif 
+</script>
 @endsection

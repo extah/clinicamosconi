@@ -69,7 +69,7 @@
                   <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="dni" name="dni"  placeholder="DNI" aria-describedby="">
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Contraseña" id="password" name="password" required>
+                  <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Contraseña" id="pass" name="password" >
                 </div>
                 <div class="mb-3">
                   <input type="password" class="__input form-control border-0 border-bottom rounded-0" placeholder="Confirmar Contraseña" id="confirmpassword" name="confirmpassword" required>
@@ -96,5 +96,28 @@ crossorigin="anonymous"></script>
 
 <script src="{{asset('js/traducciones.js')}}"></script>
 <script src="{{asset('js/validar.js')}}"></script>
+
+
+<script>
+  @if (Session::get('status_error'))
+          toastr.error( '{{ session('message') }}', 'ERROR', {
+              // "progressBar": true,
+              "closeButton": true,
+              "positionClass": "toast-bottom-right",
+              "timeOut": "10000",
+          });   
+  @endif 
+</script>
+
+<script>
+  @if (Session::get('status_info'))
+          toastr.info( '{{ session('message') }}', 'ATENCIÓN', {
+              // "progressBar": true,
+              "closeButton": true,
+              "positionClass": "toast-bottom-right",
+              "timeOut": "10000",
+          });   
+  @endif 
+</script>
 
 @endsection
