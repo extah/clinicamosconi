@@ -26,6 +26,15 @@ Route::group(array('prefix' => 'inicio'), function(){
 
 });
 
+
+// Admin
+
+Route::get('/admin',	'admin\AdminController@index')->name('admin.index');
+Route::get('/login',	'admin\AdminController@login')->name('admin.login');
+Route::get('/admin/imagenes-de-portada',	'admin\AdminController@banners')->name('admin.banners');
+// Route::get('/admin/imagenes-de-portada',	'admin\AdminController@addBanners')->name('admin.addBanners');
+
+
 //portal del paciente
 Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
