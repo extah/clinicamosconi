@@ -3,6 +3,12 @@
 @section('css')
 
     <link rel="stylesheet" href="{{ asset('css/especialidades.css') }}">
+    <style>
+        .modal-header {
+            background-color: #04205f;
+            color: rgb(226, 226, 226);
+        }
+    </style>
 @endsection
 
 @section('content')

@@ -19,7 +19,6 @@
 </article>
 <article class="">
     <div class="col-12 text-end">
-        {{-- <button type="button" class="btn btn-lg btn-primary">Cerrar Sesión</button> --}}
         <a href="{{route('portaldelpaciente.cerrarsesion')}}" class="btn btn-lg btn-primary">Cerrar Sesión</a>
     </div>
 </article>
