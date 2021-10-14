@@ -1,4 +1,4 @@
-.__titulo-seccion-especialidades {
+.__titulo-seccion-usuario {
     background-color: #04205f;
 }
 
@@ -6,21 +6,16 @@
     padding: 5px 8px!important;
 }
 
-
-.__subtitulo {
-    color: #04205f;
-}
-
-.__botones-servicios {
+.__botonera-delpaciente {
+    background-color: #e7e7e9;
     overflow: hidden!important;
 }
 
-.__botones-servicios a img {
+.__botonera-delpaciente a img {
     transition: all 0.2s ease-in-out;
 }
 
-.__botones-servicios a img:hover{
+.__botonera-delpaciente a img:hover{
     -webkit-transform:scale(1.05)!important;
     transform:scale(1.05)!important;
 }
-

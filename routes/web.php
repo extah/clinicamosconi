@@ -23,20 +23,38 @@ Route::get('/','Inicio\InicioController@index');
 
 Route::group(array('prefix' => 'inicio'), function(){
 		Route::get('/',	'Inicio\InicioController@index')->name('inicio.index');
-
 });
+
+
+// Admin
+
+Route::get('/admin',	'admin\AdminController@index')->name('admin.index');
+Route::get('/login',	'admin\AdminController@login')->name('admin.login');
+Route::get('/admin/imagenes-de-portada',	'admin\AdminController@banners')->name('admin.banners');
+Route::post('/admin/imagenes-de-portada',	'admin\AdminController@addBanners')->name('admin.addBanners');
+
 
 //portal del paciente
 Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::get('/',	'portaldelpaciente\PortaldelpacienteController@index')->name('portaldelpaciente.index');
-
+	Route::post('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesion')->name('portaldelpaciente.iniciarsesion');
+	Route::get('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesionGet')->name('portaldelpaciente.iniciarsesionGet');
+	Route::post('/',	'portaldelpaciente\PortaldelpacienteController@registrarse')->name('portaldelpaciente.registrarse');
+	Route::get('/cerrarsesion',	'portaldelpaciente\PortaldelpacienteController@cerrarsesion')->name('portaldelpaciente.cerrarsesion');
 });
+
+
+
 //turnos web
-Route::group(array('prefix' => 'turno'), function(){
-	Route::get('/',	'turno\TurnoController@index')->name('turno.index');
+Route::group(array('prefix' => 'turnos'), function(){
+	Route::get('/',	'turnos\TurnosController@index')->name('turnos.index');
 
 });
 
+Route::group(array('prefix' => 'contacto'), function(){
+	Route::get('/',	'contacto\ContactoController@index')->name('contacto.index');
+
+});
 
 // Ruta de sección 'Especialidades'
 // Route::get('/especialidades', 'Especialidades\SpecialtiesController@specialties');

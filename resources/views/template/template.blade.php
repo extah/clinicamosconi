@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinica Mosconi</title>
+    <title>Clínica Mosconi</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href='{{ asset("css/template-inicio.css") }}' rel="stylesheet">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' type='text/css'>
     @yield('css')
 
 
@@ -47,13 +48,13 @@
                               <span class="d-flex mt-1 pt-1 mx-1">Guardia pediátrica</span>
                             </a>                          </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link text-uppercase" href="{{route('turno.index')}}">
+                            <a class="nav-link text-uppercase" href="{{route('turnos.index')}}">
                               <img src="{{asset('images/iconos/turnos-off.png')}}" width="36" height="38" class="d-flex" loading="lazy" alt="turnos">
                               <img src="{{asset('images/iconos/turnos-on.png')}}" width="36" height="38" class="d-flex __oculto" loading="lazy" alt="turnos">
                               <span class="d-flex mt-1 pt-1 mx-1">Turnos</span>
                             </a>                          </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link text-uppercase" href="#">
+                            <a class="nav-link text-uppercase" href="{{route('contacto.index')}}">
                               <img src="{{asset('images/iconos/contacto-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="contacto">
                               <img src="{{asset('images/iconos/contacto-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="contacto">
                               <span class="d-flex mt-1 pt-1 mx-1">Contacto</span>
@@ -161,7 +162,7 @@
         </div>
 
           <div class="col-12 col-md-5 col-lg-3 d-flex justify-content-md-center justify-content-lg-end __logo-footer mx-auto mx-md-auto mx-lg-0 my-4 my-sm-4 my-md-auto my-lg-0 align-items-lg-end">
-            <img class="d-flex mx-auto mx-lg-0 mb-lg-4" src="images/logos/logo_negativo.jpg" width="220" height="85" alt="logo_mosconi" loading="lazy">
+            <img class="d-flex mx-auto mx-lg-0 mb-lg-4" src="{{asset('images/logos/logo_negativo.jpg')}}" width="220" height="85" alt="logo_mosconi" loading="lazy">
           </div>
     </div>
   </div>
@@ -181,6 +182,9 @@
 <script src="https://cdn.datatables.net/fixedcolumns/3.3.3/js/dataTables.fixedColumns.min.js"></script>
 <script src="https://cdn.datatables.net/colreorder/1.5.4/js/dataTables.colReorder.min.js"></script>
 <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+<script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
+<script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
 <script src="{{ asset('assets/fontawesome-5.15.3/js/all.js') }}"></script>
 

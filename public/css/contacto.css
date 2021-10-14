@@ -1,4 +1,4 @@
-.__titulo-seccion-especialidades {
+.__titulo-seccion-contacto {
     background-color: #04205f;
 }
 
@@ -7,9 +7,10 @@
 }
 
 
-.__subtitulo {
+.__subtitulo, .__numeros-de-telefono, .__titulo-internos, .__interno {
     color: #04205f;
 }
+
 
 .__botones-servicios {
     overflow: hidden!important;
@@ -23,4 +24,3 @@
     -webkit-transform:scale(1.05)!important;
     transform:scale(1.05)!important;
 }
-

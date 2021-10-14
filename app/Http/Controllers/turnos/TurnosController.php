@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\turno;
+namespace App\Http\Controllers\Turnos;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TurnoController extends Controller
+class TurnosController extends Controller
 {
     public function index(){
         // dd("hola");
         $esPaciente = "as";
-    	return view('turno.turno', compact('esPaciente'));
+    	return view('turnos.turnos', compact('esPaciente'));
     }
 }

@@ -15,6 +15,11 @@
     background-color: #c0d3ff;
 }
 
+.__form a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .__form h4 {
     color: #1d3b70;
 }
@@ -40,5 +45,14 @@
 }
 
 .__input:focus, .__input:active {
+    background-color: rgb(255, 238, 238);
     box-shadow: none!important;
+}
+
+label.error {
+    color: #8b0000!important;
+}
+
+input.error {
+    border: 1px solid #8b0000!important;
 }
