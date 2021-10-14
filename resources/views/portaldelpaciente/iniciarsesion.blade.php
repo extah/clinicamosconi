@@ -3,7 +3,7 @@
 @section('css')
 
 {{-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'> --}}
-<link rel="stylesheet" href="{{ asset('css/login-register.css') }}">
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 <style>
 
 </style>
@@ -29,7 +29,8 @@
         <div class="col-10 col-sm-10 col-md-6 col-lg-5 mx-lg-4 d-flex justify-content-center mx-auto mx-sm-auto mx-md-4 mx-lg-4">
           <div class="col-12 justify-content-center mx-auto">
               <h6 class="__title-form col-12 text-center text-uppercase fw-bolder">Si ya se registró, ingrese su email y contraseña</h6>
-              <form class="__form container my-3 py-4">
+              {{-- <form class="__form container my-3 py-4" method="post" action="{{ url('administrador/menu')  }}" data-toggle="validator" role="form"> --}}
+              <form class="__form container my-3 py-4">  
                 <div class="col-12 d-flex justify-content-start my-2">
                   <h4 class="fw-bolder">Ingresar</h4>
                 </div>
