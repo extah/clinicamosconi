@@ -27,11 +27,15 @@ Route::group(array('prefix' => 'inicio'), function(){
 
 
 // Admin
+Route::group(array('prefix' => 'admin'), function(){
+	Route::get('/',	'admin\AdminController@index')->name('admin.index');
+	Route::get('/login',	'admin\AdminController@login')->name('admin.login');
+	Route::get('/imagenes-de-portada',	'admin\AdminController@banners')->name('admin.banners');
+	Route::post('/admin/imagenes-de-portada',	'admin\AdminController@addBanners')->name('admin.addBanners');
 
-Route::get('/admin',	'admin\AdminController@index')->name('admin.index');
-Route::get('/login',	'admin\AdminController@login')->name('admin.login');
-Route::get('/admin/imagenes-de-portada',	'admin\AdminController@banners')->name('admin.banners');
-Route::post('/admin/imagenes-de-portada',	'admin\AdminController@addBanners')->name('admin.addBanners');
+	Route::post('/imageneseliminareditar',	'admin\AdminController@imageneseliminareditar')->name('admin.imageneseliminareditar');
+	Route::post('/imagenesagregar',	'admin\AdminController@imagenesagregar')->name('admin.imagenesagregar');
+});
 
 
 //portal del paciente

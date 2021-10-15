@@ -1,113 +1,308 @@
 @extends('admin/admin')
 
 @section('css')
-
-{{-- Styles Datatables --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-
-{{-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'> --}}
-
-<style>
-
-</style>
+    <link href="{{ asset('/assets/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet"/>
+    
+    <style>
+        .modal-header {
+            background-color: #04205f;
+            color: rgb(226, 226, 226);
+        }
+    </style>
 @endsection
 
 @section('content')
 
-<section class="container mx-auto p-0 my-4">
-  <div class="row justify-content-center p-0 m-0">
-    <div class="col-12 d-flex flex-lg-row my-4">
-        <article class="col-lg-8 px-2">
+<div class="container">
+  <div class="d-flex justify-content-center">
+      <h1 style="color:#428bca">Listado de Imagenes</h1>
+  </div>
+  <hr>
 
-            <div class="card">
-                <div class="card-body">
-                    <table id="banners" class="table">
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>Título</th>
-                            <th>Imagen</th>
-                            <th>Fecha de creación</th>
-                            <th>Fecha de modificación</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            
-                            {{-- {{dd($banners)}} --}}
-        
-                            @if (!$banners->isEmpty())
-                                
-                            @foreach ($banners as $banner)
-                                
-                            <tr>
-                                <th>{{$banner->id}}</th>
-                                <td>{{$banner->titulo}}</td>
-                                <td><img class="img-fluid" src="{{ url('/images/img/' . $banner->imagen) }}" alt="{{$banner->titulo}}"></td>
-                                <td>{{$banner->created_at}}</td>
-                                <td >{{$banner->updated_at}}</td>
-                                <td><button class="btn btn-primary" type="submit" href="">Editar</button></td>
-                                <td><button class="btn btn-danger" type="submit" href="">Eliminar</button></td>
-                            </tr>
-                            @endforeach
-        
-                            @else  
-                            
-        
-                        </tbody>
-                      </table>
-                      <div class="col d-flex justify-content-center">
-                        <span class="col badge bg-success fw-bolder fs-6 text-center mx-auto py-2 my-2">No hay datos para mostrar</span>
-                    </div>
-        
-                    @endif
-                </div>
-            </div>
-        </article>
-        <article class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-12 d-flex justify-content-center mx-auto mx-sm-auto mx-md-1 mx-lg-1 my-0 py-0">
-                        <div class="col-12 d-flex justify-content-center mx-auto my-0 py-0">
-                            <form class="__form container my-0" id="form-register" action="{{route('admin.addBanners')}}" method="post" onsubmit="return validar();">
-                              @csrf
-                              <div class="col-12 d-flex justify-content-center my-0">
-                                <span class="col badge bg-dark fw-bolder fs-6 text-center text-uppercase my-2">Cargar un banner</span>
-                              </div>
-                              <div class="col-12 mb-3 mt-2">
-                                <input type="text" class="__input form-control border-0 border-bottom rounded-0" id="titulo" name="titulo" placeholder="Título" aria-describedby="">
-                              </div>
-                              <div class="col-12 mb-3">
-                                <input class="form-control form-control-sm" id="imagen" name="imagen" type="file">
-                              </div>
-                              <div class="col d-flex justify-content-center">
-                                <button type="submit" class="__btn-submit col-12 btn btn-primary btn-block rounded-0 mx-auto my-2">Guardar</button>
-                              </div>
-                            </form>
-                        </div>    
-                    </div>
-                </div>
-            </div>
-        </article>
+
+    <div class="col-lg-12">
+      <button id="btnNuevo" type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalImagen">
+        <i class="fas fa-plus-square"></i> Agregar imagen
+      </button>
     </div>
 
-  </div>
-</section>
+    <br>
 
+    <div class="col-lg-12"> 
+      <div class="table-responsive">  
+          <table id="tablaImagenes" class="table table-striped table-hover table-bordered display" cellspacing="0" style="width:100%">
+              <meta name="csrf-token_imagenes" content="{{ csrf_token() }}">
+              <thead class="thead-dark text-center">
+                  <tr>
+                      <th>ID</th>
+                      <th>TITULO</th>
+                      <th>IMAGEN</th>
+                      <th>ACCIONES</th>
+                  </tr>    
+              </thead>
+              <tbody>
+
+              </tbody>
+          </table>
+      </div>    
+  </div>       
+</div>
+
+<!-- Modal Imagen-->
+<div class="modal fade" id="modalImagen" tabindex="-1" aria-labelledby="modalImagenLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgb(54, 105, 199)">
+        <h5 class="modal-title" id="modalImagenLabel" style="color: blanchedalmond">Agregar Imagen</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+          <form action="{{route('admin.imagenesagregar')}}" method="POST" id="formImagen" class="needs-validation" enctype="multipart/form-data">    
+              {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+              @csrf
+              <div class="modal-body">
+                <div class="row">
+                  {{-- <div class="col-lg-12 mb-3" style="display:none;"> --}}
+                    <div class="col-lg-12 mb-3">
+                      <div class="form-group">
+                          <label class="formItem" for="opcion" id="opcion_input"> <b>OPCION</b></label>
+                          {{-- <input type="text" class="form-control" id="opcion_input" name="opcion"> --}}
+                      </div> 
+                  </div> 
+                    <div class="col-lg-12 mb-3" style="display:none;" id="id_imagen">
+                      <div class="form-group">
+                          <label class="formItem" for="id"> <b>ID</b></label>
+                          <input type="text" class="form-control" id="id" name="id" readonly>
+                      </div> 
+                    </div>   
+                    <div class="col-lg-12 mb-3">
+                      <div class="form-group">
+                          <label class="formItem" for="titulo"> <b>Titulo de Imagen</b></label>
+                          <input type="text" class="form-control" id="titulo" name="titulo" required>
+                      </div> 
+                    </div> 
+                    <div class="col-lg-12 mb-3" id="imagen_imagen">
+                      <div class="form-group">
+                          <label class="formItem" for="imagen"> <b>Seleccionar Imagen</b></label>
+                          <input class="form-control form-control" id="imagen" name="imagen" type="file" required>
+                      </div> 
+                    </div>
+                  </div>     
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
+              </div>
+          </form> 
+    </div>
+  </div>
+</div>
+ 
 @endsection
 
 @section('js')
+<script src='{{ asset('/assets/jquery-ui/jquery-ui.min.js') }}'></script>
+<script src="{{ asset('/assets/formvalidation/0.6.2-dev/js/formValidation.min.js') }}"></script>
+<script src='{{ asset("assets/validity/jquery.validity.min.js") }}'></script>
+<script src='{{ asset("assets/validity/jquery.validity.lang.es.js") }}'></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    {{-- JQuery and Datatables --}}
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#banners').DataTable();
+<script>
+
+$(document).ready(function() {
+
+  var id, opcion;
+        opcion = 4;
+    
+        tablaImagenes = $('#tablaImagenes').DataTable( 
+        {
+                  // "dom": '<"dt-buttons"Bf><"clear">lirtp',
+        "ajax":{            
+                        "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token_imagenes"]').attr('content') },    
+                        "url": "{{route('admin.imageneseliminareditar')}}", 
+                        "method": 'post', //usamos el metodo POST
+                        "data":{
+                            '_token': $('input[name=_token]').val(),
+                            opcion:opcion}, //enviamos opcion 1 para que haga un SELECT
+                        "dataSrc":""
+                    },
+        "columns": [
+                        { data: "id" },
+                        { data: "titulo"},
+                        { data: "imagen" },  
+                        {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='fas fa-edit'></i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='fas fa-trash-alt'></i></button></div></div>"},
+                        
+                    ],
+        select: true,
+        colReorder: true,
+        "autoWidth": false,
+         "order": [[ 0, "asc" ]],
+         "paging":   true,
+         "ordering": true,
+         "info":     false,
+         "dom": 'Bfrtilp',
+         'columnDefs': [
+                          {'max-width': '20%', 'targets': 0}
+                       ],
+         "language": {
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sSearch":         "Buscar:",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        },
+                        "buttons": {
+                            "copy": "Copiar",
+                            "colvis": "Visibilidad"
+                        }
+                    },              
+        });    
+        
+        $("#btnNuevo").click(function(){        
+            fila = $(this).closest("tr");
+            opcion = 1; 
+            var imagen_imagen = document.getElementById("imagen_imagen");
+            imagen_imagen.style.display = "block";
+
+            var id_imagen = document.getElementById("id_imagen");
+            id_imagen.style.display = "none";
+
+
+
+            $("#formImagen").trigger("reset");
+            var objetivo = document.getElementById("opcion_input");
+            objetivo.innerHTML = 1;
         });
-    </script>
+
+
+        var fila; //captura la fila, para editar o eliminar
+
+        //submit para el Alta y Actualización
+        $('#formImagen').submit(function(e){                         
+                e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+                var form = this;
+                // id = $.trim($('#id').val());
+                // titulo =  $.trim($('#titulo').val());
+                // imagen = $.trim($('#imagen').val());
+                alert(new FormData(form));
+                $('#tablaImagenes').DataTable().clear().draw(); 
+                $('#modalImagen').modal('hide');
+
+                $.ajax({
+                    // headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    url: $(form).attr("action"),
+                    method: $(form).attr('method'),
+                    data: new FormData(form), 
+                    datatype: "json",   
+                    cache:  false,
+                    processData:  false,
+                    contentType:  false,
+                    // data:  {
+                    //     '_token': $('input[name=_token]').val(),
+                    //     titulo:titulo, id:id, imagen:imagen, opcion:opcion},    
+
+                    // success: function(data) {
+
+                    //     var text = data;
+                    //     var data = JSON.parse(text);
+
+                    //     tablaImagenes.rows.add(data).draw();
+                    // },
+                });			        										     			
+        });
+
+        //Editar        
+        $(document).on("click", ".btnEditar", function(){		        
+            opcion = 2;//editar
+            fila = $(this).closest("tr");	        
+            // user_id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		
+            id = fila.find('td:eq(0)').text();
+            titulo = fila.find('td:eq(1)').text();
+
+            $("#titulo").val(titulo);
+            $("#id").val(id);
+            var imagen_imagen = document.getElementById("imagen_imagen");
+            imagen_imagen.style.display = "none";
+
+            var id_imagen = document.getElementById("id_imagen");
+            id_imagen.style.display = "block";
+
+            $('#modalImagen').modal('show');
+            	   
+        });
+
+        //Borrar
+        $(document).on("click", ".btnBorrar", function(){
+            fila = $(this);          
+            id = $(this).closest('tr').find('td:eq(0)').text();
+            opcion = 3; //eliminar 
+            swal({
+                  title: "Esta Seguro de Eliminar la Fecha "+id+"?",
+                  // text: "Once deleted, you will not be able to recover this imaginary file!",
+                  icon: "warning",
+                  buttons: ["Cancelar!", "Eliminar!"],
+                  // buttons: true,
+                  // dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    $.ajax({
+                                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                                        url: "{{route('admin.imageneseliminareditar')}}",
+                                        type: "POST",
+                                        datatype:"json",      
+                                        data:  {
+                                            '_token': $('input[name=_token]').val(),
+                                            opcion:opcion, id:id},    
+                                        success: function() {
+                                          tablaImagenes.row(fila.parents('tr')).remove().draw(); 
+                                            swal("Imagen Eliminada con Exito!!!", {
+                                            icon: "success",
+                                          });                
+                                        }
+                                    });
+
+                  } else {
+                    swal("La imagen no fue Eliminada");
+                  }
+                }); 
+        }) 
+    });                
+
+</script>
+
+<script>
+  (function () {
+    'use strict'
+  
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+  </script>
 @endsection

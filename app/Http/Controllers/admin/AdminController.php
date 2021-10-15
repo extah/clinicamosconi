@@ -8,6 +8,11 @@ use App\ImagenesDePortada;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
 
+use Auth;
+use DB;
+use URL;
+use Redirect; 
+
 class AdminController extends Controller
 {
     public function index(){
@@ -22,8 +27,148 @@ class AdminController extends Controller
 
     public function banners(){
         $banners = ImagenesDePortada::all();
+        // dd($banners);
+
+        // $limit = " LIMIT 500";        
+        // $orderby = " ORDER BY imagenesdeportada.id DESC ";
+
+        // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+        // FROM imagenesdeportada        
+        //     ".$orderby." ".$limit));
+
+        // print json_encode($data, JSON_UNESCAPED_UNICODE);
+        // return datatables()->of($data)->toJson();
 
         return view('admin.imagenes_de_portada', compact('banners'));
+    }
+
+    public function imagenesagregar(Request $request)
+    {
+        $imagen   = new ImagenesDePortada;
+            
+        $imagen->titulo= "titulo";   
+        // $imagen->imagen=$request->input("descripcion"); 
+        $imagen->imagen = "archivo.png";       
+        $imagen->save(); 
+
+        return response()->json(["code"=>1, "msg"=>"muy bien"]);
+        
+    }
+    public function imageneseliminareditar(Request $request)
+    {
+
+        // $usuario = $request->session()->get('usuario');
+        // $result = $this->isUsuario($usuario);
+        $result = "OK";
+       
+            
+        if($result == "OK"){
+            
+            $opcion = $request->opcion;
+            // $opcion = $request->input("opcion");
+            // $titulo = $request->input("titulo");
+            // $titulo = $request->titulo;
+            switch($opcion){
+
+                case 1:
+                
+                    //Agregar  
+                    // $imagenExiste = ImagenesDePortada::where('titulo', '=',  $titulo)->get();
+        
+                    // if ($imagenExiste->count() != 0){
+                        
+                        // $esEmp = true;
+                        // $usuario = $request->session()->get('usuario');
+                        // $message = "El feriado ya existe";
+                        // $status = false;
+                        // $status_error = true;
+                        
+                        // return Redirect::to('administrador.generarferiados');           
+                    // }
+                    // if($request->hasFile('imagen')){
+                        // $extencion = $request->file('imagen')->getClientOriginalExtension();
+
+                        // $filename = time() . '.' . $extencion;
+                        // $path = public_path('images/img/'.$filename);
+
+                        // Image::make($image->getRealPath())->save($path);
+                        // Image::make($request->file('imagen'))->fit(144,144)->save($path);
+
+
+                    // }  
+
+
+
+                    $imagen   = new ImagenesDePortada;
+            
+                    $imagen->titulo= "titulo";   
+                    // $imagen->imagen=$request->input("descripcion"); 
+                    $imagen->imagen = "archivo.png";       
+                    $imagen->save(); 
+
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+            
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    FROM imagenesdeportada        
+                        ".$orderby." ".$limit));
+                    break;    
+                case 2: 
+                    //Actualizar
+                    $id = $request->input("id");
+
+                    DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo]);
+
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+            
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    FROM imagenesdeportada        
+                        ".$orderby." ".$limit));
+
+                    break;
+                case 3: 
+                    //borrar
+                    $id = $request->input("id");
+                    $imagen = imagenesdeportada::get_registro($id);
+                    $imagen->delete($id);   
+
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+            
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    FROM imagenesdeportada        
+                        ".$orderby." ".$limit));
+                    break;
+
+                case 4: 
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+            
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    FROM imagenesdeportada        
+                        ".$orderby." ".$limit));
+                    break;
+                
+            }
+
+            return json_encode($data, JSON_UNESCAPED_UNICODE);
+
+        }
+
+
+
+
+        // $limit = " LIMIT 500";        
+        // $orderby = " ORDER BY imagenesdeportada.id DESC ";
+
+        // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+        // FROM imagenesdeportada        
+        //     ".$orderby." ".$limit));
+
+        // print json_encode($data, JSON_UNESCAPED_UNICODE);
+        // return datatables()->of($data)->toJson();
+        // return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
 

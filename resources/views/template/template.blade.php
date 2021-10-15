@@ -175,6 +175,8 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+
+<script src="{{asset('assets/DataTables-1.10.25/popper/popper.min.js')}}"></script>
 <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
@@ -187,8 +189,6 @@
 <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
 <script src="{{ asset('assets/fontawesome-5.15.3/js/all.js') }}"></script>
-
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> --}}
 <script src="{{asset('js/template.js')}}"></script>
 
   @yield('js')

@@ -17,4 +17,10 @@ class ImagenesDePortada extends Model
     public function imagenesDePostada(){
         return $this->belongsTo(ImagenesDePostada::class);
     }
+
+    public static function get_registro($id)
+    {
+        $row = self::find($id);
+        return $row;       
+    }
 }
