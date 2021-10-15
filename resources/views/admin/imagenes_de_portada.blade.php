@@ -101,7 +101,7 @@
 @endsection
 
 @section('js')
-<script src='{{ asset('/assets/jquery-ui/jquery-ui.min.js') }}'></script>
+<!-- <script src='{{ asset('/assets/jquery-ui/jquery-ui.min.js') }}'></script> -->
 <script src="{{ asset('/assets/formvalidation/0.6.2-dev/js/formValidation.min.js') }}"></script>
 <script src='{{ asset("assets/validity/jquery.validity.min.js") }}'></script>
 <script src='{{ asset("assets/validity/jquery.validity.lang.es.js") }}'></script>
@@ -199,7 +199,7 @@ $(document).ready(function() {
                 // id = $.trim($('#id').val());
                 // titulo =  $.trim($('#titulo').val());
                 // imagen = $.trim($('#imagen').val());
-                alert(new FormData(form));
+                // alert(new FormData(form));
                 $('#tablaImagenes').DataTable().clear().draw(); 
                 $('#modalImagen').modal('hide');
 
@@ -216,13 +216,13 @@ $(document).ready(function() {
                     //     '_token': $('input[name=_token]').val(),
                     //     titulo:titulo, id:id, imagen:imagen, opcion:opcion},    
 
-                    // success: function(data) {
+                    success: function(data) {
 
-                    //     var text = data;
-                    //     var data = JSON.parse(text);
+                        var text = data;
+                        var data = JSON.parse(text);
 
-                    //     tablaImagenes.rows.add(data).draw();
-                    // },
+                        tablaImagenes.rows.add(data).draw();
+                    },
                 });			        										     			
         });
 

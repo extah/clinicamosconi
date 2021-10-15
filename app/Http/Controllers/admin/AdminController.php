@@ -44,14 +44,27 @@ class AdminController extends Controller
 
     public function imagenesagregar(Request $request)
     {
+
+        $opcion = $request->opcion_input;
+        $titulo_imagen = $request->titulo;
+
         $imagen   = new ImagenesDePortada;
             
-        $imagen->titulo= "titulo";   
+        $imagen->titulo= $titulo_imagen;   
         // $imagen->imagen=$request->input("descripcion"); 
         $imagen->imagen = "archivo.png";       
         $imagen->save(); 
 
-        return response()->json(["code"=>1, "msg"=>"muy bien"]);
+        $limit = " LIMIT 500";        
+        $orderby = " ORDER BY imagenesdeportada.id DESC ";
+
+        $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+        FROM imagenesdeportada        
+            ".$orderby." ".$limit));
+        
+        return json_encode($data, JSON_UNESCAPED_UNICODE);
+
+        // return response()->json(["code"=>1, "msg"=>"muy bien"]);
         
     }
     public function imageneseliminareditar(Request $request)
