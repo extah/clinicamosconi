@@ -37,6 +37,7 @@
                       <th>ID</th>
                       <th>TITULO</th>
                       <th>IMAGEN</th>
+                      <th>TIPO</th>
                       <th>FECHA CREADO</th>
                       <th>FECHA ACTUALIZADO</th>
                       <th>ACCIONES</th>
@@ -82,6 +83,16 @@
                           <input type="text" class="form-control" id="titulo" name="titulo" required>
                       </div> 
                     </div> 
+                    <div class="col-lg-12 mb-3">
+                      <div class="form-group">
+                        <label for="tipo" class="form-label"><b>Tipo de imagen</b></label>
+                        <select id="tipo" name="tipo" class="form-select" required>              
+                          <option value="img">img</option>
+                          <option value="galeria" selected>galeria</option>
+                          <option value="noticias">noticias</option>
+                        </select>
+                      </div> 
+                    </div> 
                     <div class="col-lg-12 mb-3" id="imagen_imagen">
                       <div class="form-group">
                           <label class="formItem" for="imagen"> <b>Seleccionar Imagen</b></label>
@@ -114,7 +125,7 @@
 
 $(document).ready(function() {
 
-  var id, opcion;
+  var id, opcion, titulo;
         opcion = 4;
     
         tablaImagenes = $('#tablaImagenes').DataTable( 
@@ -132,24 +143,25 @@ $(document).ready(function() {
         "columns": [
                         { data: "id" },
                         { data: "titulo"},
-                        { data: "imagen" },  
+                        { data: "imagen" },
+                        { data: "tipo" },    
                         { data: "created_at" },  
                         { data: "updated_at" },  
                         {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='fas fa-edit'></i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='fas fa-trash-alt'></i></button></div></div>"},
                         
                     ],
         responsive: {
-            details: {
+            // details: {
                 // display: $.fn.dataTable.Responsive.display.modal( {
                 //     header: function ( row ) {
                 //         var data = row.data();
                 //         return data["especialidad"] + ', Medico '+data["nombre_medico"];
                 //     }
                 // } ),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                    tableClass: 'table'
-                } )
-            }
+                // renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                //     tableClass: 'table'
+                // } )
+            // }
         },
         select: true,
         colReorder: true,
@@ -247,8 +259,16 @@ $(document).ready(function() {
             opcion = 2;//editar
             fila = $(this).closest("tr");	        
             // user_id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		
-            id = fila.find('td:eq(0)').text();
-            titulo = fila.find('td:eq(1)').text();
+            // id = fila.find('td:eq(0)').text();
+            if($(this).parents("tr").hasClass('child')){ //vemos si el actual row es child row
+                var id = $(this).parents("tr").prev().find('td:eq(0)').text(); //si es asi, nos regresamos al row anterior, es decir, al padre y obtenemos el id
+                titulo = $(this).parents("tr").prev().find('td:eq(1)').text();
+            } else {
+                var id = $(this).closest("tr").find('td:eq(0)').text(); //si no lo es, seguimos capturando el id del actual row
+                titulo = fila.find('td:eq(1)').text();
+            }
+
+
 
             $("#titulo").val(titulo);
             $("#id").val(id);
@@ -266,11 +286,20 @@ $(document).ready(function() {
 
         //Borrar
         $(document).on("click", ".btnBorrar", function(){
-            fila = $(this);          
-            id = $(this).closest('tr').find('td:eq(0)').text();
+            fila = $(this).closest("tr");         
+            // cell = $(this).closest("tr").children().first();
+            // id2 = cell.text();
+
+            if($(this).parents("tr").hasClass('child')){ //vemos si el actual row es child row
+                var id = $(this).parents("tr").prev().find('td:eq(0)').text(); //si es asi, nos regresamos al row anterior, es decir, al padre y obtenemos el id
+            } else {
+                var id = $(this).closest("tr").find('td:eq(0)').text(); //si no lo es, seguimos capturando el id del actual row
+            }
+
+            alert(id);
             opcion = 3; //eliminar 
             swal({
-                  title: "Esta Seguro de Eliminar la Fecha "+id+"?",
+                  title: "Esta Seguro de Eliminar el ID: "+id+"?",
                   // text: "Once deleted, you will not be able to recover this imaginary file!",
                   icon: "warning",
                   buttons: ["Cancelar!", "Eliminar!"],

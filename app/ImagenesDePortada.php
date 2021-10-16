@@ -9,7 +9,7 @@ class ImagenesDePortada extends Model
     protected $table = 'imagenesDePortada';
     protected $primaryKey = 'id';
     
-    protected $fillable = ['id', 'titulo', 'imagen'];
+    protected $fillable = ['id', 'titulo', 'imagen', 'tipo'];
     
     public $timestamps  = true;
 
