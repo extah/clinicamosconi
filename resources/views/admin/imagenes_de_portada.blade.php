@@ -65,7 +65,7 @@
                     <div class="col-lg-12 mb-3">
                       <div class="form-group">
                           <label class="formItem" for="opcion" id="opcion_input"> <b>OPCION</b></label>
-                          {{-- <input type="text" class="form-control" id="opcion_input" name="opcion"> --}}
+                          <input type="text" class="form-control" id="opcion" name="opcion">
                       </div> 
                   </div> 
                     <div class="col-lg-12 mb-3" style="display:none;" id="id_imagen">
@@ -185,8 +185,7 @@ $(document).ready(function() {
 
 
             $("#formImagen").trigger("reset");
-            var objetivo = document.getElementById("opcion_input");
-            objetivo.innerHTML = 1;
+            $("#opcion").val('1');
         });
 
 
@@ -236,11 +235,13 @@ $(document).ready(function() {
 
             $("#titulo").val(titulo);
             $("#id").val(id);
-            var imagen_imagen = document.getElementById("imagen_imagen");
-            imagen_imagen.style.display = "none";
+            // var imagen_imagen = document.getElementById("imagen_imagen");
+            // imagen_imagen.style.display = "none";
 
             var id_imagen = document.getElementById("id_imagen");
             id_imagen.style.display = "block";
+
+            $("#opcion").val('2');
 
             $('#modalImagen').modal('show');
             	   

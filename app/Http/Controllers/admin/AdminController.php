@@ -45,15 +45,38 @@ class AdminController extends Controller
     public function imagenesagregar(Request $request)
     {
 
-        $opcion = $request->opcion_input;
+        $opcion = $request->opcion;
         $titulo_imagen = $request->titulo;
+        $originalImage= $request->file('imagen');
+        $originalPath = public_path().'/images/img/';
+        $original_name = $originalImage->getClientOriginalName();
 
-        $imagen   = new ImagenesDePortada;
+        if ($opcion == 1) {
+ 
+            $imagenexiste = ImagenesDePortada::where('imagen', '=',  $original_name)->get();
             
-        $imagen->titulo= $titulo_imagen;   
-        // $imagen->imagen=$request->input("descripcion"); 
-        $imagen->imagen = "archivo.png";       
-        $imagen->save(); 
+            if ($imagenexiste->count() == 0){
+
+                $thumbnailImage = Image::make($originalImage);
+                $thumbnailImage->save($originalPath.$originalImage->getClientOriginalName());
+    
+                $imagen   = new ImagenesDePortada;
+                $imagen->titulo= $titulo_imagen;  
+                $imagen->imagen = $original_name;  
+                // $imagen->imagen = "imagen";
+                $imagen->save(); 
+            }
+
+
+        }elseif ($opcion == 2) {
+
+            $id = $request->id;
+
+            DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo_imagen, 'imagen' => $original_name]);
+           
+        }
+
+
 
         $limit = " LIMIT 500";        
         $orderby = " ORDER BY imagenesdeportada.id DESC ";
@@ -112,32 +135,32 @@ class AdminController extends Controller
 
 
 
-                    $imagen   = new ImagenesDePortada;
+                    // $imagen   = new ImagenesDePortada;
             
-                    $imagen->titulo= "titulo";   
-                    // $imagen->imagen=$request->input("descripcion"); 
-                    $imagen->imagen = "archivo.png";       
-                    $imagen->save(); 
+                    // $imagen->titulo= "titulo";   
+                    // // $imagen->imagen=$request->input("descripcion"); 
+                    // $imagen->imagen = "archivo.png";       
+                    // $imagen->save(); 
 
-                    $limit = " LIMIT 500";        
-                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+                    // $limit = " LIMIT 500";        
+                    // $orderby = " ORDER BY imagenesdeportada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
-                    FROM imagenesdeportada        
-                        ".$orderby." ".$limit));
+                    // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    // FROM imagenesdeportada        
+                    //     ".$orderby." ".$limit));
                     break;    
                 case 2: 
                     //Actualizar
-                    $id = $request->input("id");
+                    // $id = $request->input("id");
 
-                    DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo]);
+                    // DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo]);
 
-                    $limit = " LIMIT 500";        
-                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+                    // $limit = " LIMIT 500";        
+                    // $orderby = " ORDER BY imagenesdeportada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
-                    FROM imagenesdeportada        
-                        ".$orderby." ".$limit));
+                    // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    // FROM imagenesdeportada        
+                    //     ".$orderby." ".$limit));
 
                     break;
                 case 3: 
