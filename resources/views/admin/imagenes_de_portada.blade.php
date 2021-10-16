@@ -37,6 +37,8 @@
                       <th>ID</th>
                       <th>TITULO</th>
                       <th>IMAGEN</th>
+                      <th>FECHA CREADO</th>
+                      <th>FECHA ACTUALIZADO</th>
                       <th>ACCIONES</th>
                   </tr>    
               </thead>
@@ -131,9 +133,24 @@ $(document).ready(function() {
                         { data: "id" },
                         { data: "titulo"},
                         { data: "imagen" },  
+                        { data: "created_at" },  
+                        { data: "updated_at" },  
                         {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='fas fa-edit'></i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='fas fa-trash-alt'></i></button></div></div>"},
                         
                     ],
+        responsive: {
+            details: {
+                // display: $.fn.dataTable.Responsive.display.modal( {
+                //     header: function ( row ) {
+                //         var data = row.data();
+                //         return data["especialidad"] + ', Medico '+data["nombre_medico"];
+                //     }
+                // } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                    tableClass: 'table'
+                } )
+            }
+        },
         select: true,
         colReorder: true,
         "autoWidth": false,

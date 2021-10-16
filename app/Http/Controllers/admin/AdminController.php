@@ -26,20 +26,31 @@ class AdminController extends Controller
     }
 
     public function banners(){
-        $banners = ImagenesDePortada::all();
+        // $banners = ImagenesDePortada::all();
         // dd($banners);
 
         // $limit = " LIMIT 500";        
         // $orderby = " ORDER BY imagenesdeportada.id DESC ";
 
-        // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+        // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.created_at, imagenesdeportada.updated_at
         // FROM imagenesdeportada        
         //     ".$orderby." ".$limit));
 
         // print json_encode($data, JSON_UNESCAPED_UNICODE);
         // return datatables()->of($data)->toJson();
 
-        return view('admin.imagenes_de_portada', compact('banners'));
+        // return view('admin.imagenes_de_portada', compact('banners'));
+        // $imagenexiste = ImagenesDePortada::where('id', '=',  6)->get();
+        // $originalPath = public_path().'/images/img/';
+        // $image_path = $originalPath . $imagenexiste[0]->imagen;
+        // unlink($image_path);
+        // if (File::exists($image_path)) {
+        //         dd($image_path);
+        // }
+        // dd("no existe");
+        
+
+        return view('admin.imagenes_de_portada');
     }
 
     public function imagenesagregar(Request $request)
@@ -67,21 +78,31 @@ class AdminController extends Controller
                 $imagen->save(); 
             }
 
-
         }elseif ($opcion == 2) {
 
             $id = $request->id;
+            $imagenexiste = ImagenesDePortada::where('id', '=',  $id)->get();
+            // dd($imagenexiste[0]->imagen);
+            
 
-            DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo_imagen, 'imagen' => $original_name]);
+            if ($imagenexiste->count() != 0){
+                $image_path = $originalPath . $imagenexiste[0]->imagen;
+                unlink($image_path);
+
+                $thumbnailImage = Image::make($originalImage);
+                $thumbnailImage->save($originalPath.$originalImage->getClientOriginalName());
+
+                DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo_imagen, 'imagen' => $original_name]);
+                
+            }
+           
            
         }
-
-
 
         $limit = " LIMIT 500";        
         $orderby = " ORDER BY imagenesdeportada.id DESC ";
 
-        $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+        $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.created_at, imagenesdeportada.updated_at
         FROM imagenesdeportada        
             ".$orderby." ".$limit));
         
@@ -109,58 +130,10 @@ class AdminController extends Controller
                 case 1:
                 
                     //Agregar  
-                    // $imagenExiste = ImagenesDePortada::where('titulo', '=',  $titulo)->get();
-        
-                    // if ($imagenExiste->count() != 0){
-                        
-                        // $esEmp = true;
-                        // $usuario = $request->session()->get('usuario');
-                        // $message = "El feriado ya existe";
-                        // $status = false;
-                        // $status_error = true;
-                        
-                        // return Redirect::to('administrador.generarferiados');           
-                    // }
-                    // if($request->hasFile('imagen')){
-                        // $extencion = $request->file('imagen')->getClientOriginalExtension();
 
-                        // $filename = time() . '.' . $extencion;
-                        // $path = public_path('images/img/'.$filename);
-
-                        // Image::make($image->getRealPath())->save($path);
-                        // Image::make($request->file('imagen'))->fit(144,144)->save($path);
-
-
-                    // }  
-
-
-
-                    // $imagen   = new ImagenesDePortada;
-            
-                    // $imagen->titulo= "titulo";   
-                    // // $imagen->imagen=$request->input("descripcion"); 
-                    // $imagen->imagen = "archivo.png";       
-                    // $imagen->save(); 
-
-                    // $limit = " LIMIT 500";        
-                    // $orderby = " ORDER BY imagenesdeportada.id DESC ";
-            
-                    // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
-                    // FROM imagenesdeportada        
-                    //     ".$orderby." ".$limit));
                     break;    
                 case 2: 
                     //Actualizar
-                    // $id = $request->input("id");
-
-                    // DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo]);
-
-                    // $limit = " LIMIT 500";        
-                    // $orderby = " ORDER BY imagenesdeportada.id DESC ";
-            
-                    // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
-                    // FROM imagenesdeportada        
-                    //     ".$orderby." ".$limit));
 
                     break;
                 case 3: 
@@ -172,7 +145,7 @@ class AdminController extends Controller
                     $limit = " LIMIT 500";        
                     $orderby = " ORDER BY imagenesdeportada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.created_at, imagenesdeportada.updated_at
                     FROM imagenesdeportada        
                         ".$orderby." ".$limit));
                     break;
@@ -181,7 +154,7 @@ class AdminController extends Controller
                     $limit = " LIMIT 500";        
                     $orderby = " ORDER BY imagenesdeportada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.created_at, imagenesdeportada.updated_at
                     FROM imagenesdeportada        
                         ".$orderby." ".$limit));
                     break;
@@ -191,20 +164,6 @@ class AdminController extends Controller
             return json_encode($data, JSON_UNESCAPED_UNICODE);
 
         }
-
-
-
-
-        // $limit = " LIMIT 500";        
-        // $orderby = " ORDER BY imagenesdeportada.id DESC ";
-
-        // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen
-        // FROM imagenesdeportada        
-        //     ".$orderby." ".$limit));
-
-        // print json_encode($data, JSON_UNESCAPED_UNICODE);
-        // return datatables()->of($data)->toJson();
-        // return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
 
