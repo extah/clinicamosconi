@@ -7,12 +7,13 @@
     <title>Clínica Mosconi</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link href='{{ asset("css/template-inicio.css") }}' rel="stylesheet">
+    <link href='{{ asset("css/admin.css") }}' rel="stylesheet">
     <!--datables estilo bootstrap 5 CSS-->   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' rel='stylesheet' type='text/css'>
+    
     @yield('css')
 
 
@@ -21,26 +22,26 @@
 
 <main>
   
-  <header class="bg-white">
+  <header class="">
     <div class="__navbar container">
       <div class="row justify-content-center">
         <div class="col-12 col-md-12 col-lg-4 d-flex justify-content-center __logo px-0 my-auto">
                 <a class="navbar-brand d-flex mt-md-2 mx-auto" href="{{route('inicio.index')}}">
-                    <img src="{{asset('images/logos/logo_mosconi.png')}}" width="200" height="70" class="d-inline-block align-top px-0 m-auto" alt="" loading="lazy">
+                    <img src="{{asset('images/logos/logo_negativo.jpg')}}" width="200" height="70" class="d-inline-block align-top px-0 m-auto mb-3" alt="" loading="lazy">
 
                   </a>
             </div>
-            <nav class="col-12 col-lg-8 navbar navbar-light bg-white mx-auto">
+            <nav class="col-12 col-lg-8 __navbar navbar mx-auto">
               <div class="col-12 d-flex flex-column justify-content-center d-inline mx-auto">
 
                   <!-- MenúMobile -->
                   <nav class="container __navbar-2 col-12 d-block d-flex p-0 my-1 navbar navbar-expand-sm navbar-white bg-white">
                     <div class="__menu-mobile ml-auto container-fluid justify-content-center">
-                      <button class="navbar-toggler mr-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                      <button class="navbar-toggler navbar-light mr-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
                       <div class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
-                        <ul class="col-sm-12 navbar-nav d-flex justify-content-center mb-2 mb-lg-0 mt-md-2 ml-lg-0">
+                        <ul class="col-sm-12 navbar-nav d-flex justify-content-center mb-2 mb-lg-0 mt-md-2 mt-lg-0 ml-lg-0">
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{-- {{route('')}} --}}">Imágenes de portada</a>
                           </li>
@@ -49,6 +50,9 @@
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{-- {{route('')}} --}}">Galería</a>
+                          </li>
+                          <li class="nav-item mx-auto mx-lg-0 px-lg-0">
+                            <a class="nav-link text-nowrap text-uppercase px-3" href="{{-- {{route('')}} --}}">Salir</a>
                           </li>
                         </ul>
                       </div>
@@ -67,8 +71,8 @@
 
 
 <!-- Footer -->
-<footer class="">
-
+<footer class="__footer-admin d-none d-md-block">
+<p class="text-center my-2"> Copyright <span class="fw-bolder">Clínica Mosconi</span> <span>© Todos los derechos reservados. Municipalidad de Berisso</span></p>
 </footer>
 
 </main>

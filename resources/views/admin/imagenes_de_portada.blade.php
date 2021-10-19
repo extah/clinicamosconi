@@ -296,13 +296,13 @@ $(document).ready(function() {
                 var id = $(this).closest("tr").find('td:eq(0)').text(); //si no lo es, seguimos capturando el id del actual row
             }
 
-            alert(id);
+            alert("Se ha seleccionado el ID: "+id);
             opcion = 3; //eliminar 
             swal({
-                  title: "Esta Seguro de Eliminar el ID: "+id+"?",
+                  title: "¿Esta Seguro de Eliminar el ID: "+id+"?",
                   // text: "Once deleted, you will not be able to recover this imaginary file!",
                   icon: "warning",
-                  buttons: ["Cancelar!", "Eliminar!"],
+                  buttons: ["Cancelar", "Eliminar"],
                   // buttons: true,
                   // dangerMode: true,
                 })
