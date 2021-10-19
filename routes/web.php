@@ -44,6 +44,7 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::post('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesion')->name('portaldelpaciente.iniciarsesion');
 	Route::get('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesionGet')->name('portaldelpaciente.iniciarsesionGet');
 	Route::post('/',	'portaldelpaciente\PortaldelpacienteController@registrarse')->name('portaldelpaciente.registrarse');
+	Route::get('/sacarturno', 'portaldelpaciente\PortaldelpacienteController@sacarturno')->name('portaldelpaciente.sacarturno');
 	Route::get('/cerrarsesion',	'portaldelpaciente\PortaldelpacienteController@cerrarsesion')->name('portaldelpaciente.cerrarsesion');
 });
 
@@ -52,6 +53,8 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 //turnos web
 Route::group(array('prefix' => 'turnos'), function(){
 	Route::get('/',	'turnos\TurnosController@index')->name('turnos.index');
+	Route::get('/nuevoturno',	'turnos\TurnosController@nuevoturno')->name('turnos.nuevoturno');
+	Route::post('/nuevoturno/medico',	'turnos\TurnosController@nuevoturnomedico')->name('turnos.nuevoturnomedico');
 
 });
 
