@@ -165,6 +165,31 @@ class PortaldelpacienteController extends Controller
             }
         }
     }
+
+    public function sacarturno(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        // dd($usuario);
+        $result = $this->isUsuario($usuario);
+        // dd($result);
+        if($result == "OK")
+        {
+            $inicio ="";
+            $status_ok = false;
+            $esPaciente = true;
+            $message = "";
+            $especialidades =  DB::select("SELECT * FROM especialidades");
+            // dd($especialidades);
+            return view('turnos.nuevoTurno', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario', 'especialidades'));
+
+        }
+	    $inicio = "";    
+		$status_error = false;
+        $esPaciente = false;
+    	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
+        
+    }
+
     public function cerrarsesion(Request $request)
     {
 

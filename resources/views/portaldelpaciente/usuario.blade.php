@@ -38,7 +38,7 @@
             <a class="col-10 col-sm-10 col-md-4 col-lg-4 nav-link p-0 m-auto" href="">
                 <img class="col-12 img-fluid p-2" src="{{asset('images/botones/estudios-usuario.png')}}" alt="Estudios del usuario">
             </a>
-            <a class="col-10 col-sm-10 col-md-4 col-lg-4 nav-link p-0 m-auto" href="">
+            <a class="col-10 col-sm-10 col-md-4 col-lg-4 nav-link p-0 m-auto" href="{{route('portaldelpaciente.sacarturno')}}">
                 <img class="col-12 img-fluid p-2" src="{{asset('images/botones/sacar-turno-usuario.png')}}" alt="Sacar turno">
             </a>
         </div>
