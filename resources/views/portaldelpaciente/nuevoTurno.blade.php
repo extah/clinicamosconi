@@ -41,7 +41,7 @@
         </div>
 		<div class="row justify-content-center align-items-center h-100">
     		<div class="col col-sm-8 col-md-8 col-lg-8 col-xl-3">
-				<form id="demoForm" method="post" action="{{ url('turnos/nuevoturno/medico')  }}" data-toggle="validator" role="form">
+				<form id="demoForm" method="post" action="{{ url('portaldelpaciente/nuevoturno/medico')  }}" data-toggle="validator" role="form">
 					{{ csrf_field() }}
 
 					<div class="form-group">

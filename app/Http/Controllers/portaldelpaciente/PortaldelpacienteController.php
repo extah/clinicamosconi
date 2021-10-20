@@ -166,7 +166,7 @@ class PortaldelpacienteController extends Controller
         }
     }
 
-    public function sacarturno(Request $request)
+    public function nuevoturno(Request $request)
     {
         $usuario = $request->session()->get('usuario');
         // dd($usuario);
@@ -180,7 +180,7 @@ class PortaldelpacienteController extends Controller
             $message = "";
             $especialidades =  DB::select("SELECT * FROM especialidades");
             // dd($especialidades);
-            return view('turnos.nuevoTurno', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario', 'especialidades'));
+            return view('portaldelpaciente.nuevoTurno', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario', 'especialidades'));
 
         }
 	    $inicio = "";    
@@ -189,7 +189,33 @@ class PortaldelpacienteController extends Controller
     	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
         
     }
+    
+    public function nuevoturnomedico(Request $request)
+    {
+        $barrios = null;
+        $status_error = false;
+        $select_especialidad = $request->select_especialidad;
+        $especialidad = DB::select("SELECT * FROM especialidades WHERE id = " .$select_especialidad);
+        
+        $medicos = DB::select("SELECT * FROM turno_espec_medic WHERE id_especialidades = " .$select_especialidad);
 
+        $where_medico = "WHERE id = " . $medicos[0]->id_medico;
+        // dd($where_medico);
+        for ($i=1; $i < count($medicos); $i++) { 
+            $where_medico = $where_medico . " OR id = " . $medicos[$i]->id_medico;
+        }
+        
+        $medicos = DB::select("SELECT DISTINCT * FROM medico " . $where_medico);
+        // dd($medicos);
+
+        return view('portaldelpaciente.nuevoTurno_medico', compact('medicos', 'status_error'));
+    }
+
+
+    public function nuevoturnohorario(Request $request)
+    {
+        dd($request);
+    }
     public function cerrarsesion(Request $request)
     {
 

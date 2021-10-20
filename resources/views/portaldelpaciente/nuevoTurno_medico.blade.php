@@ -31,7 +31,7 @@
 		<div class="container col-6 mx-auto">
             <div class="card text-black bg-info mb-3" style="max-width: 100rem;">
                 <div class="card-body text-Black text-center">
-                  <h4 class="card-title">Buscar turnos por barrio</h4>
+                  <h4 class="card-title">Buscar turnos por Medico</h4>
                 </div>                  
             </div>
         </div>
@@ -41,7 +41,7 @@
         </div>
 		<div class="row justify-content-center align-items-center h-100">
     		<div class="col col-sm-8 col-md-8 col-lg-8 col-xl-3">
-				<form id="demoForm" method="post" action="{{ url('turnos/medico')  }}" data-toggle="validator" role="form">
+				<form id="demoForm" method="post" action="{{ url('portaldelpaciente/nuevoturno/horario')  }}" data-toggle="validator" role="form">
 					{{ csrf_field() }}
 
 					<div class="form-group">
@@ -49,8 +49,7 @@
 						<select name="select_medico" id="select_medico" class="form-control" required>
 							<option value="">-Seleccioná una Medico-</option>
 							@foreach($medicos as $medico)
-								<option value="{{ $medico->id }}" offset="1">{{ $medico->nombre }}</option>
-							
+								<option value="{{ $medico->id }}" offset="1">{{ $medico->apellido }} {{ $medico->nombre }}</option>
 							@endforeach
 						</select>
 					</div>

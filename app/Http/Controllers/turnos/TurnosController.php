@@ -17,15 +17,4 @@ class TurnosController extends Controller
     	return view('turnos.turnos', compact('esPaciente'));
     }
 
-    public function nuevoturnomedico(Request $request)
-    {
-        $barrios = null;
-        $status_error = false;
-        $select_especialidad = $request->select_especialidad;
-        $especialidad = DB::select("SELECT * FROM especialidades WHERE id = " .$select_especialidad);
-        $medico = DB::select("SELECT * FROM medico WHERE id = " .$select_especialidad);
-        // dd($especialidad);
-
-        return view('turnos.nuevoTurno_medico', compact('barrios', 'status_error', 'especialidades'));
-    }
 }
