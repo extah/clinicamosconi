@@ -31,7 +31,7 @@
 		<div class="container col-6 mx-auto">
             <div class="card text-black bg-info mb-3" style="max-width: 100rem;">
                 <div class="card-body text-Black text-center">
-                  <h4 class="card-title">Buscar turnos por barrio</h4>
+                  <h4 class="card-title">Buscar turnos por Especialidad</h4>
                 </div>                  
             </div>
         </div>
@@ -79,14 +79,14 @@
 <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
 <script>
-	var select = document.getElementById('select_tramite');
+	var select = document.getElementById('select_especialidad');
 	select.addEventListener('change', function(evt) {
 	this.setCustomValidity('');
 	});
 	select.addEventListener('invalid', function(evt) {
 	// Required
 	if (this.validity.valueMissing) {
-		this.setCustomValidity('Por favor seleccione un tramite!');
+		this.setCustomValidity('¡Por favor seleccione una Especialidad!');
 	}
 	});
 

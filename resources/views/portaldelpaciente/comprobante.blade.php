@@ -70,6 +70,14 @@
                     </td>
                 </tr>
                 <tr >
+                    <td style=" border: solid;width: 50%; padding: 3; text-align: left;">                    
+                        MEDICO:
+                    </td>
+                    <td style=" border: solid;width: 50%; padding: 3; text-align: left;">                    
+                        <b>{{ $turno[0]->medico_apellido }} {{ $turno[0]->medico_nombre }}</b>
+                    </td>
+                </tr>
+                <tr >
                     <td style="border: solid; width: 50%; padding: 3; text-align: left;">                    
                         NOMBRE Y APELLIDO:
                     </td>

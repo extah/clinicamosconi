@@ -51,17 +51,13 @@
 	<div class="row justify-content-center align-items-center h-100">
 
 		<div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-
-			<div class="form-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text"><b>N° DE DOCUMENTO: </b>  &nbsp; {{ $dni }}</div>
-				</div>
-			</div>
 			<div class="form-group">
 				<div class="input-group-prepend">
 					<div class="input-group-text"><b>N° DE COMPROBANTE: </b>  &nbsp; {{ $comprobante_id }}</div>
 				</div>
 			</div>
+
+
 			<div class="form-group">
 				<div class="input-group-prepend">
 					<div class="input-group-text"><b> FECHA: </b> &nbsp; {{ $fecha }}</div>
@@ -72,6 +68,22 @@
 					<div class="input-group-text"><b>HORA: </b>  &nbsp; {{ $hora }}</div>
 				</div>
 			</div>
+            <div class="form-group">
+				<div class="input-group-prepend">
+					<div class="input-group-text"><b>N° DE DOCUMENTO: </b>  &nbsp; {{ $dni }}</div>
+				</div>
+			</div>
+            <div class="form-group">
+				<div class="input-group-prepend">
+					<div class="input-group-text"><b>ESPECIALIDAD: </b>  &nbsp; {{ $especialidad_nombre }}</div>
+				</div>
+			</div>
+            <div class="form-group">
+				<div class="input-group-prepend">
+					<div class="input-group-text"><b>MEDICO: </b>  &nbsp; {{ $medico_nombre }}</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 

@@ -14,7 +14,7 @@ class Medico extends Model
     
     public $timestamps  = false;
 
-    public static function findOrFail($id)
+    public static function get_registro($id)
     {
         $row = self::find($id);
         return $row;       

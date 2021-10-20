@@ -14,6 +14,12 @@ class Especialidades extends Model
     
     public $timestamps  = false;
 
+    //metodos
+    public static function get_registro($id)
+    {
+        $row = self::find($id);
+        return $row;       
+    }
     
     public function especialidades(){
         return $this->belongsTo(Especialidades::class);

@@ -93,20 +93,6 @@
 <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
 <script>
-	var select = document.getElementById('select_tramite');
-	select.addEventListener('change', function(evt) {
-	this.setCustomValidity('');
-	});
-	select.addEventListener('invalid', function(evt) {
-	// Required
-	if (this.validity.valueMissing) {
-		this.setCustomValidity('Por favor seleccione un tramite!');
-	}
-	});
-
-</script>
-
-<script>
     @if (Session::get('status_info'))
             toastr.info( '{{ session('message') }}', 'Informar', {
                 // "progressBar": true,

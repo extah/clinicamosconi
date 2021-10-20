@@ -13,7 +13,9 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 use App\Users;
 use App\Turnos;
+use App\Medico;
 use App\Comprobante;
+use App\Especialidades;
 
 class PortaldelpacienteController extends Controller
 {
@@ -356,7 +358,8 @@ class PortaldelpacienteController extends Controller
         // dd($turno);
         $persona  = Users::get_registro($usuario);
         // dd($persona);
-
+        $medico  = Medico::get_registro($id_medico);
+        $especialidad  = Especialidades::get_registro($id_especialidad);
 
 		$comprobante = 0;
 		$dni = $persona->dni;
@@ -396,7 +399,9 @@ class PortaldelpacienteController extends Controller
 				$message = "El turno se registro con ÉXITO";
 				$status = true;
 				$esEmp = false;
-				return view('portaldelpaciente.comprobanteTurno', compact('comprobante_id', 'dni', 'status', 'message','hora','fecha', 'esEmp'));
+                $especialidad_nombre = $especialidad->nombre;
+                $medico_nombre = $medico->apellido . " " . $medico->nombre;
+				return view('portaldelpaciente.comprobanteTurno', compact('comprobante_id', 'dni', 'status', 'message','hora','fecha', 'esEmp', 'especialidad_nombre','medico_nombre' ));
 			}
 
 			catch (\Exception $e)
@@ -430,11 +435,12 @@ class PortaldelpacienteController extends Controller
     public function imprimir_comprobante($id, $nrodoc){
 
         // dd();
-        $turno =  DB::select('SELECT turnos.id, turnos.id_comprobante, DATE_FORMAT( turnos.fecha,"%d/%m/%Y") AS fecha, turnos.hora, turnos.nro_turno, FORMAT(users.dni, 0, "de_DE") AS nro_doc, users.nombreyApellido as nombrecompleto, users.telefono, users.email, DATE_FORMAT(turnos.updated_at, "%d/%m/%Y %H:%M:%S") as fecha_emision, especialidades.nombre as especialidad
+        $turno =  DB::select('SELECT turnos.id, turnos.id_comprobante, DATE_FORMAT( turnos.fecha,"%d/%m/%Y") AS fecha, turnos.hora, turnos.nro_turno, FORMAT(users.dni, 0, "de_DE") AS nro_doc, users.nombreyApellido as nombrecompleto, users.telefono, users.email, DATE_FORMAT(turnos.updated_at, "%d/%m/%Y %H:%M:%S") as fecha_emision, especialidades.nombre as especialidad, medico.nombre as medico_nombre, medico.apellido as medico_apellido
         FROM turnos
         INNER JOIN comprobantes ON turnos.id = comprobantes.id_turno
         INNER JOIN users ON users.id = turnos.id_persona
         INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+        INNER JOIN medico ON turnos.id_medico = medico.id
         WHERE turnos.id_comprobante = '.$id);
         if ($turno){
             

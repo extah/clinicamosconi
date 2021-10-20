@@ -83,14 +83,14 @@
 <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
 <script>
-	var select = document.getElementById('select_tramite');
+	var select = document.getElementById('select_medico');
 	select.addEventListener('change', function(evt) {
 	this.setCustomValidity('');
 	});
 	select.addEventListener('invalid', function(evt) {
 	// Required
 	if (this.validity.valueMissing) {
-		this.setCustomValidity('Por favor seleccione un tramite!');
+		this.setCustomValidity('¡Por favor seleccione un Medico!');
 	}
 	});
 
