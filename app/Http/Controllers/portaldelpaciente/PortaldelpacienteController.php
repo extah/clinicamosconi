@@ -8,6 +8,12 @@ use Auth;
 use DB;
 use URL;
 use Redirect; 
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
+
+use App\Users;
+use App\Turnos;
+use App\Comprobante;
 
 class PortaldelpacienteController extends Controller
 {
@@ -207,15 +213,278 @@ class PortaldelpacienteController extends Controller
         
         $medicos = DB::select("SELECT DISTINCT * FROM medico " . $where_medico);
         // dd($medicos);
+        $especialidadDato = $especialidad[0];
 
-        return view('portaldelpaciente.nuevoTurno_medico', compact('medicos', 'status_error'));
+        return view('portaldelpaciente.nuevoTurno_medico', compact('medicos', 'status_error', 'especialidadDato'));
+    }
+
+
+    public function nuevoturnofecha(Request $request)
+    {
+        $inicio = "";  
+		$esEmp = false;  
+        // dd($request);
+        $id_especialidad = $request->id_especialidad;
+	    $id_medico =  $request->select_medico;
+
+		$turnos =  DB::select("SELECT turnos.* FROM turnos where id_especialidad = " . $id_especialidad . " AND id_medico = " . $id_medico . " ORDER BY turnos.fecha DESC LIMIT 1 ");
+        // dd($turnos);
+		// chequeo si hay fechas para el barrio	
+		
+		if(count($turnos) == 0)
+		{
+			$barrios =  DB::select("SELECT barrios.* FROM barrios ORDER BY barrios.barrio ASC");
+			$barrio_select = DB::select("SELECT barrios.* FROM barrios WHERE id = " . $id_barrio);
+			$message = "Por el momento no hay turnos disponibles para el barrio " . $barrio_select[0]->barrio;
+			$status_error = true;
+			$inicio = "";    
+			
+	
+			return view('nuevoTurno.nuevoturno', compact('inicio', 'barrios', 'message', 'status_error', 'esEmp'));
+		}
+		// $barrio_select = DB::select("SELECT barrios.* FROM barrios WHERE id = " . $id_barrio);
+		// $nombrebarrio = $barrio_select[0]->barrio;
+
+		$fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+		$dateactual = $fecha_actual->format('Y/m/d');
+		$datefinal = $turnos[0]->fecha;
+		$timestamp = strtotime($datefinal);
+		$datefinal = date('Y/m/d', $timestamp);
+		// dd($dateactual . "  " . $datefinal);
+		// dd("SELECT DISTINCT fecha FROM turnos WHERE libre = 1 AND id_barrio = " . $id_barrio . " AND fecha BETWEEN '" . $dateactual . "' AND '" . $datefinal . "' ORDER BY fecha ASC");
+		// SELECT DISTINCT fecha FROM `turno` WHERE libre = 1 AND id_tramite_turno = 1 AND fecha BETWEEN '2021/06/01' AND '2021/06/30' ORDER BY id_turno ASC
+		$diasDisponible =  DB::select("SELECT DISTINCT fecha FROM turnos WHERE libre = 1 AND id_especialidad = " . $id_especialidad . " AND id_medico = " . $id_medico . " AND fecha BETWEEN '" . $dateactual . "' AND '" . $datefinal . "' ORDER BY fecha ASC");
+		// dd($diasDisponible);
+		
+		if(count($diasDisponible) == 0)
+		{
+			
+			$message = "Por el momento no hay turnos disponibles";
+			$status_error = true;
+			$inicio = "";    
+			$tarmites =  DB::select("SELECT tab_tramites.* FROM tab_tramites where desabilitar = 0 ORDER BY tab_tramites.tramite ASC");
+	
+			return view('nuevoTurno.nuevoturno', compact('inicio', 'tarmites', 'message', 'status_error', 'esEmp'));
+		}
+		$fechasDisp = [];
+		foreach ($diasDisponible as $key => $fecha) {
+			$fechastr = strtotime($fecha->fecha);
+			//Le das el formato que necesitas a la fecha
+			$fecha = date('d/m/Y',$fechastr);
+			array_push($fechasDisp,$fecha);
+		}
+
+		$status_error = false;
+		$esEmp = false;
+        $especialidadDato = DB::select("SELECT * FROM especialidades WHERE id = " .$id_especialidad);
+        $especialidadDato = $especialidadDato[0];
+        $medicoDato = DB::select("SELECT * FROM medico WHERE id = " .$id_medico);
+        $medicoDato = $medicoDato[0];
+    	return view('portaldelpaciente.nuevoTurno_fecha', compact('inicio', 'especialidadDato', 'medicoDato', 'fechasDisp', 'status_error', 'esEmp'));
     }
 
 
     public function nuevoturnohorario(Request $request)
     {
-        dd($request);
+        //  dd($request);
+         $id_especialidad = $request->id_especialidad;
+         $id_medico = $request->id_medico;
+         $fechaParam = $request->fecha_turno;
+
+          //formato de la fecha  30/06/2021
+ 
+          $diaparam = substr($fechaParam, 0, 2);
+         //  dd($diaparam);
+          $mesparam = substr($fechaParam, -7, 2);
+         //  dd($mesparam);
+          $anioparam = substr($fechaParam, -4, 4);
+         //  dd($anioparam);
+ 
+          $fecha = $anioparam . "/" . $mesparam . "/" . $diaparam;
+         // dd($fecha);
+ 
+         $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+         $date = $fecha_actual->format('Y/m/d');
+         $hora_actual =  $fecha_actual->format('H:i');
+ 
+         $whereAmpliacion = "";
+ 
+         if(strcmp($fecha,$date) == 0){
+ 
+             $whereAmpliacion = "and hora >'" . $hora_actual."'";
+             // dd($whereAmpliacion);
+         }
+ 
+         $turnos =  DB::select("SELECT * FROM turnos WHERE id_especialidad = ".$id_especialidad . " AND id_medico = " . $id_medico ." AND libre = 1 AND fecha = '".$fecha."' ".$whereAmpliacion);
+ 
+         $content= compact('turnos');
+         $error = "0";
+ 
+         if(count($turnos) == 0)
+         {
+             $message = "NO HAY TURNOS PARA LA FECHA: " . $fecha;
+             $status_error = true;
+             $inicio = "";    
+             $tarmites =  DB::select("SELECT tab_tramites.* FROM tab_tramites where desabilitar = 0 ORDER BY tab_tramites.tramite ASC");
+             
+             $esEmp = false;
+     
+             return view('nuevoTurno.nuevoturno', compact('inicio', 'tarmites', 'message', 'status_error', 'esEmp'));
+             
+         }
+
+         $esEmp = false;
+         $especialidadDato = DB::select("SELECT * FROM especialidades WHERE id = " .$id_especialidad);
+         $especialidadDato = $especialidadDato[0];
+         $medicoDato = DB::select("SELECT * FROM medico WHERE id = " .$id_medico);
+         $medicoDato = $medicoDato[0];
+
+         return view('portaldelpaciente.nuevoTurno_horario', compact('turnos', 'especialidadDato', 'medicoDato', 'esEmp', 'fechaParam'));
     }
+
+    public function turnoConfirmado(Request $request){
+        // dd($request);
+        $usuario = $request->session()->get('usuario');
+
+		$id_especialidad = $request->id_especialidad;
+        $id_medico = $request->id_medico;
+        $fecha = $request->fecha;
+		$id_turno = $request->select_turno;
+
+		// $turno   = turno::get_registro($request->select_turno);
+        $turno  = Turnos::get_registro($id_turno);
+        // dd($turno);
+        $persona  = Users::get_registro($usuario);
+        // dd($persona);
+
+
+		$comprobante = 0;
+		$dni = $persona->dni;
+		$hora = $turno->hora;
+		$fecha = $turno->fecha;
+        // dd($fecha);
+
+		$fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+		$date123 = $fecha_actual->format('Y-m-d H:i:s');
+
+		if($turno->libre == 1){
+			// dd($turno->libre);
+			DB::beginTransaction();
+			try{
+
+				$turno->libre = 0;
+                $turno->id_persona = $persona->id;
+				  
+                $comprobante = new Comprobante;
+				$comprobante->id_turno = $turno->id;
+                $comprobante->id_persona = $persona->id;;
+                $comprobante->fecha_cancela = NULL;
+				
+                if ($comprobante->save()) {
+                    # code...
+                    $comprobante_id = $comprobante->id;
+                }
+                $turno->id_comprobante = $comprobante_id;
+				$turno->save();
+
+				$precio = 0; 
+				
+				DB::commit();
+                // dd("termino");
+				$error = "0";
+
+				$message = "El turno se registro con ÉXITO";
+				$status = true;
+				$esEmp = false;
+				return view('portaldelpaciente.comprobanteTurno', compact('comprobante_id', 'dni', 'status', 'message','hora','fecha', 'esEmp'));
+			}
+
+			catch (\Exception $e)
+			{
+				DB::rollBack();
+				$error = "3";
+				$descError = "Error al grabar ".$e;
+				throw $e;
+				$miArray = array("error"=>$error, "recaptchaValido"=>$recaptchaValido, "descError"=>$descError, "comprobante"=>$comprobante, "id_turno"=>$id_turno, "dni"=>$dni);
+
+				//return ($miArray);
+			}        
+			
+		}
+		else{
+			// $message = "El turno se ha ocupado mientras ingresaba los datos, INTENTE NUEVAMENTE";
+			// $status_error = true;
+			// $inicio = "";    
+			// $tarmites =  DB::select("SELECT tab_tramites.* FROM tab_tramites where desabilitar = 0 ORDER BY tab_tramites.tramite ASC");
+			// $esEmp = false;
+
+			// return view('nuevoTurno.nuevoturno', compact('inicio', 'tarmites', 'message', 'status_error', 'esEmp'));
+            dd("error");
+		}
+
+		// $content= compact('turno');//tranformo a json
+
+		// return $content;
+	}
+
+    public function imprimir_comprobante($id, $nrodoc){
+
+        // dd();
+        $turno =  DB::select('SELECT turnos.id, turnos.id_comprobante, DATE_FORMAT( turnos.fecha,"%d/%m/%Y") AS fecha, turnos.hora, turnos.nro_turno, FORMAT(users.dni, 0, "de_DE") AS nro_doc, users.nombreyApellido as nombrecompleto, users.telefono, users.email, DATE_FORMAT(turnos.updated_at, "%d/%m/%Y %H:%M:%S") as fecha_emision, especialidades.nombre as especialidad
+        FROM turnos
+        INNER JOIN comprobantes ON turnos.id = comprobantes.id_turno
+        INNER JOIN users ON users.id = turnos.id_persona
+        INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+        WHERE turnos.id_comprobante = '.$id);
+        if ($turno){
+            
+            $date = date('Y-m-d');
+
+            // $domicilio = $this->cargadom($turno[0]->domicilio_calle, $turno[0]->domicilio_nro, $turno[0]->domicilio_subnro, $turno[0]->domicilio_piso, $turno[0]->domicilio_dpto, $turno[0]->domicilio_mzna);
+
+            $xmail = $turno[0]->email;
+            $xid = $id;
+            $xndoc = $turno[0]->nro_doc;
+
+
+            $pdf = PDF::loadView('portaldelpaciente.comprobante', compact('turno', 'date'));
+
+            return $pdf->download('comprobanteTurno.pdf');
+        }
+    }
+
+    function cargadom(){
+        $dom = "";
+        if($calle != '')
+        {
+            $dom .= "calle ".$calle;
+        }
+        if($nro != '')
+        {
+            $dom .= " N° ".$nro;
+        }
+        if($subnro != '')
+        {
+            $dom .= " ".$subnro;
+        }
+        if($piso != '')
+        {
+            $dom .= " piso ".$piso;
+        }
+        if($dpto != '')
+        {
+            $dom .= " dpto. ".$dpto;
+        }
+        if($mzna != '')
+        {
+            $dom .= " mzna. ".$mzna;
+        }
+
+        return $dom;
+
+    }
+
+
     public function cerrarsesion(Request $request)
     {
 

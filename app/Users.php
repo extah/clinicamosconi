@@ -19,4 +19,11 @@ class Users extends Model
         protected $hidden = [
             'contrasena', 'remember_token',
         ];
+
+        public static function get_registro($email)
+        {
+            $row = Users::where('email', '=', $email)->first();
+
+            return $row;       
+        }
 }

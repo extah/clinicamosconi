@@ -50,7 +50,11 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	// Route::get('/nuevoturno',	'portaldelpaciente\PortaldelpacienteController@nuevoturno')->name('portaldelpaciente.nuevoturno');
 	Route::get('/nuevoturno', 'portaldelpaciente\PortaldelpacienteController@nuevoturno')->name('portaldelpaciente.nuevoturno');
 	Route::post('/nuevoturno/medico',	'portaldelpaciente\PortaldelpacienteController@nuevoturnomedico')->name('portaldelpaciente.nuevoturnomedico');
+	Route::post('/nuevoturno/fecha',	'portaldelpaciente\PortaldelpacienteController@nuevoturnofecha')->name('portaldelpaciente.nuevoturnofecha');
 	Route::post('/nuevoturno/horario',	'portaldelpaciente\PortaldelpacienteController@nuevoturnohorario')->name('portaldelpaciente.nuevoturnohorario');
+	Route::post('/turnoconfirmado',	'portaldelpaciente\PortaldelpacienteController@turnoConfirmado')->name('portaldelpaciente.turnoConfirmado');
+	// Route::post('/turnoconfirmado',	'nuevoTurno\NuevoTurnoController@turnoConfirmado');
+	Route::get('descargarcomprobante/{id}/{nrodoc}',  	'portaldelpaciente\PortaldelpacienteController@imprimir_comprobante')->name('portaldelpaciente.imprimir_comprobante');
 });
 
 

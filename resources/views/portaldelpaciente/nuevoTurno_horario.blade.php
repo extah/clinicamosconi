@@ -3,6 +3,10 @@
 @section('css')
 
 <link rel="stylesheet" href="{{ asset('css/barrapasoYcirculo.css') }}">
+{{-- <link href="{{ asset('/assets/bootstrap-datepicker-1.7.1/css/bootstrap-datepicker.min.css') }}" rel="stylesheet"/> --}}
+<link href="{{ asset('/assets/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet"/>
+
+{{-- <link href="{{ asset('/css/datepickk.min.css') }}" rel="stylesheet"> --}}
 
 <style type="text/css">
  /* .btn_personalizado{
@@ -31,7 +35,7 @@
 		<div class="container col-6 mx-auto">
             <div class="card text-black bg-info mb-3" style="max-width: 100rem;">
                 <div class="card-body text-Black text-center">
-                  <h4 class="card-title">Buscar turnos por Medico</h4>
+                  <h4 class="card-title">Buscar turnos por Fecha</h4>
                 </div>                  
             </div>
         </div>
@@ -39,33 +43,46 @@
 		<div class="form-group">
             <div class="my-2 pb-1 barrapaso-uno" id="barra1"></div>    
         </div>
-		<div class="row justify-content-center align-items-center h-100">
-    		<div class="col col-sm-8 col-md-8 col-lg-8 col-xl-3">
-				<form id="demoForm" method="post" action="{{ url('portaldelpaciente/nuevoturno/fecha')  }}" data-toggle="validator" role="form">
-					{{ csrf_field() }}
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                <form id="demoForm" method="post" action="{{ url('portaldelpaciente/turnoconfirmado')  }}" data-toggle="validator" role="form">
+                    {{ csrf_field() }}
+        
 					<div class="form-group">
                         <label class="formItem" for="nombre_especialidad"> <b>Especialidad</b></label>
                         <input  class="form-control" type="text" name="nombre_especialidad" id="nombre_especialidad" value="{{ $especialidadDato->nombre}}" disabled>
 					</div>
 					<input id="id_especialidad" name="id_especialidad" type="hidden" value="{{ $especialidadDato->id}}">
 
-					<div class="form-group">
-						<label class="formItem" for="select_medico"> <b>Medico</b></label>
-						<select name="select_medico" id="select_medico" class="form-control" required>
-							<option value="">-Seleccioná una Medico-</option>
-							@foreach($medicos as $medico)
-								<option value="{{ $medico->id }}" offset="1">{{ $medico->apellido }} {{ $medico->nombre }}</option>
-							@endforeach
-						</select>
+                    <div class="form-group">
+                        <label class="formItem" for="nombre_medico"> <b>Medico</b></label>
+                        <input  class="form-control" type="text" name="nombre_medico" id="nombre_medico" value="{{ $medicoDato->nombre}}" disabled>
 					</div>
-					<label>&nbsp;</label>
-	
-					<div class="row d-flex justify-content-center">
-						<input type="submit" class='btn btn-primary btn-lg' value="Siguiente">
+					<input id="id_medico" name="id_medico" type="hidden" value="{{ $medicoDato->id}}">
+        
+                    <div class="form-group">
+                        <label class="formItem" for="fecha_param"> <b>Fecha</b></label>
+                        <input  class="form-control" type="text" name="fecha_param" id="fecha_param" value="{{ $fechaParam}}" disabled>
 					</div>
-				</form>
-			</div>	
-  		</div>
+					<input id="fecha" name="fecha" type="hidden" value="{{ $fechaParam }}">
+
+                    <div class="form-group">
+                        <label class="formItem" for="select_turno"> <b>Horario disponible</b></label>
+                        <select name="select_turno" id="select_turno" class="form-control" required>
+                            @foreach($turnos as $turno)
+                                <option value="{{ $turno->id }}" offset="1">{{ $turno->hora }}</option>        
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <label>&nbsp;</label>
+        
+                    <div class="row d-flex justify-content-center">
+                        <input type="submit" class='btn btn-primary btn-lg' value="Confirmar turno">
+                    </div>
+                </form>
+            </div>	
+          </div>
 </div>
 <br>
 <br>
