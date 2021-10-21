@@ -1,5 +1,5 @@
 .barrapaso-uno {
-    border-top: 18px solid #37BBED;
+    border-top: 8px solid #1029b8;
     padding-top: 10px;
 }
 .barrapaso-dos {
@@ -12,7 +12,7 @@
 }
 body {
     /* font-family: 'Encode Sans';font-size: 22px; */
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 .uno {
     background: #37BBED;

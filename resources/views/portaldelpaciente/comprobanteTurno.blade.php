@@ -17,6 +17,8 @@
 <link href="{{ asset('/assets/toastr/toastr.min.css') }}" rel="stylesheet">
 
 <link href="{{ asset('/assets/bootstrap-datepicker-1.7.1/css/bootstrap-datepicker.min.css') }}" rel="stylesheet"/>
+<!-- <link rel="stylesheet" href="{{ asset('css/barrapasoYcirculo.css') }}"> -->
+
 <style type="text/css">
  .btn_personalizado{
   text-decoration: none;
@@ -34,6 +36,15 @@
   line-height: 150%;
   /* font-size: .85em; */
 }
+.card-body
+{
+    border:  solid #0c6e04;
+    background-color:#f4faff;
+}
+.barrapaso-dos {
+    border-top: 8px solid #0c6e04;
+    padding-top: 10px;
+}
 
 </style>
 @endsection
@@ -42,60 +53,57 @@
 
 <div class="container">
 
-	<div class="d-flex justify-content-center">
-		<h1 style="color:#0a922c">Turno registrado</h1>
-	</div>
-	
-	<hr>
-
-	<div class="row justify-content-center align-items-center h-100">
-
-		<div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-			<div class="form-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text"><b>N° DE COMPROBANTE: </b>  &nbsp; {{ $comprobante_id }}</div>
-				</div>
-			</div>
-
-
-			<div class="form-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text"><b> FECHA: </b> &nbsp; {{ $fecha }}</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text"><b>HORA: </b>  &nbsp; {{ $hora }}</div>
-				</div>
-			</div>
-            <div class="form-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text"><b>N° DE DOCUMENTO: </b>  &nbsp; {{ $dni }}</div>
-				</div>
-			</div>
-            <div class="form-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text"><b>ESPECIALIDAD: </b>  &nbsp; {{ $especialidad_nombre }}</div>
-				</div>
-			</div>
-            <div class="form-group">
-				<div class="input-group-prepend">
-					<div class="input-group-text"><b>MEDICO: </b>  &nbsp; {{ $medico_nombre }}</div>
-				</div>
-			</div>
-
+	<div class="col-8 col-sm-6 col-md-6 mx-auto">
+		<div class="card text-black bg-info mb-3" style="max-width: 100rem;">
+			<div class="card-body text-Black text-center">
+				<h4 class="card-title">Comprobante del Turno</h4>
+			</div>                  
 		</div>
 	</div>
+	<div class="form-group">
+		<div class="my-2 pb-1 barrapaso-dos" id="barra2"></div>    
+    </div>
+	<article class="container col-12 mx-auto p-0">
+    		<div class="col-11 col-sm-11 col-md-6 col-lg-6 d-flex flex-column mx-auto p-0 my-4">
+				<div class="form-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text"><b>N° DE COMPROBANTE: </b>  &nbsp; {{ $comprobante_id }}</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text"><b> FECHA: </b> &nbsp; {{ $fecha }}</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text"><b>HORA: </b>  &nbsp; {{ $hora }}</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text"><b>N° DE DOCUMENTO: </b>  &nbsp; {{ $dni }}</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text"><b>ESPECIALIDAD: </b>  &nbsp; {{ $especialidad_nombre }}</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text"><b>MEDICO: </b>  &nbsp; {{ $medico_nombre }}</div>
+					</div>
+				</div>
 
-	<hr>
-	<div class="row justify-content-center align-items-center h-100">
+			</div>
+			<div class="col-11 col-sm-11 col-md-10 col-lg-8 d-flex flex-column mx-auto p-0 my-4">
+				<div class="row d-flex justify-content-center">
+					<a  class="btn btn-success" href="descargarcomprobante/{{ $comprobante_id }}/{{ $dni }}" role="button"><h4><i class="fa fa-download" aria-hidden="true"></i> Descargar comprobante</h4></a>
+				</div>		
+			</div>
+		</article>
 
-		<div class="row d-flex justify-content-center">
-			<a  class="btn btn-success" href="descargarcomprobante/{{ $comprobante_id }}/{{ $dni }}" role="button"><h4><i class="fa fa-download" aria-hidden="true"></i>Descargar comprobante</h4></a>
-		</div>
-			
-	</div>
-	<hr>	  
 
 </div>
 @endsection
@@ -114,27 +122,6 @@
 <script src="{{ asset('assets/select2/select2.full.js') }}"></script>
 <script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
 <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
-
-
-<!-- <script>
-		$('#fecha_turno').datepicker({
-			format: 'yyyy-mm-dd',
-			locale: 'es',
-			language: 'es',
-			autoclose: true,
-			todayHighlight: true,
-			startDate: sumarDias(new Date()),
-			//   endDate: new Date(),
-		});
-
-	$('#fecha_turno').datepicker("setDate", sumarDias(new Date()));
-
-	function sumarDias(fecha){
-			fecha.setDate(fecha.getDate());
-			return fecha;
-		}
-	
-</script> -->
 
 <script>
         @if ($status)

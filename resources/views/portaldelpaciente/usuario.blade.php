@@ -30,7 +30,7 @@
             <img class="col-12 img-fluid" src="{{asset ('images/img/solapa-bienvenida.png')}}" alt="Solapa">
         </div>
         <div class="col-12 __botonera-delpaciente d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-cente p-3">
-            <a class="col-10 col-sm-10 col-md-4 col-lg-4 nav-link p-0 m-auto" href="">
+            <a class="col-10 col-sm-10 col-md-4 col-lg-4 nav-link p-0 m-auto" href="{{route('portaldelpaciente.miperfilGet')}}">
                 <img class="col-12 img-fluid p-2" src="{{asset('images/botones/perfil-usuario.png')}}" alt="Perfil del usuario">
             </a>
             <a class="col-10 col-sm-10 col-md-4 col-lg-4 nav-link p-0 m-auto" href="">

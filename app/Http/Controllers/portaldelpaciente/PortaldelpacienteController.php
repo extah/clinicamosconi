@@ -96,10 +96,9 @@ class PortaldelpacienteController extends Controller
     }
 
     public function iniciarsesionGet(Request $request){
-        // dd("hola");
         $usuario = $request->session()->get('usuario');
         $result = $this->isUsuario($usuario);
-        // dd($result);
+
         if($result == "OK")
         {
             $inicio ="";
@@ -174,6 +173,26 @@ class PortaldelpacienteController extends Controller
         }
     }
 
+    public function miperfilGet(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+            $usuario =  Users::get_registro($usuario);
+            $inicio ="";
+            $status_ok = false;
+            $esPaciente = true;
+            $message = "";
+            return view('portaldelpaciente.miperfil', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario'));
+
+        }
+	    $inicio = "";    
+		$status_error = false;
+        $esPaciente = false;
+    	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
+    }
     public function nuevoturno(Request $request)
     {
         $usuario = $request->session()->get('usuario');

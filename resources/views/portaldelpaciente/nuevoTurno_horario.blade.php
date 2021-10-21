@@ -29,22 +29,20 @@
 @endsection
 
 @section('content')
-<br>
 <div class="container">
 
-		<div class="container col-6 mx-auto">
+		<div class="col-8 col-sm-6 col-md-6 mx-auto">
             <div class="card text-black bg-info mb-3" style="max-width: 100rem;">
                 <div class="card-body text-Black text-center">
                   <h4 class="card-title">Buscar turnos por Fecha</h4>
                 </div>                  
             </div>
         </div>
-		<br>
 		<div class="form-group">
             <div class="my-2 pb-1 barrapaso-uno" id="barra1"></div>    
         </div>
-        <div class="row justify-content-center align-items-center h-100">
-            <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+		<article class="container col-12 mx-auto p-0">
+    		<div class="col-11 col-sm-11 col-md-6 col-lg-6 d-flex flex-column mx-auto p-0 my-4">
                 <form id="demoForm" method="post" action="{{ url('portaldelpaciente/turnoconfirmado')  }}" data-toggle="validator" role="form">
                     {{ csrf_field() }}
         
@@ -82,10 +80,8 @@
                     </div>
                 </form>
             </div>	
-          </div>
+        </article>
 </div>
-<br>
-<br>
 @endsection
 
 @section('js')

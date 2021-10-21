@@ -32,7 +32,6 @@ Route::group(array('prefix' => 'admin'), function(){
 	Route::get('/login',	'admin\AdminController@login')->name('admin.login');
 	Route::get('/imagenes-de-portada',	'admin\AdminController@banners')->name('admin.banners');
 	Route::post('/imagenes-de-portada',	'admin\AdminController@addBanners')->name('admin.addBanners');
-
 	Route::post('/imageneseliminareditar',	'admin\AdminController@imageneseliminareditar')->name('admin.imageneseliminareditar');
 	Route::post('/imagenesagregar',	'admin\AdminController@imagenesagregar')->name('admin.imagenesagregar');
 });
@@ -44,16 +43,14 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::post('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesion')->name('portaldelpaciente.iniciarsesion');
 	Route::get('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesionGet')->name('portaldelpaciente.iniciarsesionGet');
 	Route::post('/',	'portaldelpaciente\PortaldelpacienteController@registrarse')->name('portaldelpaciente.registrarse');
-
+	Route::get('/miperfil',	'portaldelpaciente\PortaldelpacienteController@miperfilGet')->name('portaldelpaciente.miperfilGet');
 	Route::get('/cerrarsesion',	'portaldelpaciente\PortaldelpacienteController@cerrarsesion')->name('portaldelpaciente.cerrarsesion');
 
-	// Route::get('/nuevoturno',	'portaldelpaciente\PortaldelpacienteController@nuevoturno')->name('portaldelpaciente.nuevoturno');
 	Route::get('/nuevoturno', 'portaldelpaciente\PortaldelpacienteController@nuevoturno')->name('portaldelpaciente.nuevoturno');
 	Route::post('/nuevoturno/medico',	'portaldelpaciente\PortaldelpacienteController@nuevoturnomedico')->name('portaldelpaciente.nuevoturnomedico');
 	Route::post('/nuevoturno/fecha',	'portaldelpaciente\PortaldelpacienteController@nuevoturnofecha')->name('portaldelpaciente.nuevoturnofecha');
 	Route::post('/nuevoturno/horario',	'portaldelpaciente\PortaldelpacienteController@nuevoturnohorario')->name('portaldelpaciente.nuevoturnohorario');
 	Route::post('/turnoconfirmado',	'portaldelpaciente\PortaldelpacienteController@turnoConfirmado')->name('portaldelpaciente.turnoConfirmado');
-	// Route::post('/turnoconfirmado',	'nuevoTurno\NuevoTurnoController@turnoConfirmado');
 	Route::get('descargarcomprobante/{id}/{nrodoc}',  	'portaldelpaciente\PortaldelpacienteController@imprimir_comprobante')->name('portaldelpaciente.imprimir_comprobante');
 });
 

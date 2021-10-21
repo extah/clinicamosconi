@@ -13,9 +13,7 @@ class TurnosSeeder extends Seeder
     public function run()
     {
         $p = new Turnos();
-        // $especialidad = Especialidades::where('id', 1)->get()->first();
         $p->id_especialidad = 1;
-        // $medico = Medico::where('id', 1)->get()->first();
         $p->id_medico = 1;
         $p->id_persona = NULL;
         $p->fecha = date('Y-m-d H:i:s', strtotime('2021-10-28'));
@@ -25,9 +23,7 @@ class TurnosSeeder extends Seeder
         $p->save();
 
         $p = new Turnos();
-        // $especialidad = Especialidades::where('id', 1)->get()->first();
         $p->id_especialidad = 1;
-        // $medico = Medico::where('id', 1)->get()->first();
         $p->id_medico = 1;
         $p->id_persona = NULL;
         $p->fecha = date('Y-m-d H:i:s', strtotime('2021-10-28'));
@@ -37,9 +33,7 @@ class TurnosSeeder extends Seeder
         $p->save();
 
         $p = new Turnos();
-        // $especialidad = Especialidades::where('id', 1)->get()->first();
         $p->id_especialidad = 1;
-        // $medico = Medico::where('id', 1)->get()->first();
         $p->id_medico = 1;
         $p->id_persona = NULL;
         $p->fecha = date('Y-m-d H:i:s', strtotime('2021-10-29'));
@@ -50,9 +44,7 @@ class TurnosSeeder extends Seeder
 
 
         $p = new Turnos();
-        // $especialidad = Especialidades::where('id', 1)->get()->first();
         $p->id_especialidad = 1;
-        // $medico = Medico::where('id', 1)->get()->first();
         $p->id_medico = 1;
         $p->id_persona = NULL;
         $p->fecha = date('Y-m-d H:i:s', strtotime('2021-10-29'));
@@ -62,9 +54,7 @@ class TurnosSeeder extends Seeder
         $p->save();
 
         $p = new Turnos();
-        // $especialidad = Especialidades::where('id', 1)->get()->first();
         $p->id_especialidad = 1;
-        // $medico = Medico::where('id', 1)->get()->first();
         $p->id_medico = 1;
         $p->id_persona = NULL;
         $p->fecha = date('Y-m-d H:i:s', strtotime('2021-10-30'));
