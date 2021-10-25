@@ -19,6 +19,7 @@ class UsersSeeder extends Seeder
         $p->dni = 36738451;
         $p->contrasena = '$2y$10$UKXqQl3sS8O08fIj8Bx9A.fOYFIFizW7X2s2ndRjDgLF1ITtRl0FK';
         $p->fecha_nacimiento = date('Y-m-d', strtotime('1992-04-08'));
+        $p->admin = 1;
         $p->save();
 
         $p = new Users();

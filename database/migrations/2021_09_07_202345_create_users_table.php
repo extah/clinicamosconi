@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('dni')->nullable();
             $table->string('contrasena', 255)->nullable();
             $table->date('fecha_nacimiento', 0)->nullable();
+            $table->string('admin', 1)->nullable();
             $table->timestamps();
         });
 

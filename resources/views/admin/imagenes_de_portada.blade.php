@@ -296,7 +296,7 @@ $(document).ready(function() {
                 var id = $(this).closest("tr").find('td:eq(0)').text(); //si no lo es, seguimos capturando el id del actual row
             }
 
-            alert("Se ha seleccionado el ID: "+id);
+            // alert("Se ha seleccionado el ID: "+id);
             opcion = 3; //eliminar 
             swal({
                   title: "¿Esta Seguro de Eliminar el ID: "+id+"?",
@@ -317,7 +317,7 @@ $(document).ready(function() {
                                             '_token': $('input[name=_token]').val(),
                                             opcion:opcion, id:id},    
                                         success: function() {
-                                          tablaImagenes.row(fila.parents('tr')).remove().draw(); 
+                                          tablaImagenes.row(this).remove().draw(); 
                                             swal("Imagen Eliminada con Exito!!!", {
                                             icon: "success",
                                           });                

@@ -70,25 +70,25 @@
             <div class="my-2 pb-1 barrapaso-uno" id="barra1"></div>    
         </div>
 		<article class="container col-12 mx-auto p-0">
-    		<div class="col-11 col-sm-11 col-md-6 col-lg-6 d-flex flex-column mx-auto p-0 my-4">
+    		<div class="col-11 col-sm-11 col-md-4 col-lg-4 d-flex flex-column mx-auto p-0 my-4">
                 <form id="demoForm" method="post" action="{{ url('portaldelpaciente/nuevoturno/horario')  }}" data-toggle="validator" role="form">
                     {{ csrf_field() }}
         
 					<div class="form-group">
                         <label class="formItem" for="nombre_especialidad"> <b>Especialidad</b></label>
-                        <input  class="form-control" type="text" name="nombre_especialidad" id="nombre_especialidad" value="{{ $especialidadDato->nombre}}" disabled>
+                        <input  class="form-control text-center" type="text" name="nombre_especialidad" id="nombre_especialidad" value="{{ $especialidadDato->nombre}}" disabled>
 					</div>
 					<input id="id_especialidad" name="id_especialidad" type="hidden" value="{{ $especialidadDato->id}}">
 
                     <div class="form-group">
                         <label class="formItem" for="nombre_medico"> <b>Medico</b></label>
-                        <input  class="form-control" type="text" name="nombre_medico" id="nombre_medico" value="{{ $medicoDato->nombre}}" disabled>
+                        <input  class="form-control text-center" type="text" name="nombre_medico" id="nombre_medico" value="{{ $medicoDato->nombre}}" disabled>
 					</div>
 					<input id="id_medico" name="id_medico" type="hidden" value="{{ $medicoDato->id}}">
         
                     <div class="form-group">
                         <label class="formItem" for="fecha_turno"> <b>Fecha</b></label>
-                        <input class="form-control" data-date-format="dd/mm/yyyy" id="fecha_turno" name="fecha_turno" required>
+                        <input class="form-control text-center" data-date-format="dd/mm/yyyy" id="fecha_turno" name="fecha_turno" required>
                     </div>
 
                     <label>&nbsp;</label>

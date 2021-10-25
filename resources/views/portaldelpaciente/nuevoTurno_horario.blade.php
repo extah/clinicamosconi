@@ -73,31 +73,31 @@
             <div class="my-2 pb-1 barrapaso-uno" id="barra1"></div>    
         </div>
 		<article class="container col-12 mx-auto p-0">
-    		<div class="col-11 col-sm-11 col-md-6 col-lg-6 d-flex flex-column mx-auto p-0 my-4">
+    		<div class="col-11 col-sm-11 col-md-4 col-lg-4 d-flex flex-column mx-auto p-0 my-4">
                 <form id="demoForm" method="post" action="{{ url('portaldelpaciente/turnoconfirmado')  }}" data-toggle="validator" role="form">
                     {{ csrf_field() }}
         
 					<div class="form-group">
                         <label class="formItem" for="nombre_especialidad"> <b>Especialidad</b></label>
-                        <input  class="form-control" type="text" name="nombre_especialidad" id="nombre_especialidad" value="{{ $especialidadDato->nombre}}" disabled>
+                        <input  class="form-control text-center" type="text" name="nombre_especialidad" id="nombre_especialidad" value="{{ $especialidadDato->nombre}}" disabled>
 					</div>
 					<input id="id_especialidad" name="id_especialidad" type="hidden" value="{{ $especialidadDato->id}}">
 
                     <div class="form-group">
                         <label class="formItem" for="nombre_medico"> <b>Medico</b></label>
-                        <input  class="form-control" type="text" name="nombre_medico" id="nombre_medico" value="{{ $medicoDato->nombre}}" disabled>
+                        <input  class="form-control text-center" type="text" name="nombre_medico" id="nombre_medico" value="{{ $medicoDato->nombre}}" disabled>
 					</div>
 					<input id="id_medico" name="id_medico" type="hidden" value="{{ $medicoDato->id}}">
         
                     <div class="form-group">
                         <label class="formItem" for="fecha_param"> <b>Fecha</b></label>
-                        <input  class="form-control" type="text" name="fecha_param" id="fecha_param" value="{{ $fechaParam}}" disabled>
+                        <input  class="form-control text-center" type="text" name="fecha_param" id="fecha_param" value="{{ $fechaParam}}" disabled>
 					</div>
 					<input id="fecha" name="fecha" type="hidden" value="{{ $fechaParam }}">
 
                     <div class="form-group">
                         <label class="formItem" for="select_turno"> <b>Horario disponible</b></label>
-                        <select name="select_turno" id="select_turno" class="form-control" required>
+                        <select name="select_turno" id="select_turno" class="form-control text-center" required>
                             @foreach($turnos as $turno)
                                 <option value="{{ $turno->id }}" offset="1">{{ $turno->hora }}</option>        
                             @endforeach

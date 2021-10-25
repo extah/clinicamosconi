@@ -94,7 +94,7 @@
 		<div class="my-2 pb-1 barrapaso-dos" id="barra2"></div>    
     </div>
 	<article class="container col-12 mx-auto p-0">
-    		<div class="col-11 col-sm-11 col-md-6 col-lg-6 d-flex flex-column mx-auto p-0 my-4">
+    		<div class="col-11 col-sm-11 col-md-4 col-lg-4 d-flex flex-column mx-auto p-0 my-4">
 				<div class="form-group">
 					<div class="input-group-prepend">
 						<div class="input-group-text"><b>N° DE COMPROBANTE: </b>  &nbsp; {{ $comprobante_id }}</div>

@@ -40,14 +40,14 @@
                         {{ (($usuario->nombreyApellido)) ?? '' }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="background-color: #dc3545;" aria-labelledby="dropdownMenuButton1">
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.index')}}">Menu</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.miperfilGet')}}">Mi Perfil</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.nuevoturno')}}">Sacar Turno</a></li>
-						<li><a class="dropdown-item" href="#">Cancelar Turno</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.cerrarsesion')}}">Cerrar sesion</a></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.index')}}">Menu</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.miperfilGet')}}">Mi Perfil</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.nuevoturno')}}">Sacar Turno</a></li>
+                      <li><a class="dropdown-item" href="#">Cancelar Turno</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.cerrarsesion')}}">Cerrar sesion</a></li>
                     </ul>
                   </div>
               </ul>
@@ -69,13 +69,13 @@
             <div class="my-2 pb-1 barrapaso-uno" id="barra1"></div>    
         </div>
 		<article class="container col-12 mx-auto p-0">
-    		<div class="col-11 col-sm-11 col-md-6 col-lg-6 d-flex flex-column mx-auto p-0 my-4">
+    		<div class="col-11 col-sm-11 col-md-4 col-lg-4 d-flex flex-column mx-auto p-0 my-4">
 				<form id="demoForm" method="post" action="{{ url('portaldelpaciente/nuevoturno/medico')  }}" data-toggle="validator" role="form">
 					{{ csrf_field() }}
 
 					<div class="form-group">
 						<label class="formItem" for="select_especialidad"> <b>Especialidad</b></label>
-						<select name="select_especialidad" id="select_especialidad" class="form-control" required>
+						<select name="select_especialidad" id="select_especialidad" class="form-control text-center" required>
 							<option value="">-Seleccioná una Especialidad-</option>
 							@foreach($especialidades as $especialidad)
 								<option value="{{ $especialidad->id }}" offset="1">{{ $especialidad->nombre }}</option>

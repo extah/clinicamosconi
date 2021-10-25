@@ -401,14 +401,15 @@ class PortaldelpacienteController extends Controller
  
          if(count($turnos) == 0)
          {
-             $message = "NO HAY TURNOS PARA LA FECHA: " . $fecha;
+             $message = "NO HAY TURNOS PARA LA FECHA: " . $fechaParam;
              $status_error = true;
-             $inicio = "";    
-             $tarmites =  DB::select("SELECT tab_tramites.* FROM tab_tramites where desabilitar = 0 ORDER BY tab_tramites.tramite ASC");
-             
+             // $tarmites =  DB::select("SELECT tab_tramites.* FROM tab_tramites where desabilitar = 0 ORDER BY tab_tramites.tramite ASC");
+             $especialidad = DB::select("SELECT * FROM especialidades");
+             $status_error = true;
+             $status_ok = false;
              $esEmp = false;
-     
-             return view('nuevoTurno.nuevoturno', compact('inicio', 'tarmites', 'message', 'status_error', 'esEmp'));
+             
+             return redirect('portaldelpaciente/nuevoturno')->with(['status_info' => $status_error, 'message' => $message, 'especialidad' => $especialidad]);
              
          }
 
@@ -511,31 +512,44 @@ class PortaldelpacienteController extends Controller
 		// return $content;
 	}
 
-    public function imprimir_comprobante($id, $nrodoc){
+    public function imprimir_comprobante($id, $nrodoc, Request $request){
 
-        // dd();
-        $turno =  DB::select('SELECT turnos.id, turnos.id_comprobante, DATE_FORMAT( turnos.fecha,"%d/%m/%Y") AS fecha, turnos.hora, turnos.nro_turno, FORMAT(users.dni, 0, "de_DE") AS nro_doc, users.nombreyApellido as nombrecompleto, users.telefono, users.email, DATE_FORMAT(turnos.updated_at, "%d/%m/%Y %H:%M:%S") as fecha_emision, especialidades.nombre as especialidad, medico.nombre as medico_nombre, medico.apellido as medico_apellido
-        FROM turnos
-        INNER JOIN comprobantes ON turnos.id = comprobantes.id_turno
-        INNER JOIN users ON users.id = turnos.id_persona
-        INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
-        INNER JOIN medico ON turnos.id_medico = medico.id
-        WHERE turnos.id_comprobante = '.$id);
-        if ($turno){
-            
-            $date = date('Y-m-d');
-
-            // $domicilio = $this->cargadom($turno[0]->domicilio_calle, $turno[0]->domicilio_nro, $turno[0]->domicilio_subnro, $turno[0]->domicilio_piso, $turno[0]->domicilio_dpto, $turno[0]->domicilio_mzna);
-
-            $xmail = $turno[0]->email;
-            $xid = $id;
-            $xndoc = $turno[0]->nro_doc;
-
-
-            $pdf = PDF::loadView('portaldelpaciente.comprobante', compact('turno', 'date'));
-
-            return $pdf->download('comprobanteTurno.pdf');
+        $usuario = $request->session()->get('usuario');
+        // dd($usuario);
+        $result = $this->isUsuario($usuario);
+        // dd($result);
+        if($result == "OK")
+        {
+            $turno =  DB::select('SELECT turnos.id, turnos.id_comprobante, DATE_FORMAT( turnos.fecha,"%d/%m/%Y") AS fecha, turnos.hora, turnos.nro_turno, FORMAT(users.dni, 0, "de_DE") AS nro_doc, users.nombreyApellido as nombrecompleto, users.telefono, users.email, DATE_FORMAT(turnos.updated_at, "%d/%m/%Y %H:%M:%S") as fecha_emision, especialidades.nombre as especialidad, medico.nombre as medico_nombre, medico.apellido as medico_apellido
+            FROM turnos
+            INNER JOIN comprobantes ON turnos.id = comprobantes.id_turno
+            INNER JOIN users ON users.id = turnos.id_persona
+            INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+            INNER JOIN medico ON turnos.id_medico = medico.id
+            WHERE turnos.id_comprobante = '.$id);
+            if ($turno){
+                
+                $date = date('Y-m-d');
+    
+                // $domicilio = $this->cargadom($turno[0]->domicilio_calle, $turno[0]->domicilio_nro, $turno[0]->domicilio_subnro, $turno[0]->domicilio_piso, $turno[0]->domicilio_dpto, $turno[0]->domicilio_mzna);
+    
+                $xmail = $turno[0]->email;
+                $xid = $id;
+                $xndoc = $turno[0]->nro_doc;
+    
+    
+                $pdf = PDF::loadView('portaldelpaciente.comprobante', compact('turno', 'date'));
+    
+                return $pdf->download('comprobanteTurno.pdf');
+            }
         }
+        $inicio = "";    
+        $status_error = false;
+        $esPasc = false;
+        $message = "Inicie Sesion";
+        // return view('portaldelpaciente.index', compact('inicio','status_error', 'esPasc'));
+        return redirect('portaldelpaciente')->with(['status_error' => $status_error, 'message' => $message,]);
+
     }
 
     function cargadom(){

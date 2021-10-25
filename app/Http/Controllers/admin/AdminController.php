@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\ImagenesDePortada;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Users;
 
 use Auth;
 use DB;
@@ -17,40 +18,78 @@ class AdminController extends Controller
 {
     public function index(){
 
-    	return view('admin.admin');
+    	return view('admin.login');
     
     }
 
-    public function login() {
-        return view('admin.login');
+    public function login(Request $request) {
+        // dd($request);
+        $inicio = "";
+        $email = $request->email;
+        $contrasena = $request->password;
+        // dd($usuario . ' ' . $contrasena);
+        $status_info = true;
+
+        $login =  DB::select("SELECT * FROM users where email = '" . $email . "' AND admin = 1" );
+       
+        if(count($login) == 0)
+		{
+            $inicio = "";    
+            $status_error = true;
+            $esPasc = false;
+            $message = "Usuario/Contraseña Incorrecta ";
+            // return view('portaldelpaciente.index', compact('inicio','status_error', 'esPasc'));
+            return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
+		}
+        else{
+            
+            $contrasenasql = $login[0]->contrasena;
+            if(password_verify($contrasena, $contrasenasql))
+            {
+                $message = "Bienvenido/a ";
+                $status_ok = true;
+                $esPasc = true;
+
+                // $request->session()->flush();
+                // dd($login[0]->cuit);
+                session(['usuario'=>$login[0]->email, 'nombre'=>$login[0]->nombreyApellido]);
+
+                $usuario =  Users::get_registro($login[0]->email);
+                // return view('portaldelpaciente.usuario', compact('inicio', 'esPasc', 'usuario', 'email',  'status_ok', 'message'));
+                return view('admin.imagenes_de_portada');
+                
+            }
+            else
+            {
+                $message = "Usuario/Contraseña Incorrecta ";
+                $status_error = true;
+                $status_ok = false;
+                $esPasc = false;
+                
+                // return view('portaldelpaciente.index', compact('inicio', 'message', 'status_error', 'esPasc'));
+                return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
+                
+            }
+        }
+        
     }
 
-    public function banners(){
-        // $banners = ImagenesDePortada::all();
-        // dd($banners);
+    public function imagenes(Request $request){        
 
-        // $limit = " LIMIT 500";        
-        // $orderby = " ORDER BY imagenesdeportada.id DESC ";
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+        if($result == "OK")
+        {
+            return view('admin.imagenes_de_portada');
+        }
 
-        // $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.created_at, imagenesdeportada.updated_at
-        // FROM imagenesdeportada        
-        //     ".$orderby." ".$limit));
-
-        // print json_encode($data, JSON_UNESCAPED_UNICODE);
-        // return datatables()->of($data)->toJson();
-
-        // return view('admin.imagenes_de_portada', compact('banners'));
-        // $imagenexiste = ImagenesDePortada::where('id', '=',  6)->get();
-        // $originalPath = public_path().'/images/img/';
-        // $image_path = $originalPath . $imagenexiste[0]->imagen;
-        // unlink($image_path);
-        // if (File::exists($image_path)) {
-        //         dd($image_path);
-        // }
-        // dd("no existe");
+        $message = "Inicie Sesion";
+        $status_error = true;
+        $status_ok = false;
+        $esPasc = false;
         
-
-        return view('admin.imagenes_de_portada');
+        // return view('portaldelpaciente.index', compact('inicio', 'message', 'status_error', 'esPasc'));
+        return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
     }
 
     public function imagenesagregar(Request $request)
@@ -216,4 +255,52 @@ class AdminController extends Controller
     return redirect('/admin/imagenes-de-portada');
     }
 
+
+    public function cerrarsesion(Request $request)
+    {
+
+        $id = session()->getId();
+
+        // $directory = 'C:\xampp\htdocs\recibodesueldo\storage\framework\sessions';
+        // $ignoreFiles = ['.gitignore', '.', '..'];
+        // $files = scandir($directory);
+        
+        // foreach ($files as $file) {
+        //     $var = $file;
+        //     if($var == $id)
+        //     {
+        //         if(!in_array($file,$ignoreFiles)) unlink($directory . '/' . $file);
+        //     }
+        //     else {
+
+        //     }
+            // if(!in_array($file,$ignoreFiles)) unlink($directory . '/' . $file);
+        // }
+
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+            $request->session()->flush();
+        }
+        $inicio = "";    
+        $esEmp = false;
+        $status_error = false;
+        $status_info = false;
+        // return view('inicio.inicio', compact('inicio','status_error', 'esEmp', 'status_info'));
+        return redirect('admin');
+
+    }
+    function isUsuario($usuario)
+    {
+        # code...
+        if($usuario == null)
+        {
+            return "NO OK";
+        }
+ 
+        return "OK";
+
+    }
 }

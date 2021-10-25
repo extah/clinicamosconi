@@ -47,5 +47,15 @@
 @endsection
 
 @section('js')
+<script>
+  @if (Session::get('status_info'))
+          toastr.info( '{{ session('message') }}', 'ATENCIÓN', {
+              // "progressBar": true,
+              "closeButton": true,
+              "positionClass": "toast-bottom-right",
+              "timeOut": "10000",
+          });   
+  @endif 
+</script>
 
 @endsection

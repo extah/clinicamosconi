@@ -90,11 +90,10 @@
                 <label for="fecha_nac" class="form-label"><b>FECHA NACIMIENTO</b></label>
                 <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" placeholder="ingrese su fecha de nacimiento" value="{{ $usuario->fecha_nacimiento }}" required>
             </div>
+
             <button type="submit" class="btn btn-primary btn-lg">EDITAR DATOS</button>
             </div>
-          </form>  
-          {{-- <a class="btn btn-primary btn-lg" href="#" role="button">EDITAR DATOS</a> --}}
-          
+          </form>           
 			</div>	
 		</article>
 </div>
@@ -109,6 +108,7 @@
 <script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
 <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
+
 <script>
     @if (Session::get('status_info'))
             toastr.info( '{{ session('message') }}', 'Informar', {
@@ -119,5 +119,25 @@
             });   
     @endif 
 </script>
+<script>
+  (function () {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
 @endsection
