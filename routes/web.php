@@ -44,6 +44,8 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::get('/home',	'portaldelpaciente\PortaldelpacienteController@iniciarsesionGet')->name('portaldelpaciente.iniciarsesionGet');
 	Route::post('/',	'portaldelpaciente\PortaldelpacienteController@registrarse')->name('portaldelpaciente.registrarse');
 	Route::get('/miperfil',	'portaldelpaciente\PortaldelpacienteController@miperfilGet')->name('portaldelpaciente.miperfilGet');
+	Route::post('/editardatos',	'portaldelpaciente\PortaldelpacienteController@editardatos')->name('portaldelpaciente.editardatos');
+	
 	Route::get('/cerrarsesion',	'portaldelpaciente\PortaldelpacienteController@cerrarsesion')->name('portaldelpaciente.cerrarsesion');
 
 	Route::get('/nuevoturno', 'portaldelpaciente\PortaldelpacienteController@nuevoturno')->name('portaldelpaciente.nuevoturno');

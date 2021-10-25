@@ -29,12 +29,43 @@
 @endsection
 
 @section('content')
+<article class="">
+    <div class="p-0 mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #04205f;">
+          <div class="container-fluid">
+            <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto">SELECCIONAR HORARIO</h5>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-1" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-1">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold fs-5">
+                  <div class="dropdown"> 
+                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ (($usuario->nombreyApellido)) ?? '' }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="background-color: #dc3545;" aria-labelledby="dropdownMenuButton1">
+						<li><a class="dropdown-item" href="{{route('portaldelpaciente.index')}}">Menu</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="{{route('portaldelpaciente.miperfilGet')}}">Mi Perfil</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="{{route('portaldelpaciente.nuevoturno')}}">Sacar Turno</a></li>
+						<li><a class="dropdown-item" href="#">Cancelar Turno</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="{{route('portaldelpaciente.cerrarsesion')}}">Cerrar sesion</a></li>
+                    </ul>
+                  </div>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+</article>
 <div class="container">
 
 		<div class="col-8 col-sm-6 col-md-6 mx-auto">
             <div class="card text-black bg-info mb-3" style="max-width: 100rem;">
                 <div class="card-body text-Black text-center">
-                  <h4 class="card-title">Buscar turnos por Fecha</h4>
+                  <h4 class="card-title">Buscar turnos por Horario</h4>
                 </div>                  
             </div>
         </div>

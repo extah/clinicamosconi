@@ -11,16 +11,40 @@
     <div class="row mx-0 px-0">
         <img class="img-fluid px-0" src={{ asset("images/img/banner-portaldelpaciente.png")}} alt="Imagen de portada de Portal del usuario">
         <div class="d-flex flex-column m-0 p-0">
-            <div class="__titulo-seccion-usuario col-12 col-sm-12 col-md-6 col-lg-4 d-block d-flex justify-content-center justify-content-sm-center justify-content-md-end justify-content-lg-end my-1">
+            {{-- <div class="__titulo-seccion-usuario col-12 col-sm-12 col-md-6 col-lg-4 d-block d-flex justify-content-center justify-content-sm-center justify-content-md-end justify-content-lg-end my-1">
                 <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto">Portal del paciente</h5>
-            </div>
+            </div> --}}
         </div>
     </div>
 </article>
 <article class="">
-    <div class="col-12 text-end">
-        <a href="{{route('portaldelpaciente.cerrarsesion')}}" class="btn btn-lg btn-primary">Cerrar Sesión</a>
-    </div>
+    <div class="p-0 mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #04205f;">
+          <div class="container-fluid">
+            <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto">Portal del paciente</h5>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-1" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-1">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold fs-5">
+                  <div class="dropdown"> 
+                    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ (($usuario->nombreyApellido)) ?? '' }}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="background-color: #dc3545;" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.miperfilGet')}}">Mi Perfil</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.nuevoturno')}}">Sacar Turno</a></li>
+                      <li><a class="dropdown-item" href="#">Cancelar Turno</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.cerrarsesion')}}">Cerrar sesion</a></li>
+                    </ul>
+                  </div>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
 </article>
 
 <article class="container mx-auto p-0 my-4">
@@ -51,7 +75,7 @@
 @section('js')
 <script>
     @if ($status_ok)
-            toastr.success("{{ $nombre }}", ' {{  $message }} ', {
+            toastr.success("{{ $usuario->nombreyApellido }}", ' {{  $message }} ', {
                 // "progressBar": true,
                 "closeButton": true,
                 "positionClass": "toast-bottom-right",

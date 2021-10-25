@@ -25,7 +25,33 @@
 @endsection
 
 @section('content')
-
+<div class="p-0 mb-3">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #04205f;">
+    <div class="container-fluid">
+      <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto">Mi Perfil</h5>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-1" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar-1">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold fs-5">
+            <div class="dropdown"> 
+              <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ (($usuario->nombreyApellido)) ?? '' }}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="background-color: #dc3545;" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{route('portaldelpaciente.index')}}">Menu</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{route('portaldelpaciente.nuevoturno')}}">Sacar Turno</a></li>
+                <li><a class="dropdown-item" href="#">Cancelar Turno</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{{route('portaldelpaciente.cerrarsesion')}}">Cerrar sesion</a></li>
+              </ul>
+            </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
 <div class="container col-12 mx-auto p-0">
 
 		<div class="col-8 col-sm-6 col-md-6 mx-auto">
@@ -40,37 +66,35 @@
     </div>
 
 		<article class="container col-12 mx-auto p-0">
-    		<div class="col-11 col-sm-11 col-md-4 col-lg-4 d-flex flex-column mx-auto p-0 my-4 gap-3">
-          <!-- <div class="form-group">
-              <label class="formItem" for="nombreyApellido"> <b>Nombre y Apellido</b></label>
-              <input  class="form-control" type="text" name="nombreyApellido" id="nombreyApellido" value="{{ $usuario->nombreyApellido}}" disabled>
-					</div> -->
-          <div class="form-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text"><b>Nombre y Apellido: </b>  &nbsp; {{ $usuario->nombreyApellido }}</div>
+    		<div class="col-11 col-sm-11 col-md-10 col-lg-10 d-flex flex-column mx-auto p-0 my-4 gap-3">
+          <form id="form_editardatos" class="needs-validation" novalidate method="post" action="{{ url('portaldelpaciente/editardatos') }}">
+            @csrf
+            <div class="row g-3">
+              <div class="col-md-3">
+                  <label for="nombre_apellido" class="form-label"><b>Nombre y Apellido</b></label>
+                  <input type="text" class="form-control" id="nombre_apellido" name="nombre_apellido" placeholder="ingrese su nombre y apellido" value="{{ $usuario->nombreyApellido }}" required>
+              </div>
+              <div class="col-md-3">
+                  <label for="email" class="form-label"><b>Correo Electronico</b></label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="ingrese su correo electronico" value="{{ $usuario->email }}" required>
+              </div>
+              <div class="col-md-3">
+                  <label for="telefono" class="form-label"><b>Celular</b></label>
+                  <input type="number" class="form-control" id="telefono" name="telefono" placeholder="ingrese su numero de celular" value="{{ $usuario->telefono }}" required>
+              </div>
+              <div class="col-md-3">
+                  <label for="dni" class="form-label"><b>DNI</b></label>
+                  <input type="number" class="form-control" id="dni" name="dni" placeholder="ingrese su dni" value="{{ $usuario->dni }}" required>
+              </div>
+              <div class="col-md-3">
+                <label for="fecha_nac" class="form-label"><b>FECHA NACIMIENTO</b></label>
+                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" placeholder="ingrese su fecha de nacimiento" value="{{ $usuario->fecha_nacimiento }}" required>
             </div>
-				  </div>
-          <div class="form-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text"><b>Nombre y Apellido: </b>  &nbsp; {{ $usuario->nombreyApellido }}</div>
+            <button type="submit" class="btn btn-primary btn-lg">EDITAR DATOS</button>
             </div>
-				  </div>
-          <div class="form-group">
-              <label class="formItem" for="email"> <b>Email</b></label>
-              <input  class="form-control" type="text" name="email" id="email" value="{{ $usuario->email}}" disabled>
-					</div>
-          <div class="form-group">
-              <label class="formItem" for="telefono"> <b>Telefono</b></label>
-              <input  class="form-control" type="text" name="telefono" id="telefono" value="{{ $usuario->telefono}}" disabled>
-					</div>
-          <div class="form-group">
-              <label class="formItem" for="nombreyApellido"> <b>Nombre y Apellido</b></label>
-              <input  class="form-control" type="text" name="nombreyApellido" id="nombreyApellido" value="{{ $usuario->nombreyApellido}}" disabled>
-					</div>
-          <div class="form-group">
-              <label class="formItem" for="nombreyApellido"> <b>Nombre y Apellido</b></label>
-              <input  class="form-control" type="text" name="nombreyApellido" id="nombreyApellido" value="{{ $usuario->nombreyApellido}}" disabled>
-					</div>
+          </form>  
+          {{-- <a class="btn btn-primary btn-lg" href="#" role="button">EDITAR DATOS</a> --}}
+          
 			</div>	
 		</article>
 </div>

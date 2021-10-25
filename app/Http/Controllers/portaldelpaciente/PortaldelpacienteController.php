@@ -31,7 +31,8 @@ class PortaldelpacienteController extends Controller
             $status_ok = false;
             $esPaciente = true;
             $message = "";
-            return view('portaldelpaciente.iniciarsesion', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario'));
+            $usuario =  Users::get_registro($usuario);
+            return view('portaldelpaciente.usuario', compact('inicio', 'message', 'status_ok', 'usuario', 'usuario'));
 
         }
 	    $inicio = "";    
@@ -70,7 +71,7 @@ class PortaldelpacienteController extends Controller
                 // $request->session()->flush();
                 // dd($login[0]->cuit);
                 session(['usuario'=>$login[0]->email, 'nombre'=>$login[0]->nombreyApellido]);
-                $nombre = $login[0]->nombreyApellido;
+                // $nombre = $login[0]->nombreyApellido;
                 // $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " OR numero_documento = '" . $usuario . "'" . " ORDER BY anio, mes ASC");
                 // $datos =  DB::select("SELECT DISTINCT apellido, tipo, nombre, cuil, mes, mes_nom, anio FROM recibos_originales where cuil = " . $usuario . " OR numero_documento = '" . $usuario . "'" . " ORDER BY anio, mes ASC");
                 
@@ -78,7 +79,8 @@ class PortaldelpacienteController extends Controller
                 // {
                 //     $no_hay_datos = true;
                 // }
-                return view('portaldelpaciente.usuario', compact('inicio', 'esPasc', 'nombre', 'email',  'status_ok', 'message'));
+                $usuario =  Users::get_registro($login[0]->email);
+                return view('portaldelpaciente.usuario', compact('inicio', 'esPasc', 'usuario', 'email',  'status_ok', 'message'));
                 
             }
             else
@@ -193,6 +195,53 @@ class PortaldelpacienteController extends Controller
         $esPaciente = false;
     	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
     }
+    public function editardatos(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+            $usuario =  Users::get_registro($usuario);
+            DB::beginTransaction();
+            try{
+
+				$usuario->nombreyApellido = $request->nombre_apellido;
+                $usuario->email = $request->email;
+                $usuario->telefono = $request->telefono;
+                $usuario->dni = $request->dni;
+                $usuario->fecha_nacimiento = $request->fecha_nac;
+				
+				$usuario->save();
+
+				$precio = 0; 
+				
+				DB::commit();
+                // dd("termino");
+
+                $inicio ="";
+                $message = "Datos Actualizados con Exito";
+                $status_info = true;
+                $esPaciente = true;
+                // return view('portaldelpaciente.miperfil', compact('inicio', 'message', 'status_info', 'esPaciente', 'usuario'));
+                return redirect('portaldelpaciente/miperfil')->with(['status_info' => $status_info, 'message' => $message,]);
+			}
+
+			catch (\Exception $e)
+			{
+				DB::rollBack();
+				$error = "3";
+				$message = "Error al grabar ".$e;
+                $status_info = false;
+                $esPaciente = true;
+
+                return view('portaldelpaciente.miperfil', compact('inicio', 'message', 'status_info', 'esPaciente', 'usuario'));
+			}        
+
+
+
+        }
+    }
     public function nuevoturno(Request $request)
     {
         $usuario = $request->session()->get('usuario');
@@ -206,7 +255,7 @@ class PortaldelpacienteController extends Controller
             $esPaciente = true;
             $message = "";
             $especialidades =  DB::select("SELECT * FROM especialidades");
-            // dd($especialidades);
+            $usuario =  Users::get_registro($usuario);
             return view('portaldelpaciente.nuevoTurno', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario', 'especialidades'));
 
         }
@@ -219,6 +268,7 @@ class PortaldelpacienteController extends Controller
     
     public function nuevoturnomedico(Request $request)
     {
+        $usuario = $request->session()->get('usuario');
         $barrios = null;
         $status_error = false;
         $select_especialidad = $request->select_especialidad;
@@ -235,8 +285,9 @@ class PortaldelpacienteController extends Controller
         $medicos = DB::select("SELECT DISTINCT * FROM medico " . $where_medico);
         // dd($medicos);
         $especialidadDato = $especialidad[0];
+        $usuario =  Users::get_registro($usuario);
 
-        return view('portaldelpaciente.nuevoTurno_medico', compact('medicos', 'status_error', 'especialidadDato'));
+        return view('portaldelpaciente.nuevoTurno_medico', compact('medicos', 'status_error', 'especialidadDato', 'usuario'));
     }
 
 
@@ -244,6 +295,7 @@ class PortaldelpacienteController extends Controller
     {
         $inicio = "";  
 		$esEmp = false;  
+        $usuario = $request->session()->get('usuario');
         // dd($request);
         $id_especialidad = $request->id_especialidad;
 	    $id_medico =  $request->select_medico;
@@ -254,14 +306,14 @@ class PortaldelpacienteController extends Controller
 		
 		if(count($turnos) == 0)
 		{
-			$barrios =  DB::select("SELECT barrios.* FROM barrios ORDER BY barrios.barrio ASC");
-			$barrio_select = DB::select("SELECT barrios.* FROM barrios WHERE id = " . $id_barrio);
-			$message = "Por el momento no hay turnos disponibles para el barrio " . $barrio_select[0]->barrio;
+			$message = "Por el momento no hay turnos disponibles";
 			$status_error = true;
-			$inicio = "";    
-			
-	
-			return view('nuevoTurno.nuevoturno', compact('inicio', 'barrios', 'message', 'status_error', 'esEmp'));
+            $especialidad = DB::select("SELECT * FROM especialidades");
+            $status_error = true;
+            $status_ok = false;
+            $esEmp = false;
+            
+            return redirect('portaldelpaciente/nuevoturno')->with(['status_info' => $status_error, 'message' => $message, 'especialidad' => $especialidad]);
 		}
 		// $barrio_select = DB::select("SELECT barrios.* FROM barrios WHERE id = " . $id_barrio);
 		// $nombrebarrio = $barrio_select[0]->barrio;
@@ -282,11 +334,15 @@ class PortaldelpacienteController extends Controller
 			
 			$message = "Por el momento no hay turnos disponibles";
 			$status_error = true;
-			$inicio = "";    
-			$tarmites =  DB::select("SELECT tab_tramites.* FROM tab_tramites where desabilitar = 0 ORDER BY tab_tramites.tramite ASC");
-	
-			return view('nuevoTurno.nuevoturno', compact('inicio', 'tarmites', 'message', 'status_error', 'esEmp'));
+			// $tarmites =  DB::select("SELECT tab_tramites.* FROM tab_tramites where desabilitar = 0 ORDER BY tab_tramites.tramite ASC");
+            $especialidad = DB::select("SELECT * FROM especialidades");
+            $status_error = true;
+            $status_ok = false;
+            $esEmp = false;
+            
+            return redirect('portaldelpaciente/nuevoturno')->with(['status_info' => $status_error, 'message' => $message, 'especialidad' => $especialidad]);
 		}
+
 		$fechasDisp = [];
 		foreach ($diasDisponible as $key => $fecha) {
 			$fechastr = strtotime($fecha->fecha);
@@ -301,13 +357,15 @@ class PortaldelpacienteController extends Controller
         $especialidadDato = $especialidadDato[0];
         $medicoDato = DB::select("SELECT * FROM medico WHERE id = " .$id_medico);
         $medicoDato = $medicoDato[0];
-    	return view('portaldelpaciente.nuevoTurno_fecha', compact('inicio', 'especialidadDato', 'medicoDato', 'fechasDisp', 'status_error', 'esEmp'));
+        $usuario =  Users::get_registro($usuario);
+    	return view('portaldelpaciente.nuevoTurno_fecha', compact('inicio', 'especialidadDato', 'medicoDato', 'fechasDisp', 'status_error', 'esEmp','usuario'));
     }
 
 
     public function nuevoturnohorario(Request $request)
     {
         //  dd($request);
+         $usuario = $request->session()->get('usuario');
          $id_especialidad = $request->id_especialidad;
          $id_medico = $request->id_medico;
          $fechaParam = $request->fecha_turno;
@@ -359,8 +417,9 @@ class PortaldelpacienteController extends Controller
          $especialidadDato = $especialidadDato[0];
          $medicoDato = DB::select("SELECT * FROM medico WHERE id = " .$id_medico);
          $medicoDato = $medicoDato[0];
+         $usuario =  Users::get_registro($usuario);
 
-         return view('portaldelpaciente.nuevoTurno_horario', compact('turnos', 'especialidadDato', 'medicoDato', 'esEmp', 'fechaParam'));
+         return view('portaldelpaciente.nuevoTurno_horario', compact('turnos', 'especialidadDato', 'medicoDato', 'esEmp', 'fechaParam', 'usuario'));
     }
 
     public function turnoConfirmado(Request $request){
@@ -420,7 +479,8 @@ class PortaldelpacienteController extends Controller
 				$esEmp = false;
                 $especialidad_nombre = $especialidad->nombre;
                 $medico_nombre = $medico->apellido . " " . $medico->nombre;
-				return view('portaldelpaciente.comprobanteTurno', compact('comprobante_id', 'dni', 'status', 'message','hora','fecha', 'esEmp', 'especialidad_nombre','medico_nombre' ));
+                $usuario =  Users::get_registro($usuario);
+				return view('portaldelpaciente.comprobanteTurno', compact('comprobante_id', 'dni', 'status', 'message','hora','fecha', 'esEmp', 'especialidad_nombre','medico_nombre', 'usuario' ));
 			}
 
 			catch (\Exception $e)
