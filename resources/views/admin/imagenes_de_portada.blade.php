@@ -64,8 +64,8 @@
               @csrf
               <div class="modal-body">
                 <div class="row">
-                  {{-- <div class="col-lg-12 mb-3" style="display:none;"> --}}
-                    <div class="col-lg-12 mb-3">
+                  <div class="col-lg-12 mb-3" style="display:none;">
+                    <!-- <div class="col-lg-12 mb-3"> -->
                       <div class="form-group">
                           <label class="formItem" for="opcion" id="opcion_input"> <b>OPCION</b></label>
                           <input type="text" class="form-control" id="opcion" name="opcion">
