@@ -13,4 +13,10 @@ class Turnos extends Model
         $row = self::find($id);
         return $row;       
     }
+    public static function get_registro_por_comprobante($id_comprobante)
+    {
+        $row = Turnos::where('id_comprobante', '=', $id_comprobante)->first();
+
+        return $row;       
+    }
 }

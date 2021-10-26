@@ -82,8 +82,8 @@
 		</article> -->
         <div class="col-lg-12"> 
             <div class="table-responsive">  
-                <table id="tablaImagenes" class="table table-striped table-hover table-bordered display" cellspacing="0" style="width:100%">
-                    <meta name="csrf-token_imagenes" content="{{ csrf_token() }}">
+                <table id="tablaTurnos" class="table table-striped table-hover table-bordered display" cellspacing="0" style="width:100%">
+                    <meta name="csrf-token_turnos" content="{{ csrf_token() }}">
                     <thead class="thead-dark text-center">
                         <tr>
                             <th>ID COMPROBANTE</th>
@@ -152,11 +152,11 @@ $(document).ready(function() {
   var id, opcion, titulo;
         opcion = 4;
     
-        tablaImagenes = $('#tablaImagenes').DataTable( 
+        tablaTurnos = $('#tablaTurnos').DataTable( 
         {
                   // "dom": '<"dt-buttons"Bf><"clear">lirtp',
         "ajax":{            
-                        "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token_imagenes"]').attr('content') },    
+                        "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token_turnos"]').attr('content') },    
                         "url": "{{route('portaldelpaciente.turnoseliminareditar')}}", 
                         "method": 'post', //usamos el metodo POST
                         "data":{
@@ -251,7 +251,7 @@ $(document).ready(function() {
                 // titulo =  $.trim($('#titulo').val());
                 // imagen = $.trim($('#imagen').val());
                 // alert(new FormData(form));
-                $('#tablaImagenes').DataTable().clear().draw(); 
+                $('#tablaTurnos').DataTable().clear().draw(); 
                 $('#modalImagen').modal('hide');
 
                 $.ajax({
@@ -272,39 +272,9 @@ $(document).ready(function() {
                         var text = data;
                         var data = JSON.parse(text);
 
-                        tablaImagenes.rows.add(data).draw();
+                        tablaTurnos.rows.add(data).draw();
                     },
                 });			        										     			
-        });
-
-        //Editar        
-        $(document).on("click", ".btnEditar", function(){		        
-            opcion = 2;//editar
-            fila = $(this).closest("tr");	        
-            // user_id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID		
-            // id = fila.find('td:eq(0)').text();
-            if($(this).parents("tr").hasClass('child')){ //vemos si el actual row es child row
-                var id = $(this).parents("tr").prev().find('td:eq(0)').text(); //si es asi, nos regresamos al row anterior, es decir, al padre y obtenemos el id
-                titulo = $(this).parents("tr").prev().find('td:eq(1)').text();
-            } else {
-                var id = $(this).closest("tr").find('td:eq(0)').text(); //si no lo es, seguimos capturando el id del actual row
-                titulo = fila.find('td:eq(1)').text();
-            }
-
-
-
-            $("#titulo").val(titulo);
-            $("#id").val(id);
-            // var imagen_imagen = document.getElementById("imagen_imagen");
-            // imagen_imagen.style.display = "none";
-
-            var id_imagen = document.getElementById("id_imagen");
-            id_imagen.style.display = "block";
-
-            $("#opcion").val('2');
-
-            $('#modalImagen').modal('show');
-            	   
         });
 
         //Borrar
@@ -314,15 +284,19 @@ $(document).ready(function() {
             // id2 = cell.text();
 
             if($(this).parents("tr").hasClass('child')){ //vemos si el actual row es child row
-                var id = $(this).parents("tr").prev().find('td:eq(0)').text(); //si es asi, nos regresamos al row anterior, es decir, al padre y obtenemos el id
+                var id_comprobante = $(this).parents("tr").prev().find('td:eq(0)').text(); //si es asi, nos regresamos al row anterior, es decir, al padre y obtenemos el id
+                var fecha = $(this).parents("tr").prev().find('td:eq(3)').text();
+                var hora = $(this).parents("tr").prev().find('td:eq(4)').text();
             } else {
-                var id = $(this).closest("tr").find('td:eq(0)').text(); //si no lo es, seguimos capturando el id del actual row
+                var id_comprobante = $(this).closest("tr").find('td:eq(0)').text(); //si no lo es, seguimos capturando el id del actual row
+                var fecha = $(this).closest("tr").find('td:eq(3)').text();
+                var hora = $(this).closest("tr").find('td:eq(4)').text();
             }
 
             // alert("Se ha seleccionado el ID: "+id);
             opcion = 3; //eliminar 
             swal({
-                  title: "¿Esta Seguro de Eliminar el ID: "+id+"?",
+                  title: "¿Esta Seguro de Eliminar el Turno con fecha: "+fecha+" y horario: "+ hora +"hs?",
                   // text: "Once deleted, you will not be able to recover this imaginary file!",
                   icon: "warning",
                   buttons: ["Cancelar", "Eliminar"],
@@ -332,23 +306,23 @@ $(document).ready(function() {
                 .then((willDelete) => {
                   if (willDelete) {
                     $.ajax({
-                                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                                        url: "{{route('admin.imageneseliminareditar')}}",
+                                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token_turnos"]').attr('content') },
+                                        url: "{{route('portaldelpaciente.turnoseliminareditar')}}",
                                         type: "POST",
                                         datatype:"json",      
                                         data:  {
                                             '_token': $('input[name=_token]').val(),
-                                            opcion:opcion, id:id},    
+                                            opcion:opcion, id_comprobante:id_comprobante},    
                                         success: function() {
-                                          tablaImagenes.row(this).remove().draw(); 
-                                            swal("Imagen Eliminada con Exito!!!", {
+                                          tablaTurnos.row(this).remove().draw(); 
+                                            swal("Turno Eliminado con Exito!!!", {
                                             icon: "success",
                                           });                
                                         }
                                     });
 
                   } else {
-                    swal("La imagen no fue Eliminada");
+                    swal("El turno no fue Eliminado");
                   }
                 }); 
         }) 

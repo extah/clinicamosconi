@@ -27,7 +27,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar-1">
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold fs-5">
-                  <div class="dropdown"> 
+                  <div class="dropdown">
                     <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ (($usuario->nombreyApellido)) ?? '' }}
                     </button>

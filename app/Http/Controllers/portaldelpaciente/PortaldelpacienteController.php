@@ -671,13 +671,43 @@ class PortaldelpacienteController extends Controller
                     break;
                 case 3: 
                     //borrar
+                    $id_comprobante = $request->id_comprobante;
+                    $turno  = Turnos::get_registro_por_comprobante($id_comprobante);
+                    DB::beginTransaction();
+
+                    try{
+
+                        $turno->id_persona = 0;
+                        $turno->libre = 1;
+                        $turno->id_comprobante = 0;
+                        $turno->save();
+                        
+                        DB::commit();
+                    }catch(\Exception $e)
+                    {
+                        DB::rollBack();
+                        $error = "3";
+                        $descError = "Error al grabar ".$e;
+                        throw $e;
+                        // $miArray = array("error"=>$error, "recaptchaValido"=>$recaptchaValido, "descError"=>$descError, "comprobante"=>$comprobante, "id_turno"=>$id_turno, "dni"=>$dni);
+        
+                        //return ($miArray);
+                    }       
 
                     $limit = " LIMIT 500";        
-                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+                    $orderby = " ORDER BY turnos.id DESC ";
+
+                    $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+                    $date = $fecha_actual->format('Y-m-d');
+                    $hora_actual =  $fecha_actual->format('H:i');
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.created_at, imagenesdeportada.updated_at
-                    FROM imagenesdeportada        
-                        ".$orderby." ".$limit));
+                    $data = DB::select(DB::raw("SELECT turnos.id_comprobante as id_comprobante, especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, turnos.fecha, turnos.hora
+                    FROM turnos
+                    INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+                    INNER JOIN medico ON turnos.id_medico = medico.id
+                    WHERE turnos.fecha >= '$date'
+                    AND turnos.libre = 0
+                    ".$orderby." ".$limit));
                     break;
 
                 case 4: 
@@ -705,11 +735,29 @@ class PortaldelpacienteController extends Controller
     }
     public function prueba(Type $var = null)
     {
-        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
-        $date = $fecha_actual->format('Y-m-d');
-        $hora_actual =  $fecha_actual->format('H:i');
+        $id_comprobante = 5;
+        $turno  = Turnos::get_registro_por_comprobante($id_comprobante);
+        DB::beginTransaction();
 
-        dd($date);
+        try{
+
+            $turno->id_persona = 0;
+            $turno->libre = 1;
+            $turno->id_comprobante = 0;
+            $turno->save();
+            
+            DB::commit();
+        }catch(\Exception $e)
+        {
+            DB::rollBack();
+            $error = "3";
+            $descError = "Error al grabar ".$e;
+            throw $e;
+            // $miArray = array("error"=>$error, "recaptchaValido"=>$recaptchaValido, "descError"=>$descError, "comprobante"=>$comprobante, "id_turno"=>$id_turno, "dni"=>$dni);
+
+            //return ($miArray);
+        }   
+        dd($turno);
     }
 
     function isUsuario($usuario)

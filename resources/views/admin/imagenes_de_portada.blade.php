@@ -309,7 +309,7 @@ $(document).ready(function() {
                 .then((willDelete) => {
                   if (willDelete) {
                     $.ajax({
-                                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token_imagenes"]').attr('content') },
                                         url: "{{route('admin.imageneseliminareditar')}}",
                                         type: "POST",
                                         datatype:"json",      
