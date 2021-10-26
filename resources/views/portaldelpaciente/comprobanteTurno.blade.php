@@ -65,14 +65,14 @@
                         {{ (($usuario->nombreyApellido)) ?? '' }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" style="background-color: #dc3545;" aria-labelledby="dropdownMenuButton1">
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.index')}}">Menu</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.miperfilGet')}}">Mi Perfil</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.nuevoturno')}}">Sacar Turno</a></li>
-						<li><a class="dropdown-item" href="#">Cancelar Turno</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{{route('portaldelpaciente.cerrarsesion')}}">Cerrar sesion</a></li>
+					  <li><a class="dropdown-item" href="{{route('portaldelpaciente.index')}}">Menu</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.miperfilGet')}}">Mi Perfil</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.nuevoturno')}}">Sacar Turno</a></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.misturnos')}}">Mis Turnos</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{route('portaldelpaciente.cerrarsesion')}}">Cerrar sesion</a></li>
                     </ul>
                   </div>
               </ul>

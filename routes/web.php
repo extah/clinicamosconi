@@ -48,13 +48,16 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::post('/editardatos',	'portaldelpaciente\PortaldelpacienteController@editardatos')->name('portaldelpaciente.editardatos');
 	
 	Route::get('/cerrarsesion',	'portaldelpaciente\PortaldelpacienteController@cerrarsesion')->name('portaldelpaciente.cerrarsesion');
-
+	Route::get('/turnos',	'portaldelpaciente\PortaldelpacienteController@misturnos')->name('portaldelpaciente.misturnos');
 	Route::get('/nuevoturno', 'portaldelpaciente\PortaldelpacienteController@nuevoturno')->name('portaldelpaciente.nuevoturno');
 	Route::post('/nuevoturno/medico',	'portaldelpaciente\PortaldelpacienteController@nuevoturnomedico')->name('portaldelpaciente.nuevoturnomedico');
 	Route::post('/nuevoturno/fecha',	'portaldelpaciente\PortaldelpacienteController@nuevoturnofecha')->name('portaldelpaciente.nuevoturnofecha');
 	Route::post('/nuevoturno/horario',	'portaldelpaciente\PortaldelpacienteController@nuevoturnohorario')->name('portaldelpaciente.nuevoturnohorario');
 	Route::post('/turnoconfirmado',	'portaldelpaciente\PortaldelpacienteController@turnoConfirmado')->name('portaldelpaciente.turnoConfirmado');
 	Route::get('descargarcomprobante/{id}/{nrodoc}',  	'portaldelpaciente\PortaldelpacienteController@imprimir_comprobante')->name('portaldelpaciente.imprimir_comprobante');
+	Route::post('/turnoseliminareditar',	'portaldelpaciente\PortaldelpacienteController@turnoseliminareditar')->name('portaldelpaciente.turnoseliminareditar');
+	// Route::get('/prueba',  	'portaldelpaciente\PortaldelpacienteController@prueba')->name('portaldelpaciente.prueba');
+
 });
 
 

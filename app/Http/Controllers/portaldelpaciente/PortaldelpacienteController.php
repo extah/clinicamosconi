@@ -583,6 +583,29 @@ class PortaldelpacienteController extends Controller
 
     }
 
+    public function misturnos(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        // dd($usuario);
+        $result = $this->isUsuario($usuario);
+        // dd($result);
+        if($result == "OK")
+        {
+            $inicio ="";
+            $status_ok = false;
+            $esPaciente = true;
+            $message = "";
+            $usuario =  Users::get_registro($usuario);
+            return view('portaldelpaciente.mis_turnos', compact('inicio', 'message', 'status_ok', 'esPaciente', 'usuario',));
+
+        }
+	    $inicio = "";    
+		$status_error = false;
+        $esPaciente = false;
+    	return view('portaldelpaciente.iniciarsesion', compact('inicio','status_error', 'esPaciente'));
+
+
+    }
 
     public function cerrarsesion(Request $request)
     {
@@ -620,6 +643,75 @@ class PortaldelpacienteController extends Controller
         return redirect('portaldelpaciente');
 
     }
+
+    public function turnoseliminareditar(Request $request)
+    {
+
+        // $usuario = $request->session()->get('usuario');
+        // $result = $this->isUsuario($usuario);
+        $result = "OK";
+       
+            
+        if($result == "OK"){
+            
+            $opcion = $request->opcion;
+            // $opcion = $request->input("opcion");
+            // $titulo = $request->input("titulo");
+            // $titulo = $request->titulo;
+            switch($opcion){
+
+                case 1:
+                
+                    //Agregar  
+
+                    break;    
+                case 2: 
+                    //Actualizar
+
+                    break;
+                case 3: 
+                    //borrar
+
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+            
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.created_at, imagenesdeportada.updated_at
+                    FROM imagenesdeportada        
+                        ".$orderby." ".$limit));
+                    break;
+
+                case 4: 
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY turnos.id DESC ";
+
+                    $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+                    $date = $fecha_actual->format('Y-m-d');
+                    $hora_actual =  $fecha_actual->format('H:i');
+            
+                    $data = DB::select(DB::raw("SELECT turnos.id_comprobante as id_comprobante, especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, turnos.fecha, turnos.hora
+                    FROM turnos
+                    INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+                    INNER JOIN medico ON turnos.id_medico = medico.id
+                    WHERE turnos.fecha >= '$date'
+                    AND turnos.libre = 0
+                    ".$orderby." ".$limit));
+                    break;
+                
+            }
+
+            return json_encode($data, JSON_UNESCAPED_UNICODE);
+
+        }
+    }
+    public function prueba(Type $var = null)
+    {
+        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+        $date = $fecha_actual->format('Y-m-d');
+        $hora_actual =  $fecha_actual->format('H:i');
+
+        dd($date);
+    }
+
     function isUsuario($usuario)
     {
         # code...
