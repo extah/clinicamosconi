@@ -71,15 +71,15 @@
             @csrf
             <div class="row g-3">
               <div class="col-md-3">
-                  <label for="nombre_apellido" class="form-label"><b>Nombre y Apellido</b></label>
+                  <label for="nombre_apellido" class="form-label"><b>NOMBRE Y APELLIDO</b></label>
                   <input type="text" class="form-control" id="nombre_apellido" name="nombre_apellido" placeholder="ingrese su nombre y apellido" value="{{ $usuario->nombreyApellido }}" required>
               </div>
               <div class="col-md-3">
-                  <label for="email" class="form-label"><b>Correo Electronico</b></label>
+                  <label for="email" class="form-label"><b>CORREO ELECTRONICO</b></label>
                   <input type="email" class="form-control" id="email" name="email" placeholder="ingrese su correo electronico" value="{{ $usuario->email }}" required>
               </div>
               <div class="col-md-3">
-                  <label for="telefono" class="form-label"><b>Celular</b></label>
+                  <label for="telefono" class="form-label"><b>CELULAR</b></label>
                   <input type="number" class="form-control" id="telefono" name="telefono" placeholder="ingrese su numero de celular" value="{{ $usuario->telefono }}" required>
               </div>
               <div class="col-md-3">
