@@ -32,6 +32,37 @@ class TurnosSeeder extends Seeder
         $p->libre = true;
         $p->save();
 
+        
+        $p = new Turnos();
+        $p->id_especialidad = 1;
+        $p->id_medico = 1;
+        $p->id_persona = 1;
+        $p->fecha = date('Y-m-d H:i:s', strtotime('2021-11-28'));
+        $p->hora = "08:00"; 
+        $p->nro_turno = 3;
+        $p->libre = false;
+        $p->save();
+        
+        $p = new Turnos();
+        $p->id_especialidad = 1;
+        $p->id_medico = 1;
+        $p->id_persona = 1;
+        $p->fecha = date('Y-m-d H:i:s', strtotime('2021-11-28'));
+        $p->hora = "09:00"; 
+        $p->nro_turno = 4;
+        $p->libre = false;
+        $p->save();
+        
+        $p = new Turnos();
+        $p->id_especialidad = 1;
+        $p->id_medico = 1;
+        $p->id_persona = 2;
+        $p->fecha = date('Y-m-d H:i:s', strtotime('2021-11-28'));
+        $p->hora = "10:00"; 
+        $p->nro_turno = 5;
+        $p->libre = false;
+        $p->save();
+
         $p = new Turnos();
         $p->id_especialidad = 1;
         $p->id_medico = 1;

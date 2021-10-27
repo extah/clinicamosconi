@@ -7,7 +7,14 @@ use App\Http\Controllers\Controller;
 use App\ImagenesDePortada;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
+
 use App\Users;
+use App\Turnos;
+use App\Medico;
+use App\Comprobante;
+use App\Especialidades;
 
 use Auth;
 use DB;
@@ -217,24 +224,107 @@ class AdminController extends Controller
         }
     }
 
+    public function turnos(Request $request)
+    {
+        return view('admin.turnos');
+    }
 
-    public function addBanners(Request $request)
-    //Recibe el form 'agregar un banner o foto de portada'.
+    public function tablaturnos(Request $request)
     {
 
-    // $reglas = [
-    // 'titulo' => 'required|max:120|min:3',
-    // 'imagen' => 'required|dimensions:min_width=720,min_height=1280|sometimes|mimes:jpg,png,svg',
-    // ];
+        // $usuario = $request->session()->get('usuario');
+        // $result = $this->isUsuario($usuario);
+        $result = "OK";
+       
+            
+        if($result == "OK"){
+            
+            $opcion = $request->opcion;
+            // $opcion = $request->input("opcion");
+            // $titulo = $request->input("titulo");
+            // $titulo = $request->titulo;
+            switch($opcion){
 
-    // $mensajes = [
-    // 'required' => 'El campo :attribute es obligatorio',
-    // 'min' => 'El campo :attribute debe tener al menos 3 caracteres',
-    // 'max' => 'El campo :attribute puede tener como máximo :max',
-    // 'image' => 'Debe seleccionar una imagen tipo .jpg o .png que al menos sea HD'
-    // ];
+                case 1:
+                
+                    //Agregar  
 
-    // $this->validate($request, $reglas, $mensajes);
+                    break;    
+                case 2: 
+                    //Actualizar
+
+                    break;
+                case 3: 
+                    //borrar
+                    $id_comprobante = $request->id_comprobante;
+                    $turno  = Turnos::get_registro_por_comprobante($id_comprobante);
+                    DB::beginTransaction();
+
+                    try{
+
+                        $turno->id_persona = NULL;
+                        $turno->libre = 1;
+                        $turno->id_comprobante = 0;
+                        $turno->save();
+                        
+                        DB::commit();
+                    }catch(\Exception $e)
+                    {
+                        DB::rollBack();
+                        $error = "3";
+                        $descError = "Error al grabar ".$e;
+                        throw $e;
+                    }       
+
+                    $limit = " LIMIT 2000";        
+                    $orderby = " ORDER BY turnos.id DESC ";
+
+                    $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+                    $date = $fecha_actual->format('Y-m-d');
+                    $hora_actual =  $fecha_actual->format('H:i');
+
+                    $fecha_3meses = date("Y-m-d",strtotime($fecha_actual."+ 3 month"));
+            
+                    $data = DB::select(DB::raw("SELECT turnos.id,  especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, users.nombreyApellido as persona, turnos.fecha, turnos.hora
+                    FROM turnos
+                    INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+                    INNER JOIN medico ON turnos.id_medico = medico.id
+                    INNER JOIN users ON turnos.id_persona = users.id
+                    WHERE turnos.fecha BETWEEN '$date' AND '$fecha_3meses'
+                    AND turnos.libre = 0
+                    ".$orderby." ".$limit));
+                    break;
+
+                case 4: 
+                    $limit = " LIMIT 2000";        
+                    $orderby = " ORDER BY turnos.id DESC ";
+
+                    $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+                    $date = $fecha_actual->format('Y-m-d');
+                    $hora_actual =  $fecha_actual->format('H:i');
+
+                    $fecha_3meses = date("Y-m-d",strtotime($fecha_actual."+ 3 month"));
+            
+                    $data = DB::select(DB::raw("SELECT turnos.id,  especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, users.nombreyApellido as persona, turnos.fecha, turnos.hora
+                    FROM turnos
+                    INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+                    INNER JOIN medico ON turnos.id_medico = medico.id
+                    INNER JOIN users ON turnos.id_persona = users.id
+                    WHERE turnos.fecha BETWEEN '$date' AND '$fecha_3meses'
+                    AND turnos.libre = 0
+                    ".$orderby." ".$limit));
+                    
+                    break;
+                
+            }
+
+            return json_encode($data, JSON_UNESCAPED_UNICODE);
+
+        }
+    }
+
+    public function addBanners(Request $request)
+    {
     
     if($request->hasFile('imagen')){
         $image = $request->file('imagen');
@@ -302,5 +392,19 @@ class AdminController extends Controller
  
         return "OK";
 
+    }
+
+    public function prueba(Type $var = null)
+    {
+        $limit = " LIMIT 500";        
+        $orderby = " ORDER BY turnos.id DESC ";
+
+        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+        $date = $fecha_actual->format('Y-m-d');
+        $hora_actual =  $fecha_actual->format('H:i');
+
+        echo date("Y-m-d",strtotime($fecha_actual."+ 3 month")); 
+
+        // return json_encode($data, JSON_UNESCAPED_UNICODE);  
     }
 }

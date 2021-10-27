@@ -23,7 +23,7 @@ class UsersSeeder extends Seeder
         $p->save();
 
         $p = new Users();
-        $p->nombreyApellido = 'Emmanuel Baleztena';
+        $p->nombreyApellido = 'Prueba Berisso';
         $p->email = 'prueba@gmail.com';
         $p->telefono = 12345567;
         $p->dni = 11111111;

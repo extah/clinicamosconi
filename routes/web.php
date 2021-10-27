@@ -32,9 +32,15 @@ Route::group(array('prefix' => 'admin'), function(){
 	Route::post('/login',	'admin\AdminController@login')->name('admin.login');
 	Route::get('/imagenes-de-portada',	'admin\AdminController@imagenes')->name('admin.imagenes');
 	Route::post('/imagenes-de-portada',	'admin\AdminController@addBanners')->name('admin.addBanners');
+
+	Route::get('/turnos',	'admin\AdminController@turnos')->name('admin.turnos');
+	Route::post('/tablaturnos',	'admin\AdminController@tablaturnos')->name('admin.tablaturnos');
+
 	Route::post('/imageneseliminareditar',	'admin\AdminController@imageneseliminareditar')->name('admin.imageneseliminareditar');
 	Route::post('/imagenesagregar',	'admin\AdminController@imagenesagregar')->name('admin.imagenesagregar');
 	Route::get('/cerrarsesion',	'admin\AdminController@cerrarsesion')->name('admin.cerrarsesion');
+
+	Route::get('/prueba',	'admin\AdminController@prueba')->name('admin.prueba');
 });
 
 
