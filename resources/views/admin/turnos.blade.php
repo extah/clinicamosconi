@@ -22,18 +22,14 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex flex-column mx-auto p-0 my-2 gap-1">
         <div class="row g-2">
             <div class="col-md-2">
-                <button id="btnNuevo" type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalImagen">
-                    <i class="fas fa-plus-square"></i> Agregar Turno
-                </button>
+                <a class="btn btn-primary btn-rounded" href='{{route("admin.agregarturno")}}'><i class="fas fa-plus-square"></i> Agregar Turno</a>
             </div>
             <div class="col-md-3">
-                <button id="btnNuevo" type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalImagen">
+                <button id="btnBuscarporDNI" type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalTurnos">
                     <i class="fas fa-search"></i> Buscar Turno por DNI
                 </button>
             </div>
         </div>
-
-
     </div>
 
     <div class="col-lg-12"> 
@@ -59,61 +55,37 @@
   </div>       
 </div>
 
-<!-- Modal Imagen-->
-<div class="modal fade" id="modalImagen" tabindex="-1" aria-labelledby="modalImagenLabel" aria-hidden="true" >
+<!-- Modal buscar por DNI-->
+<div class="modal fade" id="modalTurnos" tabindex="-1" aria-labelledby="modalTurnosLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color: rgb(54, 105, 199)">
-        <h5 class="modal-title" id="modalImagenLabel" style="color: blanchedalmond">Agregar Imagen</h5>
+        <h5 class="modal-title" id="modalTurnosLabel" style="color: blanchedalmond">Buscar turnos por DNI</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-          <form action="{{route('admin.imagenesagregar')}}" method="POST" id="formImagen" class="needs-validation" enctype="multipart/form-data">    
-              {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
+          <form action="{{route('admin.tablaturnos')}}" method="POST" id="formTurnos" class="needs-validation" enctype="multipart/form-data">   
               @csrf
               <div class="modal-body">
                 <div class="row">
                   <div class="col-lg-12 mb-3" style="display:none;">
                     <!-- <div class="col-lg-12 mb-3"> -->
-                      <div class="form-group">
-                          <label class="formItem" for="opcion" id="opcion_input"> <b>OPCION</b></label>
-                          <input type="text" class="form-control" id="opcion" name="opcion">
-                      </div> 
-                  </div> 
-                    <div class="col-lg-12 mb-3" style="display:none;" id="id_imagen">
-                      <div class="form-group">
-                          <label class="formItem" for="id"> <b>ID</b></label>
-                          <input type="text" class="form-control" id="id" name="id" readonly>
-                      </div> 
-                    </div>   
-                    <div class="col-lg-12 mb-3">
-                      <div class="form-group">
-                          <label class="formItem" for="titulo"> <b>Titulo de Imagen</b></label>
-                          <input type="text" class="form-control" id="titulo" name="titulo" required>
-                      </div> 
+                        <div class="form-group">
+                            <label class="formItem" for="opcion_buscar" id="opcion_input"> <b>OPCION</b></label>
+                            <input type="text" class="form-control" id="opcion_buscar" name="opcion_buscar">
+                        </div> 
                     </div> 
                     <div class="col-lg-12 mb-3">
-                      <div class="form-group">
-                        <label for="tipo" class="form-label"><b>Tipo de imagen</b></label>
-                        <select id="tipo" name="tipo" class="form-select" required>              
-                          <option value="img">img</option>
-                          <option value="galeria" selected>galeria</option>
-                          <option value="noticias">noticias</option>
-                        </select>
-                      </div> 
-                    </div> 
-                    <div class="col-lg-12 mb-3" id="imagen_imagen">
-                      <div class="form-group">
-                          <label class="formItem" for="imagen"> <b>Seleccionar Imagen</b></label>
-                          <input class="form-control form-control" id="imagen" name="imagen" type="file" required>
-                      </div> 
-                    </div>
-                  </div>     
-              </div>
+                        <div class="form-group">
+                            <label class="formItem" for="dni"> <b>DNI</b></label>
+                            <input type="number" class="form-control" id="dni" name="dni" required>
+                        </div> 
+                    </div>     
+                </div>
 
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
-              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" id="btnGuardar" class="btn btn-primary">Buscar</button>
+                </div>
           </form> 
     </div>
   </div>
@@ -127,7 +99,6 @@
 <script src='{{ asset("assets/validity/jquery.validity.min.js") }}'></script>
 <script src='{{ asset("assets/validity/jquery.validity.lang.es.js") }}'></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 
 <script>
 
@@ -163,7 +134,7 @@ $(document).ready(function() {
         select: true,
         colReorder: true,
         "autoWidth": false,
-         "order": [[ 0, "asc" ]],
+         "order": [[ 0, "desc" ]],
          "paging":   true,
          "ordering": true,
          "info":     false,
@@ -199,47 +170,33 @@ $(document).ready(function() {
                     },              
         });    
             
-        $("#btnNuevo").click(function(){        
+
+        $("#btnBuscarporDNI").click(function(){        
             fila = $(this).closest("tr");
-            opcion = 1; 
-            var imagen_imagen = document.getElementById("imagen_imagen");
-            imagen_imagen.style.display = "block";
-
-            var id_imagen = document.getElementById("id_imagen");
-            id_imagen.style.display = "none";
-
-
-
-            $("#formImagen").trigger("reset");
-            $("#opcion").val('1');
+            opcion = 5; 
+            
+            $("#formTurnos").trigger("reset");
+            $("#opcion_buscar").val('5');
         });
-
 
         var fila; //captura la fila, para editar o eliminar
 
         //submit para el Alta y Actualización
-        $('#formImagen').submit(function(e){                         
+        $('#formTurnos').submit(function(e){                         
                 e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
                 var form = this;
-                // id = $.trim($('#id').val());
-                // titulo =  $.trim($('#titulo').val());
-                // imagen = $.trim($('#imagen').val());
-                // alert(new FormData(form));
+
                 $('#tablaTurnos').DataTable().clear().draw(); 
-                $('#modalImagen').modal('hide');
+                $('#modalTurnos').modal('hide');
 
                 $.ajax({
-                    // headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     url: $(form).attr("action"),
                     method: $(form).attr('method'),
                     data: new FormData(form), 
                     datatype: "json",   
                     cache:  false,
                     processData:  false,
-                    contentType:  false,
-                    // data:  {
-                    //     '_token': $('input[name=_token]').val(),
-                    //     titulo:titulo, id:id, imagen:imagen, opcion:opcion},    
+                    contentType:  false, 
 
                     success: function(data) {
 
@@ -254,8 +211,6 @@ $(document).ready(function() {
         //Borrar
         $(document).on("click", ".btnBorrar", function(){
             fila = $(this).closest("tr");         
-            // cell = $(this).closest("tr").children().first();
-            // id2 = cell.text();
 
             if($(this).parents("tr").hasClass('child')){ //vemos si el actual row es child row
                 var id = $(this).parents("tr").prev().find('td:eq(0)').text(); //si es asi, nos regresamos al row anterior, es decir, al padre y obtenemos el id
@@ -269,15 +224,11 @@ $(document).ready(function() {
                 var hora = $(this).closest("tr").find('td:eq(5)').text();
             }
 
-            // alert("Se ha seleccionado el ID: "+id);
             opcion = 3; //eliminar 
             swal({
-                  title: "¿Esta Seguro de cancelar el turno de " + paciente + " con fecha: "+fecha+" y horario: "+ hora +"hs?",
-                  // text: "Once deleted, you will not be able to recover this imaginary file!",
+                  title: "¿Esta seguro de cancelar el turno de " + paciente + " con fecha: "+fecha+" y horario: "+ hora +"hs?",
                   icon: "warning",
-                  buttons: ["Cancelar", "Eliminar"],
-                  // buttons: true,
-                  // dangerMode: true,
+                  buttons: ["Cancelar", "Cancelar"],
                 })
                 .then((willDelete) => {
                   if (willDelete) {
