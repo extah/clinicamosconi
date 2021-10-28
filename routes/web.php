@@ -39,7 +39,8 @@ Route::group(array('prefix' => 'admin'), function(){
 	Route::post('/imageneseliminareditar',	'admin\AdminController@imageneseliminareditar')->name('admin.imageneseliminareditar');
 	Route::post('/imagenesagregar',	'admin\AdminController@imagenesagregar')->name('admin.imagenesagregar');
 	Route::get('/cerrarsesion',	'admin\AdminController@cerrarsesion')->name('admin.cerrarsesion');
-
+	Route::get('/agregarturno',	'admin\AdminController@agregarturno')->name('admin.agregarturno');
+	
 	Route::get('/prueba',	'admin\AdminController@prueba')->name('admin.prueba');
 });
 
@@ -62,6 +63,7 @@ Route::group(array('prefix' => 'portaldelpaciente'), function(){
 	Route::post('/turnoconfirmado',	'portaldelpaciente\PortaldelpacienteController@turnoConfirmado')->name('portaldelpaciente.turnoConfirmado');
 	Route::get('descargarcomprobante/{id}/{nrodoc}',  	'portaldelpaciente\PortaldelpacienteController@imprimir_comprobante')->name('portaldelpaciente.imprimir_comprobante');
 	Route::post('/turnoseliminareditar',	'portaldelpaciente\PortaldelpacienteController@turnoseliminareditar')->name('portaldelpaciente.turnoseliminareditar');
+
 	Route::get('/prueba',  	'portaldelpaciente\PortaldelpacienteController@prueba')->name('portaldelpaciente.prueba');
 
 });

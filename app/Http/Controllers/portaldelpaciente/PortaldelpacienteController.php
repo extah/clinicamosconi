@@ -677,9 +677,9 @@ class PortaldelpacienteController extends Controller
 
                     try{
 
-                        $turno->id_persona = NULL;
+                        $turno->id_persona = 0;
                         $turno->libre = 1;
-                        $turno->id_comprobante = NULL;
+                        $turno->id_comprobante = 0;
                         $turno->save();
                         
                         DB::commit();
