@@ -26,7 +26,7 @@
 @section('content')
 <article class="mx-auto px-0">
   <div class="row mx-0 px-0">
-      <img class="img-fluid px-0" src={{ asset("images/img/banner-especialidades.png")}} alt="Imagen de portada de Especialidades">
+      <img class="img-fluid px-0" src={{ asset("images/img/banner-turnos.png")}} alt="Imagen de portada de Especialidades">
   </div>
 </article>
 <div class="p-0 mb-3">

@@ -40,6 +40,8 @@ Route::group(array('prefix' => 'admin'), function(){
 	Route::post('/imagenesagregar',	'admin\AdminController@imagenesagregar')->name('admin.imagenesagregar');
 	Route::get('/cerrarsesion',	'admin\AdminController@cerrarsesion')->name('admin.cerrarsesion');
 	Route::get('/agregarturno',	'admin\AdminController@agregarturno')->name('admin.agregarturno');
+	Route::get('/generarturnos',	'admin\AdminController@generarturnos')->name('admin.generarturnos');
+	Route::post('/generarturnospost',	'admin\AdminController@generarturnospost')->name('admin.generarturnospost');
 	
 	Route::get('/prueba',	'admin\AdminController@prueba')->name('admin.prueba');
 });

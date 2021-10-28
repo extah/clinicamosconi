@@ -5,16 +5,7 @@
 <link rel="stylesheet" href="{{ asset('css/barrapasoYcirculo.css') }}">
 
 <style type="text/css">
- /* .btn_personalizado{
-  text-decoration: none;
-  padding: 10px;
-  font-weight: 600;
-  font-size: 20px;
-  color: #ffffff;
-  background-color: #1883ba;
-  border-radius: 6px;
-  border: 1px solid #0016b0;
-} */
+
 .formItem{
   display: block;
   text-align: center;
@@ -25,6 +16,11 @@
 @endsection
 
 @section('content')
+<article class="mx-auto px-0">
+  <div class="row mx-0 px-0">
+      <img class="img-fluid px-0" src={{ asset("images/img/banner-turnos.png")}} alt="Imagen de portada de Especialidades">
+  </div>
+</article>
 <div class="p-0 mb-3">
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #04205f;">
     <div class="container-fluid">

@@ -44,8 +44,18 @@
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{route('admin.imagenes')}}">Imágenes</a>
                           </li>
-                          <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary px-3" href="{{route('admin.turnos')}}">Turnos</a>
+                          <li class="nav-item dropdown mx-auto mx-lg-0 px-lg-0">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              TURNOS
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="{{route('admin.turnos')}}">Turnos asignados</a></li>
+                              <li><a class="dropdown-item" href="{{route('admin.generarturnos')}}">Agregar un turno</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="{{route('admin.generarturnos')}}">Generar turnos</a></li>
+                            </ul>
+                            
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{-- {{route('')}} --}}">Galería</a>

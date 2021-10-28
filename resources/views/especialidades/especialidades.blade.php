@@ -244,7 +244,8 @@ $(document).ready(function() {
                 select_medicos =  $.trim($('#select_medicos').val());
                 opcion = 3; 
                 $('#tablaturnos').DataTable().clear().draw(); 
-
+                $('#hola').show();
+                $('#hola2').show(); 
                 document.getElementById("tabla").style.visibility = "visible";
                 $.ajax({
                     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },

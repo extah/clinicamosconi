@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
          $this->call(Turno_espec_medicSeeder::class);
          $this->call(UsersSeeder::class);
          $this->call(TurnosSeeder::class);
+         $this->call(TabFeriadosSeeder::class);
 
     }
 }

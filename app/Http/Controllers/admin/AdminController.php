@@ -262,6 +262,131 @@ class AdminController extends Controller
         return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
     }
 
+    public function generarturnos(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+            // return view('admin.agregarturno');
+            $especialidades =  DB::select("SELECT * FROM especialidades");
+            return view('admin.generarturnos', compact('especialidades'));
+        }
+
+        $message = "Inicie Sesion";
+        $status_error = true;
+        $status_ok = false;
+        $esPasc = false;
+        
+        return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
+    }
+
+    public function generarturnospost(Request $request)
+    {
+        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+        $fecha_desde = $fecha_actual->format('Y-m-d');
+        $fecha_hasta = date("Y-m-d",strtotime($fecha_actual."+ 3 month"));
+
+        $lapzo_tiempo = 15;
+        
+        if ($request->select_especialidad == "todas") {
+            $especialidades =  DB::select("SELECT * FROM especialidades");
+            $array_numeric_keys = array();
+
+            foreach ($especialidades as $key => $value) {
+                    $array_numeric_keys[] = $key+1;
+            }
+            // return $array_numeric_keys;
+            $result = $this->genera_calendario($array_numeric_keys, $fecha_desde, $fecha_hasta, $lapzo_tiempo);
+	
+        }
+        else
+        {
+            return $request->select_especialidad;
+        }
+    }
+
+    function genera_calendario($array_numeric_keys, $fecha_desde_param, $fecha_hasta_param, $lapzo_tiempo_param){
+
+        //consulto si ya existe la grilla
+
+        // $existe = DB::select("SELECT * FROM `mm_turnos` WHERE fecha BETWEEN ' $fecha_desde' AND '$fecha_hasta' AND id_tramite_turno=$tipo_turno_param");
+        // dd(count($existe));
+        // if(count($existe) != 0 )
+        // {
+            // DD(count($existe) != 0);
+        //     return "ERROR";
+        // }
+        
+        //dd($fecha);
+		$feriados =  DB::select("SELECT * FROM tab_feriados WHERE fecha BETWEEN ' $fecha_desde_param' AND '$fecha_hasta_param'");
+        // dd($feriados);
+		// $Hora = $hora_desde_param;
+		$mes_hasta = date("m",strtotime($fecha_hasta_param));
+        $dia_desde = date("d",strtotime($fecha_desde_param));
+        $dia_hasta = date("d",strtotime($fecha_hasta_param));
+
+        // dd($dia_desde . '   ,  ' . $dia_hasta);
+        // dd($mes_hasta);
+
+
+		$fecha = $fecha_desde_param;
+        $mes = date("m",strtotime($fecha));
+        $ok = true;
+        $dia_actual = date("d",strtotime($fecha));
+		while (($mes <= $mes_hasta) && ($ok))
+		{	
+            if($mes == $mes_hasta)
+            {
+                if($dia_actual == $dia_hasta)
+                {
+                    $ok = false;
+                }
+
+            }
+			if(!$this->isWeekend($fecha)){
+				$es_feriado = array_values(array_filter($feriados, function($obj) use ($fecha)
+				{
+				    return $obj->fecha == $fecha;
+				}));
+				
+		        if (sizeof($es_feriado) == 0){
+		        	//echo $fecha, PHP_EOL; 
+		        	$Hora = $hora_desde_param;
+					// for ($i=1; $i < $cant + 1; $i++) { 
+
+                        // if($Hora <= "13:30")
+                        $i=1;
+                        while($Hora <= $hora_hasta_param)
+                        {
+                            DB::insert("insert into turnos 
+							(id_tramite_turno,fecha,hora,Nro_turno,libre,Fecha_mov)
+							values(".$tipo_turno_param.",'".$fecha."','".$Hora."',".$i.",1,NOW())"); 
+
+                            $Hora = date("H:i", strtotime($Hora)+($lapzo_tiempo_param*60));
+                            $i++;
+						    // echo $Hora, PHP_EOL;
+                        }	
+					// }
+				}
+			}
+
+			$fecha = date('Y-m-d', strtotime($fecha. ' + 1 days'));
+            
+			$mes = date("m",strtotime($fecha));
+            $dia_actual = date("d",strtotime($fecha));
+			//echo $mes, PHP_EOL; 
+        }
+        // dd("termino");
+     return "OK";    
+    }    
+
+    function isWeekend($date) {
+	    $weekDay = date('w', strtotime($date));
+	    return ($weekDay == 0 || $weekDay == 6);
+	}
+
     public function tablaturnos(Request $request)
     {
 
