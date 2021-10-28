@@ -5,16 +5,7 @@
 <link rel="stylesheet" href="{{ asset('css/barrapasoYcirculo.css') }}">
 
 <style type="text/css">
- /* .btn_personalizado{
-  text-decoration: none;
-  padding: 10px;
-  font-weight: 600;
-  font-size: 20px;
-  color: #ffffff;
-  background-color: #1883ba;
-  border-radius: 6px;
-  border: 1px solid #0016b0;
-} */
+
 .formItem{
   display: block;
   text-align: center;
@@ -33,6 +24,11 @@
 @endsection
 
 @section('content')
+<article class="mx-auto px-0">
+  <div class="row mx-0 px-0">
+      <img class="img-fluid px-0" src={{ asset("images/img/banner-especialidades.png")}} alt="Imagen de portada de Especialidades">
+  </div>
+</article>
 <div class="p-0 mb-3">
   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #04205f;">
     <div class="container-fluid">
@@ -72,34 +68,28 @@
             </div>
         </div>
 		<div class="form-group">
-            <div class="my-2 pb-1 barrapaso-dos" id="barra1"></div>    
-        </div>
+        <div class="my-2 pb-1 barrapaso-dos" id="barra1"></div>    
+    </div>
+    <div class="col-lg-12"> 
+        <div class="table-responsive">  
+            <table id="tablaTurnos" class="table table-striped table-hover table-bordered display" cellspacing="0" style="width:100%">
+                <meta name="csrf-token_turnos" content="{{ csrf_token() }}">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th>ID COMPROBANTE</th>
+                        <th>ESPECIALIDAD</th>
+                        <th>MÉDICO</th>
+                        <th>FECHA</th>
+                        <th>HORA</th>
+                        <th>ACCIÓN</th>
+                    </tr>    
+                </thead>
+                <tbody>
 
-		<!-- <article class="container col-12 mx-auto p-0">
-    		<div class="col-11 col-sm-11 col-md-10 col-lg-10 d-flex flex-column mx-auto p-0 my-4 gap-3">
-                 
-			</div>	
-		</article> -->
-        <div class="col-lg-12"> 
-            <div class="table-responsive">  
-                <table id="tablaTurnos" class="table table-striped table-hover table-bordered display" cellspacing="0" style="width:100%">
-                    <meta name="csrf-token_turnos" content="{{ csrf_token() }}">
-                    <thead class="thead-dark text-center">
-                        <tr>
-                            <th>ID COMPROBANTE</th>
-                            <th>ESPECIALIDAD</th>
-                            <th>MEDICO</th>
-                            <th>FECHA</th>
-                            <th>HORA</th>
-                            <th>CANCELAR</th>
-                        </tr>    
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>    
-        </div>       
+                </tbody>
+            </table>
+        </div>    
+    </div>       
 </div>
 @endsection
 

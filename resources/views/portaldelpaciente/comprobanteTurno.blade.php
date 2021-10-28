@@ -2,12 +2,6 @@
 
 @section('css')
 
-<!-- <link href="{{ asset('/css/formulario.css') }}" rel="stylesheet"> -->
-<!-- <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet"> -->
-
-
-
-<!-- <link href="{{ asset('/assets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"> -->
 <link href="{{ asset('/css/turnero.css') }}" rel="stylesheet">
 <link href="{{ asset('/css/sweetalert.css') }}" rel="stylesheet">
 
@@ -17,7 +11,6 @@
 <link href="{{ asset('/assets/toastr/toastr.min.css') }}" rel="stylesheet">
 
 <link href="{{ asset('/assets/bootstrap-datepicker-1.7.1/css/bootstrap-datepicker.min.css') }}" rel="stylesheet"/>
-<!-- <link rel="stylesheet" href="{{ asset('css/barrapasoYcirculo.css') }}"> -->
 
 <style type="text/css">
  .btn_personalizado{
@@ -50,6 +43,11 @@
 @endsection
 
 @section('content')
+<article class="mx-auto px-0">
+  <div class="row mx-0 px-0">
+      <img class="img-fluid px-0" src={{ asset("images/img/banner-especialidades.png")}} alt="Imagen de portada de Especialidades">
+  </div>
+</article>
 <article class="">
     <div class="p-0 mb-3">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #04205f;">

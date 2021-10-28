@@ -15,7 +15,7 @@
 
 <div class="container">
   <div class="d-flex justify-content-center">
-      <h1 style="color:#428bca">Listado de Turnos</h1>
+      <h1 style="color:#428bca">Listado de turnos Asignados</h1>
   </div>
   <hr>
 
