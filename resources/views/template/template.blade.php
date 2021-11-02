@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clínica Mosconi</title>
 
-    <link href="{{ asset("assets/bootstrap-5.1.0/css/bootstrap.min.css") }}" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="{{ asset("assets/bootstrap-5.1.0/css/bootstrap.min.css") }}" rel="stylesheet" crossorigin="anonymous">
     <link href='{{ asset("css/template-inicio.css") }}' rel="stylesheet">
     <!--datables estilo bootstrap 5 CSS-->   
     <link rel="stylesheet" href="{{ asset("assets/bootstrap-5.1.0/css/bootstrap-ajax-twitter.min.css") }}">
@@ -170,8 +170,8 @@
 
 </main>
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> --}}
-<script src="{{ asset("assets/bootstrap-5.1.0/js/popper.min.js") }}" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/bootstrap.min.js") }}" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script> 
+<script src="{{ asset("assets/bootstrap-5.1.0/js/popper.min.js") }}" crossorigin="anonymous"></script>
+<script src="{{ asset("assets/bootstrap-5.1.0/js/bootstrap.min.js") }}" crossorigin="anonymous"></script> 
 
 <script src="{{ asset("assets/bootstrap-5.1.0/js/jquery-3.5.1.js") }}"></script>
 <script src="{{ asset("assets/bootstrap-5.1.0/js/jquery.dataTables.min.js") }}"></script>
