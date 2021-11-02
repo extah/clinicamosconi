@@ -105,7 +105,7 @@ class AdminController extends Controller
         $opcion = $request->opcion;
         $titulo_imagen = $request->titulo;
         $tipo_imagen = $request->tipo;
-
+        $descripcion = $request->descripcion;
         $originalImage= $request->file('imagen');
 
         $original_name = $originalImage->getClientOriginalName();
@@ -123,6 +123,7 @@ class AdminController extends Controller
                 $imagen->titulo= $titulo_imagen;
                 $imagen->imagen = $original_name;
                 $imagen->tipo = $tipo_imagen;
+                $imagen->descripcion = $descripcion;
                 // $imagen->imagen = "imagen";
                 $imagen->save(); 
             }
@@ -142,7 +143,7 @@ class AdminController extends Controller
                 $thumbnailImage = Image::make($originalImage);
                 $thumbnailImage->save($originalPathAdd.$originalImage->getClientOriginalName());
 
-                DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo_imagen, 'imagen' => $original_name, 'tipo' => $tipo_imagen]);
+                DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo_imagen, 'imagen' => $original_name, 'tipo' => $tipo_imagen, 'descripcion' => $descripcion]);
                 
             }
            
@@ -152,7 +153,7 @@ class AdminController extends Controller
         $limit = " LIMIT 500";        
         $orderby = " ORDER BY imagenesdeportada.id DESC ";
 
-        $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.created_at, imagenesdeportada.updated_at
+        $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.descripcion, imagenesdeportada.created_at, imagenesdeportada.updated_at
         FROM imagenesdeportada        
             ".$orderby." ".$limit));
         
@@ -203,7 +204,7 @@ class AdminController extends Controller
                     $limit = " LIMIT 500";        
                     $orderby = " ORDER BY imagenesdeportada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.created_at, imagenesdeportada.updated_at
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.descripcion, imagenesdeportada.created_at, imagenesdeportada.updated_at
                     FROM imagenesdeportada        
                         ".$orderby." ".$limit));
                     break;
@@ -212,7 +213,7 @@ class AdminController extends Controller
                     $limit = " LIMIT 500";        
                     $orderby = " ORDER BY imagenesdeportada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.created_at, imagenesdeportada.updated_at
+                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.descripcion, imagenesdeportada.created_at, imagenesdeportada.updated_at
                     FROM imagenesdeportada        
                         ".$orderby." ".$limit));
                     break;

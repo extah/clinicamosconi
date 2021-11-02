@@ -38,6 +38,7 @@
                       <th>TITULO</th>
                       <th>IMAGEN</th>
                       <th>TIPO</th>
+                      <th>DESCRIPCION</th>
                       <th>FECHA CREADO</th>
                       <th>FECHA ACTUALIZADO</th>
                       <th>ACCIONES</th>
@@ -99,6 +100,12 @@
                           <input class="form-control form-control" id="imagen" name="imagen" type="file" required>
                       </div> 
                     </div>
+                    <div class="col-lg-12 mb-3">
+                      <div class="form-group">
+                          <label class="formItem" for="descripcion"> <b>Descripcion</b></label>
+                          <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                      </div> 
+                    </div> 
                   </div>     
               </div>
 
@@ -144,7 +151,8 @@ $(document).ready(function() {
                         { data: "id" },
                         { data: "titulo"},
                         { data: "imagen" },
-                        { data: "tipo" },    
+                        { data: "tipo" }, 
+                        { data: "descripcion" },    
                         { data: "created_at" },  
                         { data: "updated_at" },  
                         {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='fas fa-edit'></i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='fas fa-trash-alt'></i></button></div></div>"},

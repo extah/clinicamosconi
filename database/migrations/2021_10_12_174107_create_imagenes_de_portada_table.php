@@ -18,6 +18,7 @@ class CreateImagenesDePortadaTable extends Migration
             $table->string('titulo', 255)->nullable();
             $table->string('imagen', 255)->nullable();
             $table->string('tipo', 255)->nullable();
+            $table->string('descripcion', 255)->nullable();
             $table->timestamps();
         });
     }
