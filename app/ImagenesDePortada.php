@@ -14,8 +14,8 @@ class ImagenesDePortada extends Model
     public $timestamps  = true;
 
     
-    public function imagenesDePostada(){
-        return $this->belongsTo(ImagenesDePostada::class);
+    public function imagenesDePortada(){
+        return $this->belongsTo(imagenesDePortada::class);
     }
 
     public static function get_registro($id)

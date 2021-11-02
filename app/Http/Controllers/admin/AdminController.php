@@ -642,23 +642,9 @@ class AdminController extends Controller
 
     public function prueba(Type $var = null)
     {
-        $limit = " LIMIT 2000";
-        $orderby = " ORDER BY turnos.id DESC ";
+        $data = ImagenesDePortada::all();
 
-        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
-        $date = $fecha_actual->format('Y-m-d');
-        $hora_actual =  $fecha_actual->format('H:i');
-
-        $fecha_3meses = date("Y-m-d",strtotime($fecha_actual."+ 3 month"));
-
-        $data = DB::select(DB::raw("SELECT turnos.id,  especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, users.nombreyApellido as persona, turnos.fecha, turnos.hora
-        FROM turnos
-        INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
-        INNER JOIN medico ON turnos.id_medico = medico.id
-        INNER JOIN users ON turnos.id_persona = users.id
-        WHERE turnos.fecha BETWEEN '$date' AND '$fecha_3meses'
-        AND turnos.libre = 0 
-        ".$orderby." ".$limit));
+        // dd($banners);
 
         return json_encode($data, JSON_UNESCAPED_UNICODE);  
     }
