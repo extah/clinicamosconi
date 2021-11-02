@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Inicio;
 use App\Http\Controllers\Controller;
+use App\ImagenesDePortada;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -22,8 +23,9 @@ class InicioController extends Controller
 
 	    $inicio = "";
 		$esEmp = false;
+		$banners = ImagenesDePortada::all();
 	   
-    	return view('inicio.inicio', compact('inicio', 'esEmp'));
+    	return view('inicio.inicio', compact('inicio', 'esEmp', 'banners'));
     }
 
 
