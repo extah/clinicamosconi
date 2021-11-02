@@ -23,6 +23,13 @@ use Redirect;
 
 class AdminController extends Controller
 {
+    public function printImages() {
+        $banners = ImagenesDePortada::all();
+
+        dd($banners);
+        return view('template.template', compact('banners'));
+    }
+
     public function index(){
 
     	return view('admin.login');

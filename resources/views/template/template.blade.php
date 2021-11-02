@@ -20,7 +20,7 @@
 <body>
 
 <main>
-  
+  {{-- {{dd($banners)}} --}}
   <header class="bg-white">
     <div class="__navbar container">
       <div class="row justify-content-center">
