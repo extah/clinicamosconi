@@ -27,7 +27,7 @@ class AdminController extends Controller
         $banners = ImagenesDePortada::all();
 
         dd($banners);
-        return view('template.template', compact('banners'));
+        return view('inicio.inicio', compact('banners'));
     }
 
     public function index(){
