@@ -36,18 +36,26 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label class="formItem" for="select_especialidad"> <b>Especialidad</b></label>
-                    <select name="select_especialidad" id="select_especialidad" class="form-control text-center" required>
+                    <label class="formItem" for="select_medico"> <b>MÉDICO</b></label>
+                    <select name="select_medico" id="select_medico" class="form-control text-center" required>
                         {{-- <option value="">-Seleccioná una Especialidad-</option> --}}
-                        <option value="todas">Todas las especialidades</option>
-                        @foreach($especialidades as $especialidad)
-                            <option value="{{ $especialidad->id }}" offset="1">{{ $especialidad->nombre }}</option>
+                        <option value="todos">Todos los medicos</option>
+                        @foreach($medicos as $medicos)
+                            <option value="{{ $medicos->id }}" offset="1">{{ $medicos->nombre }} {{ $medicos->apellido }}</option>
                         
                         @endforeach
                         
                     </select>
                 </div>
-                <label>&nbsp;</label>
+                <div class="form-group">
+                    <label for="fecha_desde" class="formItem"><b>FECHA DESDE</b></label>
+                    <input type="date" class="form-control" id="fecha_desde" name="fecha_desde" placeholder="ingrese fecha desde" required>
+                </div>
+                <div class="form-group">
+                    <label for="fecha_hasta" class="formItem"><b>FECHA HASTA</b></label>
+                    <input type="date" class="form-control" id="fecha_hasta" name="fecha_hasta" placeholder="ingrese fecha hasta" required>
+                </div>
+            <label>&nbsp;</label>
 
                 <div class="row d-flex justify-content-center">
                     <input type="submit" class='btn btn-primary btn-lg' value="Generar Turnos">
@@ -86,4 +94,25 @@
       })
   })()
   </script>
+  <script>
+    @if (Session::get('status_info'))
+            toastr.info( '{{ session('message') }}', 'ATENCIÓN', {
+                // "progressBar": true,
+                "closeButton": true,
+                "positionClass": "toast-bottom-right",
+                "timeOut": "10000",
+            });   
+    @endif 
+  </script>
+
+<script>
+    @if (Session::get('status_ok'))
+            toastr.success( '{{ session('message') }}', 'Exito!!!', {
+                // "progressBar": true,
+                "closeButton": true,
+                "positionClass": "toast-bottom-right",
+                "timeOut": "10000",
+            });   
+    @endif
+</script>
 @endsection

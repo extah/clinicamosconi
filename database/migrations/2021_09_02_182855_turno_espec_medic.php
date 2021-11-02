@@ -21,7 +21,8 @@ class TurnoEspecMedic extends Migration
             $table->id();
             $table->foreignId('id_especialidades');
             $table->foreignId('id_medico');
-            $table->string('dia_horario', 255)->nullable();
+            $table->string('dia', 255)->nullable();
+            $table->string('horario', 255)->nullable();
             $table->string('pami', 2)->nullable();
             $table->string('obra_social', 255)->nullable();
             $table->string('consulta_particular', 255)->nullable();

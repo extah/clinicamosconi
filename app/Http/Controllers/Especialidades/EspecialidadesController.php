@@ -35,7 +35,7 @@ class EspecialidadesController extends Controller
 
             case 1:
                 
-                $data = DB::select("SELECT especialidades.nombre as especialidad, concat(medico.nombre, ' ', medico.apellido)  as nombre_medico, turno_espec_medic.dia_horario, turno_espec_medic.pami, turno_espec_medic.obra_social, turno_espec_medic.consulta_particular, turno_espec_medic.otros
+                $data = DB::select("SELECT especialidades.nombre as especialidad, concat(medico.nombre, ' ', medico.apellido)  as nombre_medico, turno_espec_medic.dia, turno_espec_medic.horario, turno_espec_medic.pami, turno_espec_medic.obra_social, turno_espec_medic.consulta_particular, turno_espec_medic.otros
                 FROM turno_espec_medic  
                 LEFT JOIN especialidades ON turno_espec_medic.id_especialidades = especialidades.id
                 LEFT JOIN medico ON turno_espec_medic.id_medico = medico.id
@@ -49,7 +49,7 @@ class EspecialidadesController extends Controller
                 break;
             case 3: 
                 // $data = DB::select("SELECT turno_espec_medic.* FROM turno_espec_medic  where id_medico = $id_medico ORDER BY turno_espec_medic.id ASC");
-                $data = DB::select("SELECT especialidades.nombre as especialidad, concat(medico.apellido, ' ', medico.nombre)  as nombre_medico, turno_espec_medic.dia_horario, turno_espec_medic.pami, turno_espec_medic.obra_social, turno_espec_medic.consulta_particular, turno_espec_medic.otros
+                $data = DB::select("SELECT especialidades.nombre as especialidad, concat(medico.apellido, ' ', medico.nombre)  as nombre_medico, turno_espec_medic.dia, turno_espec_medic.horario, turno_espec_medic.pami, turno_espec_medic.obra_social, turno_espec_medic.consulta_particular, turno_espec_medic.otros
                 FROM turno_espec_medic  
                 LEFT JOIN especialidades ON turno_espec_medic.id_especialidades = especialidades.id
                 LEFT JOIN medico ON turno_espec_medic.id_medico = medico.id

@@ -270,8 +270,8 @@ class AdminController extends Controller
         if($result == "OK")
         {
             // return view('admin.agregarturno');
-            $especialidades =  DB::select("SELECT * FROM especialidades");
-            return view('admin.generarturnos', compact('especialidades'));
+            $medicos =  DB::select("SELECT * FROM medico");
+            return view('admin.generarturnos', compact('medicos'));
         }
 
         $message = "Inicie Sesion";
@@ -284,45 +284,70 @@ class AdminController extends Controller
 
     public function generarturnospost(Request $request)
     {
-        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
-        $fecha_desde = $fecha_actual->format('Y-m-d');
-        $fecha_hasta = date("Y-m-d",strtotime($fecha_actual."+ 3 month"));
-
+        // $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+        // $fecha_desde = $fecha_actual->format('Y-m-d');
+        // $fecha = date("Y-m-d", strtotime($request->fecha_desde));
+        $fecha_desde = date("Y-m-d", strtotime($request->fecha_desde));
+        $fecha_hasta = date("Y-m-d", strtotime($request->fecha_hasta));
+        // $fecha_hasta = date("Y-m-d",strtotime($fecha_actual."+ 1 month"));
         $lapzo_tiempo = 15;
-        
-        if ($request->select_especialidad == "todas") {
-            $especialidades =  DB::select("SELECT * FROM especialidades");
+        // $dia_actual = date("N",strtotime($fecha_desde));
+        // dd($dia_actual);
+
+        $medicos =  DB::select("SELECT * FROM medico");
+        $medico_seleccionado = $request->select_medico;
+        if ($medico_seleccionado == "todos") {
+            
             $array_numeric_keys = array();
 
-            foreach ($especialidades as $key => $value) {
+            foreach ($medicos as $key => $value) {
                     $array_numeric_keys[] = $key+1;
+            }
+            $existe = DB::select("SELECT * FROM `turnos` WHERE fecha BETWEEN ' $fecha_desde' AND '$fecha_hasta'");
+            if (count($existe)) {
+                // dd("hay turnos para la fecha");
+                // $medicos =  DB::select("SELECT * FROM medico");
+                $message = "Existen turnos para la fecha";
+                $status_info = true;
+                $status_ok = false;
+                // return view('admin.generarturnos', compact('medicos'));
+                return redirect('admin/generarturnos')->with(['status_info' => $status_info, 'status_ok' => $status_ok,  'message' => $message, 'medicos' => $medicos]);
             }
             // return $array_numeric_keys;
             $result = $this->genera_calendario($array_numeric_keys, $fecha_desde, $fecha_hasta, $lapzo_tiempo);
+            if ($result == "OK") {
+
+                // $medicos =  DB::select("SELECT * FROM medico");
+                $message = "Turnos creado";
+                $status_info = false;
+                $status_ok = true;
+                // return view('admin.generarturnos', compact('medicos'));
+                return redirect('admin/generarturnos')->with(['status_info' => $status_info, 'status_ok' => $status_ok,  'message' => $message, 'medicos' => $medicos]);
+            }
 	
         }
         else
         {
+            
+            $existe = DB::select("SELECT * FROM `turnos` WHERE fecha BETWEEN ' $fecha_desde' AND '$fecha_hasta' AND id_medico = $medico_seleccionado");
+            if (count($existe)) {
+                // dd("hay turnos para la fecha");
+                // $medicos =  DB::select("SELECT * FROM medico");
+                $message = "Existen turnos para la fecha";
+                $status_info = true;
+                $status_ok = false;
+                // return view('admin.generarturnos', compact('medicos'));
+                return redirect('admin/generarturnos')->with(['status_info' => $status_info, 'status_ok' => $status_ok,  'message' => $message, 'medicos' => $medicos]);
+            }
+
             return $request->select_especialidad;
         }
     }
 
     function genera_calendario($array_numeric_keys, $fecha_desde_param, $fecha_hasta_param, $lapzo_tiempo_param){
 
-        //consulto si ya existe la grilla
-
-        // $existe = DB::select("SELECT * FROM `mm_turnos` WHERE fecha BETWEEN ' $fecha_desde' AND '$fecha_hasta' AND id_tramite_turno=$tipo_turno_param");
-        // dd(count($existe));
-        // if(count($existe) != 0 )
-        // {
-            // DD(count($existe) != 0);
-        //     return "ERROR";
-        // }
-        
-        //dd($fecha);
 		$feriados =  DB::select("SELECT * FROM tab_feriados WHERE fecha BETWEEN ' $fecha_desde_param' AND '$fecha_hasta_param'");
-        // dd($feriados);
-		// $Hora = $hora_desde_param;
+
 		$mes_hasta = date("m",strtotime($fecha_hasta_param));
         $dia_desde = date("d",strtotime($fecha_desde_param));
         $dia_hasta = date("d",strtotime($fecha_hasta_param));
@@ -335,42 +360,39 @@ class AdminController extends Controller
         $mes = date("m",strtotime($fecha));
         $ok = true;
         $dia_actual = date("d",strtotime($fecha));
-		while (($mes <= $mes_hasta) && ($ok))
+
+		while ($fecha <= $fecha_hasta_param)
 		{	
-            if($mes == $mes_hasta)
+			
+            $dia_actual = date("N",strtotime($fecha));
+            
+            $dia_nombre = $this->getDia($dia_actual);
+            dd($dia_nombre);
+
+            $es_feriado = array_values(array_filter($feriados, function($obj) use ($fecha)
             {
-                if($dia_actual == $dia_hasta)
-                {
-                    $ok = false;
-                }
+                return $obj->fecha == $fecha;
+            }));
+            
+            if (sizeof($es_feriado) == 0){
+                //echo $fecha, PHP_EOL; 
+                $Hora = "08:00";
+                // for ($i=1; $i < $cant + 1; $i++) { 
 
+                    // if($Hora <= "13:30")
+                    $i=1;
+                    while($Hora <= "11:00")
+                    {
+                        DB::insert("insert into turnos 
+                        (id_especialidad, id_medico, id_persona, fecha, hora, nro_turno, libre)
+                        values(1, 1, 0,'".$fecha."','".$Hora."',".$i.",1)"); 
+
+                        $Hora = date("H:i", strtotime($Hora)+($lapzo_tiempo_param*60));
+                        $i++;
+                        // echo $Hora, PHP_EOL;
+                    }
             }
-			if(!$this->isWeekend($fecha)){
-				$es_feriado = array_values(array_filter($feriados, function($obj) use ($fecha)
-				{
-				    return $obj->fecha == $fecha;
-				}));
-				
-		        if (sizeof($es_feriado) == 0){
-		        	//echo $fecha, PHP_EOL; 
-		        	$Hora = $hora_desde_param;
-					// for ($i=1; $i < $cant + 1; $i++) { 
-
-                        // if($Hora <= "13:30")
-                        $i=1;
-                        while($Hora <= $hora_hasta_param)
-                        {
-                            DB::insert("insert into turnos 
-							(id_tramite_turno,fecha,hora,Nro_turno,libre,Fecha_mov)
-							values(".$tipo_turno_param.",'".$fecha."','".$Hora."',".$i.",1,NOW())"); 
-
-                            $Hora = date("H:i", strtotime($Hora)+($lapzo_tiempo_param*60));
-                            $i++;
-						    // echo $Hora, PHP_EOL;
-                        }	
-					// }
-				}
-			}
+			
 
 			$fecha = date('Y-m-d', strtotime($fecha. ' + 1 days'));
             
@@ -381,6 +403,38 @@ class AdminController extends Controller
         // dd("termino");
      return "OK";    
     }    
+
+    function getDia($dia_num)
+    {
+        if ($dia_num == 1) 
+        {
+            return "Lunes";
+        }
+        elseif($dia_num == 2)
+        {
+            return "Martes";
+        }
+        elseif ($dia_num == 3) 
+        {
+            return "Miércoles";
+        }
+        elseif ($dia_num == 4) 
+        {
+            return "Jueves";
+        }
+        elseif ($dia_num == 5) 
+        {
+            return "Viernes";
+        }
+        elseif ($dia_num == 6) 
+        {
+            return "Sábado";
+        }
+        else
+        {
+            return "Domingo";
+        }
+    }
 
     function isWeekend($date) {
 	    $weekDay = date('w', strtotime($date));

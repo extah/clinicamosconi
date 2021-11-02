@@ -111,7 +111,8 @@
                                     <tr style="display: none" id="hola">                                
                                       <th style="color: blanchedalmond"><b>ESPECIALIDAD</b></th>                                
                                       <th style="color: blanchedalmond"><b>NOMBRE</b></th>                                
-                                      <th style="color: blanchedalmond"><b>DIAS Y HORARIOS</b></th>                                
+                                      <th style="color: blanchedalmond"><b>DIAS</b></th>    
+                                      <th style="color: blanchedalmond"><b>HORARIO</b></th>                              
                                       <th style="color: blanchedalmond"><b>PAMI</b></th>                                
                                       <th style="color: blanchedalmond"><b>OBRAS SOCIALES</b></th>                                
                                       <th style="color: blanchedalmond"><b>CONSULTA PARTICULAR</b></th>                                
@@ -151,7 +152,8 @@ $(document).ready(function() {
         "columns": [
                         { data: "especialidad" ,},
                         { data: "nombre_medico" ,},
-                        { data: "dia_horario" ,  },
+                        { data: "dia" ,  },
+                        { data: "horario" ,  },
                         { data: "pami" , },
                         { data: "obra_social" ,  },
                         { data: "consulta_particular" , },   
