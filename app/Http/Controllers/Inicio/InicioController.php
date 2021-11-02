@@ -19,11 +19,11 @@ use Redirect;
 class InicioController extends Controller
 {
 
-	public function index(Request $request){
+	public function index(){
 
 	    $inicio = "";
 		$esEmp = false;
-		$banners = ImagenesDePortada::all();
+		$banners = ImagenesDePortada::all()->where('tipo', 'img');
 	   
     	return view('inicio.inicio', compact('inicio', 'esEmp', 'banners'));
     }
