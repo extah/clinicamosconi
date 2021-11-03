@@ -6,7 +6,10 @@
 
 @section('content')
 
+<<<<<<< HEAD
 {{-- @dump($banners) --}}
+=======
+>>>>>>> d5b03df047f1b0e5738e6c24f6f85c825e551536
 
 <section class="mx-0 px-0">
     <div class="__content mx-auto px-0">
@@ -28,13 +31,19 @@
             </div>
           </div>
           <div class="carousel-inner active">
-            <div class="carousel-item active" data-bs-interval="7000">
-              <img class="img-fluid px-0" src="images/img/banner-slider-0.png" alt="Imagen de portada">
+
+            @foreach ($banners as $banner)
+            {{-- @dump($banner->imagen) --}}
+            <div class="carousel-item {{$banner == reset($banners) ? active : ""}}" data-bs-interval="{{$banner == reset($banners) ? 7000 : 3500}}">
+              <img class="img-fluid px-0" src="{{ asset('images/img/'. $banner->imagen) }}" alt="{{$banner->titulo}}">
               {{-- <div class="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>Some representative placeholder content for the first slide.</p>
               </div> --}}
             </div>
+
+            @endforeach
+
             <div class="carousel-item" data-bs-interval="3500">
               <img class="img-fluid px-0" src="images/img/banner-slider-1.png" alt="Imagen de portada">
               {{-- <div class="carousel-caption d-none d-md-block">
@@ -66,7 +75,7 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-        
+
         {{-- Fin Carousel Principal Home --}}
 
         <article class="__botones-portada-home mx-0 px-0 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
@@ -143,5 +152,5 @@
 @endsection
 
 @section('js')
-    
+
 @endsection
