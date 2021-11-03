@@ -6,10 +6,7 @@
 
 @section('content')
 
-<<<<<<< HEAD
 {{-- @dump($banners) --}}
-=======
->>>>>>> d5b03df047f1b0e5738e6c24f6f85c825e551536
 
 <section class="mx-0 px-0">
     <div class="__content mx-auto px-0">
