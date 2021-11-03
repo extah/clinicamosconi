@@ -8,7 +8,7 @@ class Users extends Model
 {
         //
         protected $fillable = [
-            'nombreyApellido', 'email', 'telefono','dni', 'contrasena', 'fecha_nacimiento',
+            'nombreyApellido', 'email', 'telefono','dni', 'contrasena', 'fecha_nacimiento', 'obra_social', 'nro_afiliado','admin',
         ];
     
         /**

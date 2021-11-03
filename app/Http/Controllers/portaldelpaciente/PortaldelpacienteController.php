@@ -211,6 +211,8 @@ class PortaldelpacienteController extends Controller
                 $usuario->telefono = $request->telefono;
                 $usuario->dni = $request->dni;
                 $usuario->fecha_nacimiento = $request->fecha_nac;
+                $usuario->obra_social = $request->obra_social;
+                $usuario->nro_afiliado = $request->nro_afiliado;
 				
 				$usuario->save();
 

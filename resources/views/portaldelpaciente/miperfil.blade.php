@@ -87,7 +87,15 @@
               <div class="col-md-3">
                 <label for="fecha_nac" class="form-label"><b>FECHA NACIMIENTO</b></label>
                 <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" placeholder="ingrese su fecha de nacimiento" value="{{ $usuario->fecha_nacimiento }}" required>
-            </div>
+              </div>
+              <div class="col-md-3">
+                <label for="obra_social" class="form-label"><b>OBRA SOCIAL</b></label>
+                <input type="text" class="form-control" id="obra_social" name="obra_social" placeholder="ingrese su obra_social" value="{{ $usuario->obra_social }}" required>
+              </div>
+              <div class="col-md-3">
+                <label for="nro_afiliado" class="form-label"><b>NUMERO DE AFILIADO</b></label>
+                <input type="number" class="form-control" id="nro_afiliado" name="nro_afiliado" placeholder="ingrese su nro de afiliado" value="{{ $usuario->nro_afiliado }}" required>
+              </div>
 
             <button type="submit" class="btn btn-primary btn-lg">EDITAR DATOS</button>
             </div>
