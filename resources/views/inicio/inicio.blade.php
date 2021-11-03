@@ -78,7 +78,7 @@
         <article class="__botones-portada-home mx-0 px-0 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
           <a class="col-12 col-sm-12 col-md-4 col-lg-4 nav-link d-flex d-inline-block p-0 m-0" href="{{route('portaldelpaciente.index')}}"><img class="img-fluid px-0" src="images/botones/portal-paciente-grande.jpg" alt="Portal del paciente"></a>
           <a class="col-12 col-sm-12 col-md-4 col-lg-4 nav-link d-flex d-inline-block p-0 m-0" href="#"><img class="img-fluid px-0" src="images/botones/guardia-web-grande.jpg" alt="Guardia web"></a>
-          <a class="col-12 col-sm-12 col-md-4 col-lg-4 nav-link d-flex d-inline-block p-0 m-0" href="#"><img class="img-fluid px-0" src="images/botones/guardia-pediatrica-grande.jpg" alt="Guardia pediátrica"></a>
+          <a class="col-12 col-sm-12 col-md-4 col-lg-4 nav-link d-flex d-inline-block p-0 m-0" href="#"><img class="img-fluid px-0" src="images/botones/guardia-pediatrica-grande.jpg" alt="Guardia pedi&aacutetrica"></a>
         </article>
         <article class="col-12 __noticia-portada-home bg-white d-flex flex-column flex-sm-column flex-md-column flex-lg-row mx-0 px-0">
 
@@ -90,11 +90,11 @@
                 <div class="carousel-item active" data-bs-interval="3500">
                   <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-block w-100 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
-                      <img class="img-fluid d-block w-100 d-flex p-2" src="{{ asset('images/noticias/noticia-novedades-1.png')}}" alt="Clínica Renovada">
+                      <img class="img-fluid d-block w-100 d-flex p-2" src="{{ asset('images/noticias/noticia-novedades-1.png')}}" alt="Cl&iacutenica Renovada">
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __descripcion-noticia justify-content-center align-self-center p-2">
-                      <h4 class="col-12 d-block d-flex mt-auto">Renovamos la imagen, sumamos servicios y nos unimos más </h4>
-                      <p class="col-12 d-flex">La Clínica Mosconi renovó su imagen e incorporó servicios para los pacientes, pero conserva el espíritu de solidaridad y la fuerza de sus trabajadores para brindar una mejor asistencia de salud a la comunidad de Berisso. En www.clinicamosconi.gob.ar todas las personas podrán registrarse y tramitar sus turnos de consulta médica, acceder al servicio de guardia web por teleconferencia y conocer los días y horarios de atención de todos los especialistas. También, encontrarán un acceso de guardia pediátrica para saber qué pediatra está cada día de la semana y toda la información relativa al funcionamiento de la Clínica.
+                      <h4 class="col-12 d-block d-flex mt-auto">Renovamos la imagen, sumamos servicios y nos unimos m&aacutes </h4>
+                      <p class="col-12 d-flex">La Cl&iacutenica Mosconi renov&oacute su imagen e incorpor&oacute servicios para los pacientes, pero conserva el esp&iacuteritu de solidaridad y la fuerza de sus trabajadores para brindar una mejor asistencia de salud a la comunidad de Berisso. En www.clinicamosconi.gob.ar todas las personas podr&aacuten registrarse y tramitar sus turnos de consulta m&eacutedica, acceder al servicio de guardia web por teleconferencia y conocer los d&iacuteas y horarios de atenci&oacuten de todos los especialistas. Tambi&eacuten, encontrar&aacuten un acceso de guardia pedi&aacutetrica para saber qu&eacute pediatra est&aacute cada d&iacutea de la semana y toda la informaci&oacuten relativa al funcionamiento de la Cl&iacutenica.
                       </p>
                     </div>
                   </div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __descripcion-noticia justify-content-center align-self-center p-2">
                       <h4 class="col-12 d-block d-flex mt-auto">Nuevo servicio de Guardia web</h4>
-                      <p class="col-12 d-flex">La Clínica Mosconi incorporó un servicio de guardia web que funcionará las 24 horas los 7 días de la semana. Con esta incorporación, todas las personas que necesiten realizar una consulta deberán completar el formulario web, aportar el bono de su obra social, y recibirá un link para ingresar a la videollamada donde los recibirá el profesional a cargo. La nueva Guardia Web, única en la región, permitirá a los vecinos de Berisso contar con un servicio de asistencia remota que podrán utilizar desde cualquier ciudad del mundo y sentirse “como en casa”.
+                      <p class="col-12 d-flex">La Cl&iacutenica Mosconi incorpor&oacute un servicio de guardia web que funcionar&aacute las 24 horas los 7 d&iacuteas de la semana. Con esta incorporaci&oacuten, todas las personas que necesiten realizar una consulta deber&aacuten completar el formulario web, aportar el bono de su obra social, y recibir&aacute un link para ingresar a la videollamada donde los recibir&aacute el profesional a cargo. La nueva Guardia Web, &uacutenica en la regi&oacuten, permitir&aacute a los vecinos de Berisso contar con un servicio de asistencia remota que podr&aacuten utilizar desde cualquier ciudad del mundo y sentirse “como en casa”.
                       </p>
                     </div>
                   </div>
@@ -114,11 +114,11 @@
                 <div class="carousel-item"data-bs-interval="3500">
                   <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-block w-100 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
-                      <img class="img-fluid d-block w-100 d-flex p-2" src="{{ asset('images/noticias/noticia-novedades-3.png')}}" alt="Incorporamos Diabetología">
+                      <img class="img-fluid d-block w-100 d-flex p-2" src="{{ asset('images/noticias/noticia-novedades-3.png')}}" alt="Incorporamos Diabetolog&iacutea">
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 __descripcion-noticia justify-content-center align-self-center p-2">
-                      <h4 class="col-12 d-block d-flex mt-auto">Incorporamos “Diabetología” a nuestras especialidades</h4>
-                      <p class="col-12 d-flex">La Clínica Mosconi sumó a Diabetología como área de especialidad, con la incorporación del Dr. Mariano Faggiani a su staff de profesionales. El médico atenderá lo jueves a partir de las 13 h, y se cumple así con el objetivo de recuperar áreas de asistencia para continuar mejorando la calidad y variedad de prestaciones del servicio de salud de Berisso.
+                      <h4 class="col-12 d-block d-flex mt-auto">Incorporamos “Diabetolog&iacutea” a nuestras especialidades</h4>
+                      <p class="col-12 d-flex">La Cl&iacutenica Mosconi sum&oacute a Diabetolog&iacutea como &aacuterea de especialidad, con la incorporaci&oacuten del Dr. Mariano Faggiani a su staff de profesionales. El m&eacutedico atender&aacute lo jueves a partir de las 13 h, y se cumple as&iacute con el objetivo de recuperar &aacutereas de asistencia para continuar mejorando la calidad y variedad de prestaciones del servicio de salud de Berisso.
                       </p>
                     </div>
                   </div>
