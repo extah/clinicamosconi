@@ -172,17 +172,13 @@ class AdminController extends Controller
     public function imageneseliminareditar(Request $request)
     {
 
-        // $usuario = $request->session()->get('usuario');
-        // $result = $this->isUsuario($usuario);
-        $result = "OK";
-       
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);       
             
         if($result == "OK"){
             
             $opcion = $request->opcion;
-            // $opcion = $request->input("opcion");
-            // $titulo = $request->input("titulo");
-            // $titulo = $request->titulo;
+
             switch($opcion){
 
                 case 1:
@@ -541,10 +537,8 @@ class AdminController extends Controller
     public function tablaturnos(Request $request)
     {
 
-        // $usuario = $request->session()->get('usuario');
-        // $result = $this->isUsuario($usuario);
-        $result = "OK";
-       
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);       
             
         if($result == "OK"){
             
@@ -554,10 +548,6 @@ class AdminController extends Controller
                 $opcion = $request->opcion;
             }
             
-            
-            // $opcion = $request->input("opcion");
-            // $titulo = $request->input("titulo");
-            // $titulo = $request->titulo;
             switch($opcion){
 
                 case 1:
