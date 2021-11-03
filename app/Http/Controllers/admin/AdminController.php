@@ -292,37 +292,32 @@ class AdminController extends Controller
 
     public function generarturnospost(Request $request)
     {
-        // $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
-        // $fecha_desde = $fecha_actual->format('Y-m-d');
-        // $fecha = date("Y-m-d", strtotime($request->fecha_desde));
+
         $fecha_desde = date("Y-m-d", strtotime($request->fecha_desde));
         $fecha_hasta = date("Y-m-d", strtotime($request->fecha_hasta));
-        // $fecha_hasta = date("Y-m-d",strtotime($fecha_actual."+ 1 month"));
         $lapzo_tiempo = 15;
-        // $dia_actual = date("N",strtotime($fecha_desde));
         // dd($dia_actual);
 
         $medicos =  DB::select("SELECT * FROM medico");
         $medico_seleccionado = $request->select_medico;
+        $array_numeric_keys = array();
+
         if ($medico_seleccionado == "todos") {
-            
-            $array_numeric_keys = array();
 
             foreach ($medicos as $key => $value) {
                     $array_numeric_keys[] = $key+1;
             }
             $existe = DB::select("SELECT * FROM `turnos` WHERE fecha BETWEEN ' $fecha_desde' AND '$fecha_hasta'");
             if (count($existe)) {
-                // dd("hay turnos para la fecha");
-                // $medicos =  DB::select("SELECT * FROM medico");
                 $message = "Existen turnos para la fecha";
                 $status_info = true;
                 $status_ok = false;
-                // return view('admin.generarturnos', compact('medicos'));
+
                 return redirect('admin/generarturnos')->with(['status_info' => $status_info, 'status_ok' => $status_ok,  'message' => $message, 'medicos' => $medicos]);
             }
             // return $array_numeric_keys;
             $result = $this->genera_calendario($array_numeric_keys, $fecha_desde, $fecha_hasta, $lapzo_tiempo);
+
             if ($result == "OK") {
 
                 // $medicos =  DB::select("SELECT * FROM medico");
@@ -347,8 +342,18 @@ class AdminController extends Controller
                 // return view('admin.generarturnos', compact('medicos'));
                 return redirect('admin/generarturnos')->with(['status_info' => $status_info, 'status_ok' => $status_ok,  'message' => $message, 'medicos' => $medicos]);
             }
+            $array_numeric_keys[] = $medico_seleccionado;
+            $result = $this->genera_calendario($array_numeric_keys, $fecha_desde, $fecha_hasta, $lapzo_tiempo);
 
-            return $request->select_especialidad;
+            if ($result == "OK") {
+
+                // $medicos =  DB::select("SELECT * FROM medico");
+                $message = "Turnos creado";
+                $status_info = false;
+                $status_ok = true;
+                // return view('admin.generarturnos', compact('medicos'));
+                return redirect('admin/generarturnos')->with(['status_info' => $status_info, 'status_ok' => $status_ok,  'message' => $message, 'medicos' => $medicos]);
+            }
         }
     }
 
@@ -359,56 +364,73 @@ class AdminController extends Controller
 		$mes_hasta = date("m",strtotime($fecha_hasta_param));
         $dia_desde = date("d",strtotime($fecha_desde_param));
         $dia_hasta = date("d",strtotime($fecha_hasta_param));
+// DD($array_numeric_keys);
+        foreach ($array_numeric_keys as $key => $value) {
 
-        // dd($dia_desde . '   ,  ' . $dia_hasta);
-        // dd($mes_hasta);
+            $fecha = $fecha_desde_param;
+            $mes = date("m",strtotime($fecha));
 
+            while ($fecha <= $fecha_hasta_param)
+            {	
+                
+                $dia_actual = date("N",strtotime($fecha));
+                
+                $dia_nombre = $this->getDia($dia_actual);
+                // dd($dia_nombre);
 
-		$fecha = $fecha_desde_param;
-        $mes = date("m",strtotime($fecha));
-        $ok = true;
-        $dia_actual = date("d",strtotime($fecha));
+                $turno_espec_medic =  DB::select("SELECT * FROM turno_espec_medic WHERE id_medico = " . $value . " AND dia = '$dia_nombre'" );
+                // dd($turno_espec_medic[0]->horario);
 
-		while ($fecha <= $fecha_hasta_param)
-		{	
-			
-            $dia_actual = date("N",strtotime($fecha));
-            
-            $dia_nombre = $this->getDia($dia_actual);
-            dd($dia_nombre);
+                $es_feriado = array_values(array_filter($feriados, function($obj) use ($fecha)
+                {
+                    return $obj->fecha == $fecha;
+                }));
+                
+                if (sizeof($es_feriado) == 0){
+                    //echo $fecha, PHP_EOL; 
 
-            $es_feriado = array_values(array_filter($feriados, function($obj) use ($fecha)
-            {
-                return $obj->fecha == $fecha;
-            }));
-            
-            if (sizeof($es_feriado) == 0){
-                //echo $fecha, PHP_EOL; 
-                $Hora = "08:00";
-                // for ($i=1; $i < $cant + 1; $i++) { 
+                    // dd($hora_fin);
+                    $cant = count($turno_espec_medic);
+                    // dd($cant);
+                    for ($i=0; $i < $cant; $i++) { 
 
-                    // if($Hora <= "13:30")
-                    $i=1;
-                    while($Hora <= "11:00")
-                    {
-                        DB::insert("insert into turnos 
-                        (id_especialidad, id_medico, id_persona, fecha, hora, nro_turno, libre)
-                        values(1, 1, 0,'".$fecha."','".$Hora."',".$i.",1)"); 
+                        if ($turno_espec_medic[$i]->id_especialidades <> "23" AND $turno_espec_medic[$i]->id_especialidades <> "24") {
+                            $Hora = $turno_espec_medic[$i]->horario;
+                            // $Hora = "09:30";
+                            $hora_integer = intval($Hora);
+        
+                            $hora_fin_integer = $hora_integer + 3;
+                            $hora_fin = substr_replace($Hora, $hora_fin_integer, 0, -3);
+                            $while = 1;
+    
+                            while($Hora <= $hora_fin)
+                            {
+                                DB::insert("insert into turnos 
+                                (id_especialidad, id_medico, id_persona, fecha, hora, nro_turno, libre)
+                                values(" . $turno_espec_medic[$i]->id_especialidades . ", " . $turno_espec_medic[$i]->id_medico . ", 0,'".$fecha."','".$Hora."',".$while.",1)"); 
+    
+                                $Hora = date("H:i", strtotime($Hora)+($lapzo_tiempo_param*60));
+                                $while++;
+                            }
+                        }
+                        // else
+                        // {
+                        //     dd("es 23 o 24");
+                        // }
 
-                        $Hora = date("H:i", strtotime($Hora)+($lapzo_tiempo_param*60));
-                        $i++;
-                        // echo $Hora, PHP_EOL;
-                    }
+                    }    
+                }
+                
+
+                $fecha = date('Y-m-d', strtotime($fecha. ' + 1 days'));
+                
+                $mes = date("m",strtotime($fecha));
+                $dia_actual = date("d",strtotime($fecha));
+                //echo $mes, PHP_EOL; 
+                // dd("termino");
             }
-			
-
-			$fecha = date('Y-m-d', strtotime($fecha. ' + 1 days'));
-            
-			$mes = date("m",strtotime($fecha));
-            $dia_actual = date("d",strtotime($fecha));
-			//echo $mes, PHP_EOL; 
         }
-        // dd("termino");
+		
      return "OK";    
     }    
 

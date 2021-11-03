@@ -6,7 +6,7 @@
 
 @section('content')
 
-@dump($banners)
+{{-- @dump($banners) --}}
 
 <section class="mx-0 px-0">
     <div class="__content mx-auto px-0">
