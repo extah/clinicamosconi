@@ -52,8 +52,9 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><a class="dropdown-item" href="{{route('admin.turnos')}}">Turnos asignados</a></li>
                               <li><a class="dropdown-item" href="{{route('admin.generarturnos')}}">Agregar un turno</a></li>
-                              <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="{{route('admin.generarturnos')}}">Generar turnos</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="{{route('admin.cancelarturnos')}}">Cancelar turnos</a></li>
                             </ul>
                             
                           </li>

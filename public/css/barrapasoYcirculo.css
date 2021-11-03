@@ -10,6 +10,10 @@
     border-top: 18px solid #9283BE;
     padding-top: 10px;
 }
+.barrapaso-cancelar {
+    border-top: 18px solid #b41010;
+    padding-top: 10px;
+}
 body {
     /* font-family: 'Encode Sans';font-size: 22px; */
     /* font-size: 20px; */
@@ -22,6 +26,9 @@ body {
 }
 .tres {
     background: #9283BE;
+}
+.cancelar {
+    background: #c50a0a;
 }
 .circulo {
     width: 3rem;

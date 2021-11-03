@@ -471,6 +471,73 @@ class AdminController extends Controller
 	    return ($weekDay == 0 || $weekDay == 6);
 	}
 
+
+    public function cancelarturnos(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+            // return view('admin.agregarturno');
+            $medicos =  DB::select("SELECT * FROM medico");
+            return view('admin.cancelarturnos', compact('medicos'));
+        }
+
+        $message = "Inicie Sesion";
+        $status_error = true;
+        $status_ok = false;
+        $esPasc = false;
+        
+        return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
+    }
+
+    public function cancelarturnospost(Request $request)
+    {
+        $fecha_desde = date("Y-m-d", strtotime($request->fecha_desde));
+        $fecha_hasta = date("Y-m-d", strtotime($request->fecha_hasta));
+        $lapzo_tiempo = 15;
+        // dd($dia_actual);
+
+        $medicos =  DB::select("SELECT * FROM medico");
+        $medico_seleccionado = $request->select_medico;
+        $array_numeric_keys = array();
+
+
+        if ($medico_seleccionado == "todos") 
+        {
+
+            foreach ($medicos as $key => $value) {
+                $id_medico = $key+1;
+                $existe = DB::select("SELECT * FROM `turnos` WHERE fecha BETWEEN ' $fecha_desde' AND '$fecha_hasta' AND id_medico = ". $id_medico);
+
+                if (count($existe) <> 0) {
+
+                    foreach ($existe as $key => $turno) {
+                        $turnos = Turnos::get_registro($turno->id);
+                        $turnos->delete($turno->id);
+                    }
+                }
+            }
+        }
+        else
+        {
+            $existe = DB::select("SELECT * FROM `turnos` WHERE fecha BETWEEN ' $fecha_desde' AND '$fecha_hasta' AND id_medico = ". $medico_seleccionado);
+            if (count($existe) <> 0) {
+
+                foreach ($existe as $key => $turno) {
+                    $turnos = Turnos::get_registro($turno->id);
+                    $turnos->delete($turno->id);
+                }
+            }
+        }
+
+        $message = "Turnos eliminados";
+        $status_ok = true;
+        $esPasc = false;
+
+        return redirect('admin/cancelarturnos')->with(['status_ok' => $status_ok, 'message' => $message,]);
+    }
     public function tablaturnos(Request $request)
     {
 
