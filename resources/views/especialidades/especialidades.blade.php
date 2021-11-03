@@ -32,7 +32,7 @@
                         <div class="d-grid gap-2 col-4 mx-auto">
                                     
                             <button type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalEspecialidad">
-                              <i class="fas fa-search-plus"></i> Buscar por Especialidad
+                              <i class="fas fa-search-plus"></i> Buscar por especialidad
                             </button>
                     
                   
@@ -41,7 +41,7 @@
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header" style="background-color: rgb(54, 105, 199)">
-                                    <h5 class="modal-title" id="modalEspecialidadLabel" style="color: blanchedalmond">Buscar por Especialidad</h5>
+                                    <h5 class="modal-title" id="modalEspecialidadLabel" style="color: blanchedalmond">Buscar por especialidad</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   
@@ -67,7 +67,7 @@
                             </div>
 
                             <button type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalMedico">
-                              <i class="fas fa-search-plus"></i> Buscar por Medico
+                              <i class="fas fa-search-plus"></i> Buscar por medico
                             </button>
                             
                           
@@ -76,7 +76,7 @@
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header" style="background-color: rgb(54, 105, 199)">
-                                    <h5 class="modal-title" id="modalMedicoLabel" style="color: blanchedalmond">Buscar por Medico</h5>
+                                    <h5 class="modal-title" id="modalMedicoLabel" style="color: blanchedalmond">Buscar por medico</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   
