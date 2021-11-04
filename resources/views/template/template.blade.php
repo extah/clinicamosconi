@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Mosconi</title>
+    <title>Cl&iacutenica Mosconi</title>
 
     <link href="{{ asset("assets/bootstrap-5.1.0/css/bootstrap.min.css") }}">
     <link href='{{ asset("css/template-inicio.css") }}' rel="stylesheet">
@@ -45,7 +45,7 @@
                             <a class="nav-link text-uppercase" href="{{route('proximamente.index')}}">
                               <img src="{{asset('images/iconos/guardia-pediatrica-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="guardia-pediatrica">
                               <img src="{{asset('images/iconos/guardia-pediatrica-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="guardia-pediatrica">
-                              <span class="d-flex mt-1 pt-1 mx-1">Guardia pediátrica</span>
+                              <span class="d-flex mt-1 pt-1 mx-1">Guardia pedi&aacutetrica</span>
                             </a>                          </li>
                           <li class="nav-item mx-auto">
                             <a class="nav-link text-uppercase" href="{{route('turnos.index')}}">
@@ -62,7 +62,7 @@
                         </ul>
                   </div>
 
-                  <!-- MenúMobile -->
+                  <!-- Men&uacuteMobile -->
                   <nav class="container __navbar-2 col-12 d-block d-flex p-0 my-1 navbar navbar-expand-sm navbar-white bg-white">
                     <div class="__menu-mobile ml-auto container-fluid justify-content-center">
                       <button class="navbar-toggler mr-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,13 +77,13 @@
                             <a class="nav-link text-nowrap text-uppercase text-secondary px-3" href="{{route('laboratorio.index')}}">Laboratorio</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{route('diagnostico.index')}}">Diagnóstico por Imágenes</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{route('diagnostico.index')}}">Diagn&oacutestico por Im&aacutegenes</a>
                           </li>
                         </ul>
                       </div>
                     </div>
                   </nav>
-                  <!-- FinMenúMobile -->
+                  <!-- FinMen&uacuteMobile -->
 
               </div>
             </nav>
@@ -105,16 +105,16 @@
           </div>
           <ul class="navbar-nav d-flex flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-auto">
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('laclinica.index')}}">La clínica</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('laclinica.index')}}">La cl&iacutenica</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('galeria.index')}}">Galería</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('galeria.index')}}">Galer&iacutea</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('novedades.index')}}">Novedades</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Cómo llegar</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">C&oacutemo llegar</a>
             </li>
           </ul>
         </div>
@@ -143,7 +143,7 @@
 
         <div class="col-12 col-md-5 col-lg-3 __accesos-rapidos justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start mx-md-auto my-4 px-0">
           <div class="d-flex justify-content-center justify-content-sm-center justify-content-md-center justify-content-lg-start">
-            <h5 class="fs-5 text-white text-nowrap fw-bolder d-flex pb-3 p-auto">Accesos rápidos</h5>
+            <h5 class="fs-5 text-white text-nowrap fw-bolder d-flex pb-3 p-auto">Accesos r&aacutepidos</h5>
           </div>
           <ul class="navbar-nav flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-start mx-auto">
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
@@ -153,7 +153,7 @@
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Prov. de Bs. As.</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Nación </a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Naci&oacuten </a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('cooperativa.index')}}">Cooperativa Mosconi</a>

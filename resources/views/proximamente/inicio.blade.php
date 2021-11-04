@@ -11,7 +11,7 @@
         <img class="img-fluid px-0" src={{ asset("images/img/banner-turnos.png")}} alt="Imagen de portada de Turnos">
         <div class="d-flex flex-column m-0 p-0">
             <div class="__titulo-seccion-turnos col-12 col-sm-12 col-md-6 col-lg-4 d-block d-flex justify-content-center justify-content-sm-center justify-content-md-end justify-content-lg-end my-1">
-                <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto">Turnos</h5>
+                <h5  class="__titulo fs-5 text-uppercase text-white pl-4 py-1 my-auto"></h5>
             </div>
         </div>
     </div>
