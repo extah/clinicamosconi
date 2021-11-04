@@ -90,20 +90,27 @@
 <script src="{{ asset("assets/bootstrap-5.1.0/js/popper.min.js") }}"></script>
 <script src="{{ asset("assets/bootstrap-5.1.0/js/bootstrap.min.js") }}"></script> 
 
-<script src="{{ asset("assets/bootstrap-5.1.0/js/jquery-3.5.1.js") }}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/jquery.dataTables.min.js") }}"></script>
-
+<script src="{{asset('assets/DataTables-1.10.25/js/jquery-3.5.1.js')}}"></script>
+{{-- <script src="{{asset('assets/DataTables-1.10.25/jquery/jquery-3.3.1.min.js')}}"></script> --}}
 <script src="{{asset('assets/DataTables-1.10.25/popper/popper.min.js')}}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/dataTables.bootstrap5.min.js") }}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/dataTables.responsive.min.js") }}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/responsive.bootstrap5.min.js") }}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/dataTables.scroller.min.js") }}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/dataTables.fixedColumns.min.js") }}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/dataTables.colReorder.min.js") }}"></script>
-<script src="{{ asset("assets/bootstrap-5.1.0/js/dataTables.select.min.js") }}"></script>
+<script src="{{asset('assets/bootstrap-4.5.3/js/bootstrap.min.js')}}"></script>
+
+
+
+<script src="{{asset('assets/DataTables-1.10.25/datatables.min.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/Buttons-1.7.1/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/DataTables-1.10.25/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/responsive.bootstrap4.min.js')}}"></script>
+
+<script src="{{asset('assets/DataTables-1.10.25/JSZip-2.5.0/jszip.min.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/pdfmake-0.1.36/pdfmake.min.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/pdfmake-0.1.36/vfs_fonts.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/Buttons-1.7.1/js/buttons.html5.min.js')}}"></script>
+<script src="{{asset('assets/DataTables-1.10.25/jquery.timepicker.min.js')}}"></script>
+
 
 <script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
-{{-- <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script> --}}
 <script src="{{ asset("assets/sweetalert/sweetalert.min.js") }}"></script>
 <script src="{{ asset('assets/fontawesome-5.15.3/js/all.js') }}"></script>
 <script src="{{asset('js/template.js')}}"></script>

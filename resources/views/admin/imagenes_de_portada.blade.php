@@ -137,7 +137,7 @@ $(document).ready(function() {
     
         tablaImagenes = $('#tablaImagenes').DataTable( 
         {
-                  // "dom": '<"dt-buttons"Bf><"clear">lirtp',
+                //"dom": '<"dt-buttons"Bf><"clear">lirtp',
         "ajax":{            
                         "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token_imagenes"]').attr('content') },    
                         "url": "{{route('admin.imageneseliminareditar')}}", 
@@ -207,7 +207,33 @@ $(document).ready(function() {
                             "copy": "Copiar",
                             "colvis": "Visibilidad"
                         }
-                    },              
+                    }, 
+                "buttons":[
+                  {
+                    extend:    'copyHtml5',
+                    text:      '<i class="fas fa-copy"></i> COPIAR ',
+                    titleAttr: 'Copiar datos',
+                    className: 'btn btn-dark'
+                },
+                {
+                    extend:    'excelHtml5',
+                    text:      '<i class="fas fa-file-excel"></i> EXCEL ',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success'
+                },
+                {
+                    extend:    'pdfHtml5',
+                    text:      '<i class="fas fa-file-pdf"></i> PDF',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger'
+                },
+                {
+                    extend:    'print',
+                    text:      '<i class="fas fa-print"></i> IMPRIMIR',
+                    titleAttr: 'Imprimir',
+                    className: 'btn btn-info'
+                },
+             ]  
         });    
         
         $("#btnNuevo").click(function(){        
