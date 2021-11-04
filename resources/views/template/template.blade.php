@@ -35,14 +35,14 @@
                   <div class="__navbar-1 col-12 d-block d-flex pl-4 my-1">
                       <ul class="col-12 d-flex justify-content-center nav">
                           <li class="nav-item mx-auto">
-                            <a class="nav-link text-uppercase" href="#">
+                            <a class="nav-link text-uppercase" href="{{route('proximamente.index')}}">
                               <img src="{{asset('images/iconos/guardia-web-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="guardia-web">
                               <img src="{{asset('images/iconos/guardia-web-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="guardia-web">
                               <span class="d-flex mt-1 pt-1 mx-1">Guardia web</span>
                             </a>
                           </li>
                           <li class="nav-item mx-auto">
-                            <a class="nav-link text-uppercase" href="#">
+                            <a class="nav-link text-uppercase" href="{{route('proximamente.index')}}">
                               <img src="{{asset('images/iconos/guardia-pediatrica-off.png')}}" width="37" height="37" class="d-flex" loading="lazy" alt="guardia-pediatrica">
                               <img src="{{asset('images/iconos/guardia-pediatrica-on.png')}}" width="37" height="37" class="d-flex __oculto" loading="lazy" alt="guardia-pediatrica">
                               <span class="d-flex mt-1 pt-1 mx-1">Guardia pediátrica</span>

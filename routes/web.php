@@ -25,6 +25,9 @@ Route::group(array('prefix' => 'inicio'), function(){
 		Route::get('/',	'Inicio\InicioController@index')->name('inicio.index');
 });
 
+Route::group(array('prefix' => 'proximamente'), function(){
+	Route::get('/',	'proximamente\ProximamenteController@index')->name('proximamente.index');
+});
 
 // Admin
 Route::group(array('prefix' => 'admin'), function(){
