@@ -21,7 +21,7 @@
 <div class="container col-12 mx-auto p-0">
 
     <div class="col-8 col-sm-6 col-md-6 mx-auto">
-        <div class="card text-black bg-info mb-3" style="max-width: 100rem;">
+        <div class="card text-black mb-3" style="max-width: 100rem;">
             <div class="card-body text-Black text-center">
               <h4 class="card-title">Generar turnos</h4>
             </div>                  

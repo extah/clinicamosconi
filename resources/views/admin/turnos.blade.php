@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-
+    <br>
     <div class="col-lg-12"> 
       <div class="table-responsive">  
           <table id="tablaTurnos" class="table table-striped table-hover table-bordered display" cellspacing="0" style="width:100%">
@@ -94,8 +94,14 @@
 @endsection
 
 @section('js')
-<!-- <script src='{{ asset('/assets/jquery-ui/jquery-ui.min.js') }}'></script> -->
+<script src="{{ asset('assets/moment/moment.min.js') }}"></script>
+{{-- <script src="{{ asset('/assets/bootstrap-datepicker-1.7.1/js/bootstrap-datepicker.min.js') }}"></script> --}}
+<script src='{{ asset('/assets/jquery-ui/jquery-ui.min.js') }}'></script>
+{{-- <script src="{{ asset('/assets/bootstrap-datepicker/js/locales/bootstrap-datepicker.es.js') }}"></script> --}}
 <script src="{{ asset('/assets/formvalidation/0.6.2-dev/js/formValidation.min.js') }}"></script>
+<script src="{{ asset('assets/select2/select2.full.js') }}"></script>
+<script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
+<script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
 <script src='{{ asset("assets/validity/jquery.validity.min.js") }}'></script>
 <script src='{{ asset("assets/validity/jquery.validity.lang.es.js") }}'></script>
 {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
@@ -110,7 +116,7 @@ $(document).ready(function() {
     
         tablaTurnos = $('#tablaTurnos').DataTable( 
         {
-                  // "dom": '<"dt-buttons"Bf><"clear">lirtp',
+        //"dom": '<"dt-buttons"Bf><"clear">lirtp',
         "ajax":{            
                         "headers": { 'X-CSRF-TOKEN': $('meta[name="csrf-token_imagenes"]').attr('content') },    
                         "url": "{{route('admin.tablaturnos')}}", 
@@ -143,6 +149,7 @@ $(document).ready(function() {
          'columnDefs': [
                           {'max-width': '20%', 'targets': 0}
                        ],
+         
          "language": {
                         "sProcessing":     "Procesando...",
                         "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -168,7 +175,33 @@ $(document).ready(function() {
                             "copy": "Copiar",
                             "colvis": "Visibilidad"
                         }
-                    },              
+                    },   
+                "buttons":[
+                    {
+                    extend:    'copyHtml5',
+                    text:      '<i class="fas fa-copy"></i> COPIAR ',
+                    titleAttr: 'Copiar datos',
+                    className: 'btn btn-dark'
+                },
+                {
+                    extend:    'excelHtml5',
+                    text:      '<i class="fas fa-file-excel"></i> EXCEL ',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success'
+                },
+                {
+                    extend:    'pdfHtml5',
+                    text:      '<i class="fas fa-file-pdf"></i> PDF',
+                    titleAttr: 'Exportar a PDF',
+                    className: 'btn btn-danger'
+                },
+                {
+                    extend:    'print',
+                    text:      '<i class="fas fa-print"></i> IMPRIMIR',
+                    titleAttr: 'Imprimir',
+                    className: 'btn btn-info'
+                },
+             ]              
         });    
             
 

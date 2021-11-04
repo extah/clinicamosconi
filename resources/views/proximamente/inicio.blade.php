@@ -16,18 +16,15 @@
         </div>
     </div>
 </article>
-<article class="container mx-auto p-0 my-4">
-    <div class="row justify-content-center p-1">
-        <div class="col-10 d-flex flex-column justify-content-center my-4">
-          <div class="col-12 __botonera-turnos d-flex flex-column flex-sm-column flex-md-row flex-lg-row justify-content-cente p-3">
+<article class="container mx-auto p-0 my-1">
+    <div class="row justify-content-center p-0">
+        <div class="col-8 d-flex flex-column justify-content-center my-1">
 
-            <img class="col-12 img-fluid p-2" src="{{asset('images/img/proxi.png')}}" alt="Turnos portal del paciente">
+            <img class="col-10 img-fluid p-2" src="{{asset('images/img/proxi.png')}}" alt="Turnos portal del paciente">
 
-          </div>
-          </div>
+         </div>
       </div>
-  </article>
-
+</article>
 
 @endsection
 
