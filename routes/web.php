@@ -102,6 +102,18 @@ Route::group(array('prefix' => 'especialidades'), function(){
 
 });
 
+// Ruta de sección 'Guardia Pediatrica'
+Route::group(array('prefix' => 'guardiaPediatrica'), function(){
+	Route::get('/',	'guardiaPediatrica\GuardiaPediatricaController@index')->name('guardiaPediatrica.index');
+
+});
+
+// Ruta de sección 'Guardia Web'
+Route::group(array('prefix' => 'guardiaWeb'), function(){
+	Route::get('/',	'guardiaWeb\GuardiaWebController@index')->name('guardiaWeb.index');
+
+});
+
 // Ruta de sección 'Laboratorio'
 Route::group(array('prefix' => 'laboratorio'), function(){
 	Route::get('/',	'Laboratorio\LaboratorioController@index')->name('laboratorio.index');
