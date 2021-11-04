@@ -71,34 +71,36 @@
           {{-- Carousel Noticias --}}
 
           <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+            <a class="text-decoration-none text-dark" href="{{route('novedades.index')}}">
+              <div class="carousel-inner">
 
-              <div class="d-none">{{$i=0}}</div>  
-              @foreach ($banners as $banner)
-                  
-                @if ( $banner->tipo == 'noticias' )
+                <div class="d-none">{{$i=0}}</div>  
+                @foreach ($noticias as $noticia)
                     
-                <div class="carousel-item {{ $i==0 ? 'active' : ''}}" data-bs-interval="3500">
-                  <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-block w-100 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
-                      <img class="img-fluid d-block w-100 d-flex p-2" src="images/noticias/{{$banner->imagen}}" alt="{{$banner->titulo}}">
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 __descripcion-noticia justify-content-center align-self-center p-2">
-                      <h4 class="col-12 d-block d-flex mt-auto">{{$banner->titulo}}</h4>
-                      <p class="col-12 d-flex">{{$banner->descripcion}}
-                      </p>
+                  @if ( $noticia->tipo == 'noticias' )
+                      
+                  <div class="carousel-item {{ $i==0 ? 'active' : ''}}" data-bs-interval="3500">
+                    <div class="__noticia col-12 col-sm-12 col-md-12 col-lg-8 d-block w-100 d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-6 __img-noticia d-flex">
+                        <img class="img-fluid d-block w-100 d-flex p-2" src="images/noticias/{{$noticia->imagen}}" alt="{{$noticia->titulo}}">
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6 col-lg-6 __descripcion-noticia justify-content-center align-self-center p-2">
+                        <h4 class="col-12 d-block d-flex mt-auto">{{$noticia->titulo}}</h4>
+                        <p class="col-12 d-flex">{{$noticia->descripcion}}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                <div class="d-none">{{$i++}}</div>
-
-                @endif
-
-              @endforeach  
-              
-              
-            </div>
+  
+                  <div class="d-none">{{$i++}}</div>
+  
+                  @endif
+  
+                @endforeach  
+                
+                
+              </div>
+            </a>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark2" data-bs-slide="prev">
               <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>

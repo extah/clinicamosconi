@@ -24,8 +24,9 @@ class InicioController extends Controller
 	    $inicio = "";
 		$esEmp = false;
 		$banners = ImagenesDePortada::all();
+		$noticias = ImagenesDePortada::where('tipo', 'noticias')->take(3)->orderBy('id', 'desc')->get();
 	   
-    	return view('inicio.inicio', compact('inicio', 'esEmp', 'banners'));
+    	return view('inicio.inicio', compact('inicio', 'esEmp', 'banners', 'noticias'));
     }
 
 

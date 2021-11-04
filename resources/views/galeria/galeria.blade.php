@@ -25,36 +25,17 @@
                         <div class="photo-gallery">
                             <div class="container">
                                 <div class="row photos">
+
+                                    @foreach ($imagenes as $imagen)
+                                        
                                     <div class="col-sm-6 col-md-4 col-lg-3 item">
-                                        <a href="{{asset('images/galeria/consultorio-gineco.png')}}" title="" data-lightbox="photos">
-                                            <img class="img-fluid" src="{{asset('images/galeria/consultorio-gineco.png')}}">
+                                        <a href="images/galeria/{{$imagen->imagen}}" title="{{$imagen->descripcion}}" data-lightbox="photos">
+                                            <img class="img-fluid" src="images/galeria/{{$imagen->imagen}}" alt="{{$imagen->titulo}}">
                                         </a>
                                     </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-3 item">
-                                        <a href="{{asset('images/galeria/diagnostico-imagenes.png')}}" data-lightbox="photos">
-                                            <img class="img-fluid" src="{{asset('images/galeria/diagnostico-imagenes.png')}}">
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-3 item">
-                                        <a href="{{asset('images/galeria/laboratorio.png')}}" data-lightbox="photos">
-                                            <img class="img-fluid" src="{{asset('images/galeria/laboratorio.png')}}">
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-3 item">
-                                        <a href="{{asset('images/galeria/pediatria.png')}}" data-lightbox="photos">
-                                            <img class="img-fluid" src="{{asset('images/galeria/pediatria.png')}}">
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-3 item">
-                                        <a href="{{asset('images/galeria/quirofano.png')}}" data-lightbox="photos">
-                                            <img class="img-fluid" src="{{asset('images/galeria/quirofano.png')}}">
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6 col-md-4 col-lg-3 item">
-                                        <a href="{{asset('images/galeria/tomografo.png')}}" title="El primer tomógrafo que tuvo Berisso, funciona en nuestra clínica desde el año 2008." data-lightbox="photos">
-                                            <img class="img-fluid" src="{{asset('images/galeria/tomografo.png')}}">
-                                        </a>
-                                    </div>
+
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
