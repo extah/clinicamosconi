@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\proximamente;
+namespace App\Http\Controllers\maps;
 use App\Http\Controllers\Controller;
 use App\ImagenesDePortada;
 
@@ -16,13 +16,16 @@ use URL;
 use Redirect; 
 
 
-class MApsController extends Controller
+class MapsController extends Controller
 {
 
 	public function index(){
 
-    	return view('proximamente.inicio');
+    	return view('maps.inicio');
     }
 
+	public function farmacias(){
 
+    	return view('maps.farmacias');
+    }
 }

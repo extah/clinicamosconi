@@ -27,6 +27,12 @@ Route::group(array('prefix' => 'inicio'), function(){
 
 Route::group(array('prefix' => 'proximamente'), function(){
 	Route::get('/',	'proximamente\ProximamenteController@index')->name('proximamente.index');
+	
+});
+
+Route::group(array('prefix' => 'maps'), function(){
+	Route::get('/',	'maps\MapsController@index')->name('maps.index');
+	Route::get('/farmacias',	'maps\MapsController@farmacias')->name('maps.farmacias');
 });
 
 // Admin

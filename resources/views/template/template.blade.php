@@ -114,7 +114,7 @@
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('novedades.index')}}">Novedades</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">C&oacutemo llegar</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('maps.index')}}">C&oacutemo llegar</a>
             </li>
           </ul>
         </div>
