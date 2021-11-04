@@ -29,7 +29,7 @@
           </div>
           <div class="carousel-inner active">
 
-            {{$itera=0}}   
+            <div class="d-none">{{$itera=0}}</div>  
             @foreach ($banners as $banner)
 
             @if ($banner->tipo == 'img')
@@ -42,7 +42,7 @@
               </div> --}}
             </div>
 
-            {{$itera++}}
+            <div class="d-none">{{$itera++}}</div>
             @endif
 
             @endforeach
@@ -73,7 +73,7 @@
           <div id="carouselExampleDark2" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
-              {{$i=0}}  
+              <div class="d-none">{{$i=0}}</div>  
               @foreach ($banners as $banner)
                   
                 @if ( $banner->tipo == 'noticias' )
@@ -91,7 +91,7 @@
                   </div>
                 </div>
 
-                {{$i++}}
+                <div class="d-none">{{$i++}}</div>
 
                 @endif
 
