@@ -147,13 +147,13 @@
           </div>
           <ul class="navbar-nav flex-column justify-content-center justify-content-sm-center justify-content-md-center justify-content-start mx-auto">
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Municipalidad de Berisso</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" target="_blank" href="http://berisso.gob.ar/">Municipalidad de Berisso</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Prov. de Bs. As.</a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" target="_blank" href="https://www.gba.gob.ar/saludprovincia">Ministerio de Salud de la Prov. de Bs. As.</a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
-              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="#">Ministerio de Salud de la Naci&oacuten </a>
+              <a class="nav-link text-nowrap text-white d-flex my-1 py-0" target="_blank" href="https://www.argentina.gob.ar/salud">Ministerio de Salud de la Naci&oacuten </a>
             </li>
             <li class="nav-item mx-auto mx-sm-auto mx-md-auto mx-lg-0 d-flex">
               <a class="nav-link text-nowrap text-white d-flex my-1 py-0" href="{{route('cooperativa.index')}}">Cooperativa Mosconi</a>
