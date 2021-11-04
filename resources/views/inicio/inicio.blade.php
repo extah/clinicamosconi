@@ -113,13 +113,37 @@
 
 
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 __btn-farmacia-comollegar d-flex flex-column flex-sm-row flex-md-row flex-lg-column justify-content-center justify-content-md-around justify-content-lg-evenly align-items-center mx-0 px-0">
-          <a class="nav-link d-flex d-inline-block" href="#"><img src="images/botones/como-llegar-off.png" onMouseOver="this.src='images/botones/como-llegar-on.png'"onMouseOut="this.src='images/botones/como-llegar-off.png'" class="d-flex img-fluid" loading="lazy" alt="Como llegar"></a>
+          <a class="nav-link d-flex d-inline-block" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"><img src="images/botones/como-llegar-off.png" onMouseOver="this.src='images/botones/como-llegar-on.png'"onMouseOut="this.src='images/botones/como-llegar-off.png'" class="d-flex img-fluid" loading="lazy" alt="Como llegar"></a>
           <a class="nav-link d-flex d-inline-block" href="#"><img src="images/botones/farmacia-off.png" onMouseOver="this.src='images/botones/farmacia-on.png'"onMouseOut="this.src='images/botones/farmacia-off.png'" class="d-flex img-fluid" loading="lazy" alt="farmacia"></a>
         </div>
       </article>
       </div>
     </div>
   </section>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    {{-- <div class="modal-content"> --}}
+      {{-- <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> --}}
+      <div class="modal-body">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3273.185912295781!2d-57.895407884226124!3d-34.87667757949992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a2e5b5e5ee180f%3A0xdc4b1be8581c2985!2sBaradero%20647%2C%20B1923%20GII%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1636034075758!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+      {{-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> --}}
+    {{-- </div> --}}
+  </div>
+</div>
 
 @endsection
 
