@@ -23,7 +23,7 @@ class InicioController extends Controller
 
 	    $inicio = "";
 		$esEmp = false;
-		$banners = ImagenesDePortada::all()->where('tipo', 'img');
+		$banners = ImagenesDePortada::all();
 	   
     	return view('inicio.inicio', compact('inicio', 'esEmp', 'banners'));
     }
