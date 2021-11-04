@@ -193,7 +193,7 @@ class AdminController extends Controller
                 case 3: 
                     //borrar
 		    $id = $request->input("id");
-                    $imagenexiste = imagenesDePortada::where('id', '=',  $id)->get();
+                    $imagenexiste = ImagenesDePortada::where('id', '=',  $id)->get();
                     $originalPathDelete = public_path().'/images/' . $imagenexiste[0]->tipo . "/";
                     $image_path = $originalPathDelete . $imagenexiste[0]->imagen;
                     unlink($image_path);
