@@ -77,7 +77,8 @@
 <script src="{{ asset('/assets/formvalidation/0.6.2-dev/js/formValidation.min.js') }}"></script>
 <script src='{{ asset("assets/validity/jquery.validity.min.js") }}'></script>
 <script src='{{ asset("assets/validity/jquery.validity.lang.es.js") }}'></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+<script src="{{ asset("assets/sweetalert/sweetalert.min.js") }}"></script>
 
 <script>
   (function () {

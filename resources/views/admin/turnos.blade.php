@@ -98,7 +98,8 @@
 <script src="{{ asset('/assets/formvalidation/0.6.2-dev/js/formValidation.min.js') }}"></script>
 <script src='{{ asset("assets/validity/jquery.validity.min.js") }}'></script>
 <script src='{{ asset("assets/validity/jquery.validity.lang.es.js") }}'></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+<script src="{{ asset("assets/sweetalert/sweetalert.min.js") }}"></script>
 
 <script>
 
@@ -146,7 +147,7 @@ $(document).ready(function() {
                         "sProcessing":     "Procesando...",
                         "sLengthMenu":     "Mostrar _MENU_ registros",
                         "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sEmptyTable":     "Ningun dato disponible en esta tabla",
                         "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                         "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",

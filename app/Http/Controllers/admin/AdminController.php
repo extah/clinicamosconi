@@ -96,13 +96,12 @@ class AdminController extends Controller
         {
             return view('admin.imagenes_de_portada');
         }
-
+	
         $message = "Inicie Sesion";
         $status_error = true;
         $status_ok = false;
         $esPasc = false;
         
-        // return view('portaldelpaciente.index', compact('inicio', 'message', 'status_error', 'esPasc'));
         return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
     }
 
@@ -119,14 +118,14 @@ class AdminController extends Controller
 
         if ($opcion == 1) {
             $originalPath = public_path().'/images/' . $tipo_imagen . "/";
-            $imagenexiste = ImagenesDePortada::where('imagen', '=',  $original_name)->get();
+            $imagenexiste = imagenesDePortada::where('imagen', '=',  $original_name)->get();
             
             if ($imagenexiste->count() == 0){
 
                 $thumbnailImage = Image::make($originalImage);
                 $thumbnailImage->save($originalPath.$originalImage->getClientOriginalName());
     
-                $imagen   = new ImagenesDePortada;
+                $imagen   = new imagenesDePortada;
                 $imagen->titulo= $titulo_imagen;
                 $imagen->imagen = $original_name;
                 $imagen->tipo = $tipo_imagen;
@@ -138,7 +137,7 @@ class AdminController extends Controller
         }elseif ($opcion == 2) {
 
             $id = $request->id;
-            $imagenexiste = ImagenesDePortada::where('id', '=',  $id)->get();
+            $imagenexiste = imagenesDePortada::where('id', '=',  $id)->get();
             // dd($imagenexiste[0]->imagen);
             $originalPathDelete = public_path().'/images/' . $imagenexiste[0]->tipo . "/";
             $originalPathAdd = public_path().'/images/' . $tipo_imagen . "/";
@@ -150,19 +149,19 @@ class AdminController extends Controller
                 $thumbnailImage = Image::make($originalImage);
                 $thumbnailImage->save($originalPathAdd.$originalImage->getClientOriginalName());
 
-                DB::table('imagenesdeportada')->where('id',$id)->update(['titulo' => $titulo_imagen, 'imagen' => $original_name, 'tipo' => $tipo_imagen, 'descripcion' => $descripcion]);
+                DB::table('imagenesDePortada')->where('id',$id)->update(['titulo' => $titulo_imagen, 'imagen' => $original_name, 'tipo' => $tipo_imagen, 'descripcion' => $descripcion]);
                 
             }
            
            
         }
 
-        $limit = " LIMIT 500";        
-        $orderby = " ORDER BY imagenesdeportada.id DESC ";
-
-        $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.descripcion, imagenesdeportada.created_at, imagenesdeportada.updated_at
-        FROM imagenesdeportada        
-            ".$orderby." ".$limit));
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY imagenesDePortada.id DESC ";
+            
+                    $data = DB::select(DB::raw("SELECT imagenesDePortada.id, imagenesDePortada.titulo, imagenesDePortada.imagen, imagenesDePortada.tipo, imagenesDePortada.descripcion, imagenesDePortada.created_at, imagenesDePortada.updated_at
+                    FROM imagenesDePortada
+                        ".$orderby." ".$limit));
         
         return json_encode($data, JSON_UNESCAPED_UNICODE);
 
@@ -177,7 +176,8 @@ class AdminController extends Controller
             
         if($result == "OK"){
             
-            $opcion = $request->opcion;
+            //$opcion = $request->opcion;
+	    $opcion =$request->input('opcion');
 
             switch($opcion){
 
@@ -192,33 +192,33 @@ class AdminController extends Controller
                     break;
                 case 3: 
                     //borrar
-                    $id = $request->input("id");
-                    // $originalPath = public_path().'/images/img/';
-
-                    $imagenexiste = ImagenesDePortada::where('id', '=',  $id)->get();
+		    $id = $request->input("id");
+                    $imagenexiste = imagenesDePortada::where('id', '=',  $id)->get();
                     $originalPathDelete = public_path().'/images/' . $imagenexiste[0]->tipo . "/";
                     $image_path = $originalPathDelete . $imagenexiste[0]->imagen;
                     unlink($image_path);
 
-                    $imagen = imagenesdeportada::get_registro($id);
+
+                    $imagen = ImagenesDePortada::get_registro($id);
                     $imagen->delete($id);   
 
 
                     $limit = " LIMIT 500";        
-                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+                    $orderby = " ORDER BY imagenesDePortada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.descripcion, imagenesdeportada.created_at, imagenesdeportada.updated_at
-                    FROM imagenesdeportada        
+                    $data = DB::select(DB::raw("SELECT imagenesDePortada.id, imagenesDePortada.titulo, imagenesDePortada.imagen, imagenesDePortada.tipo, imagenesDePortada.descripcion, imagenesDePortada.created_at, imagenesDePortada.updated_at
+                    FROM imagenesDePortada
                         ".$orderby." ".$limit));
                     break;
 
                 case 4: 
                     $limit = " LIMIT 500";        
-                    $orderby = " ORDER BY imagenesdeportada.id DESC ";
+                    $orderby = " ORDER BY imagenesDePortada.id DESC ";
             
-                    $data = DB::select(DB::raw("SELECT imagenesdeportada.id, imagenesdeportada.titulo, imagenesdeportada.imagen, imagenesdeportada.tipo, imagenesdeportada.descripcion, imagenesdeportada.created_at, imagenesdeportada.updated_at
-                    FROM imagenesdeportada        
+                    $data = DB::select(DB::raw("SELECT imagenesDePortada.id, imagenesDePortada.titulo, imagenesDePortada.imagen, imagenesDePortada.tipo, imagenesDePortada.descripcion, imagenesDePortada.created_at, imagenesDePortada.updated_at
+                    FROM imagenesDePortada
                         ".$orderby." ".$limit));
+
                     break;
                 
             }
@@ -721,10 +721,12 @@ class AdminController extends Controller
 
     public function prueba(Type $var = null)
     {
-        $data = ImagenesDePortada::all();
-
-        // dd($banners);
-
-        return json_encode($data, JSON_UNESCAPED_UNICODE);  
+                    $limit = " LIMIT 500";        
+                    $orderby = " ORDER BY imagenesDePortada.id DESC ";
+            
+                    $data = DB::select(DB::raw("SELECT *
+                    FROM imagenesDePortada
+                        ".$orderby." ".$limit));
+            return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 }

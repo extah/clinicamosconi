@@ -30,8 +30,8 @@ Route::group(array('prefix' => 'inicio'), function(){
 Route::group(array('prefix' => 'admin'), function(){
 	Route::get('/',	'admin\AdminController@index')->name('admin.index');
 	Route::post('/login',	'admin\AdminController@login')->name('admin.login');
-	Route::get('/imagenes-de-portada',	'admin\AdminController@imagenes')->name('admin.imagenes');
-	Route::post('/imagenes-de-portada',	'admin\AdminController@addBanners')->name('admin.addBanners');
+	Route::get('/imagenes',	'admin\AdminController@imagenes')->name('admin.imagenes');
+	Route::post('/imagenespost',	'admin\AdminController@imagenespost')->name('admin.imagenespost');
 
 	Route::get('/turnos',	'admin\AdminController@turnos')->name('admin.turnos');
 	Route::post('/tablaturnos',	'admin\AdminController@tablaturnos')->name('admin.tablaturnos');

@@ -1,7 +1,7 @@
 @extends('admin/admin')
 
 @section('css')
-    <link href="{{ asset('/assets/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet"/>
+    {{-- <link href="{{ asset('/assets/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet"/> --}}
     
     <style>
         .modal-header {
@@ -125,7 +125,7 @@
 <script src="{{ asset('/assets/formvalidation/0.6.2-dev/js/formValidation.min.js') }}"></script>
 <script src='{{ asset("assets/validity/jquery.validity.min.js") }}'></script>
 <script src='{{ asset("assets/validity/jquery.validity.lang.es.js") }}'></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset("assets/sweetalert/sweetalert.min.js") }}"></script>
 
 
 <script>
@@ -143,7 +143,7 @@ $(document).ready(function() {
                         "url": "{{route('admin.imageneseliminareditar')}}", 
                         "method": 'post', //usamos el metodo POST
                         "data":{
-                            '_token': $('input[name=_token]').val(),
+                            '_token': $('input[name=csrf_token]').val(),
                             opcion:opcion}, //enviamos opcion 1 para que haga un SELECT
                         "dataSrc":""
                     },
