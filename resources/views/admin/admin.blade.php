@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Mosconi</title>
+    <title>Cl&iacute;nica Mosconi</title>
 
     <link href="{{ asset("assets/bootstrap-5.1.0/css/bootstrap.min.css") }}">
     <link href='{{ asset("css/admin.css") }}' rel="stylesheet">
@@ -33,7 +33,7 @@
             <nav class="col-12 col-lg-8 __navbar navbar mx-auto">
               <div class="col-12 d-flex flex-column justify-content-center d-inline mx-auto">
 
-                  <!-- MenúMobile -->
+                  <!-- Men&uacute;Mobile -->
                   <nav class="container __navbar-2 col-12 d-block d-flex p-0 my-1 navbar navbar-expand-sm navbar-white bg-white">
                     <div class="__menu-mobile ml-auto container-fluid justify-content-center">
                       <button class="navbar-toggler navbar-light mr-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
                       <div class="collapse navbar-collapse justify-content-between p-0 m-0 mt-sm-2" id="navbarTogglerDemo03">
                         <ul class="col-sm-12 navbar-nav d-flex justify-content-center mb-2 mb-lg-0 mt-md-2 mt-lg-0 ml-lg-0">
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0 mt-4 mt-sm-0 mt-md-0 mt-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{route('admin.imagenes')}}">Imágenes</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{route('admin.imagenes')}}">Im&aacute;genes</a>
                           </li>
                           <li class="nav-item dropdown mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,7 +59,7 @@
                             
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{-- {{route('')}} --}}">Galería</a>
+                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{-- {{route('')}} --}}">Galer&iacute;a</a>
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase px-3" href="{{route('admin.cerrarsesion')}}">Salir</a>
@@ -68,7 +68,7 @@
                       </div>
                     </div>
                   </nav>
-                  <!-- FinMenúMobile -->
+                  <!-- FinMen&uacute;Mobile -->
 
               </div>
             </nav>
@@ -82,7 +82,7 @@
 
 <!-- Footer -->
 <footer class="__footer-admin d-none d-md-block">
-<p class="text-center my-2"> Copyright <span class="fw-bolder">Clínica Mosconi</span> <span>© Todos los derechos reservados. Municipalidad de Berisso</span></p>
+<p class="text-center my-2"> Copyright <span class="fw-bolder">Cl&iacute;nica Mosconi</span> <span>© Todos los derechos reservados. Municipalidad de Berisso</span></p>
 </footer>
 
 </main>

@@ -65,39 +65,51 @@
 
 		<article class="container col-12 mx-auto p-0">
     		<div class="col-11 col-sm-11 col-md-10 col-lg-10 d-flex flex-column mx-auto p-0 my-4 gap-3">
-          <form id="form_editardatos" class="needs-validation" novalidate method="post" action="{{ url('portaldelpaciente/editardatos') }}">
+          <form id="form_editardatos" onsubmit="return miFuncion(this)" class="needs-validation" novalidate method="post" action="{{ url('portaldelpaciente/editardatos') }}">
             @csrf
             <div class="row g-3">
               <div class="col-md-3">
                   <label for="nombre_apellido" class="form-label"><b>NOMBRE Y APELLIDO</b></label>
-                  <input type="text" class="form-control" id="nombre_apellido" name="nombre_apellido" placeholder="ingrese su nombre y apellido" value="{{ $usuario->nombreyApellido }}" required>
+                  <input type="text" class="form-control" id="nombre_apellido" name="nombre_apellido" placeholder="ingrese su nombre y apellido" value="{{ $usuario->nombreyApellido }}" readonly required>
               </div>
               <div class="col-md-3">
                   <label for="email" class="form-label"><b>CORREO ELECTRONICO</b></label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="ingrese su correo electronico" value="{{ $usuario->email }}" required>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="ingrese su correo electronico" value="{{ $usuario->email }}" readonly required>
               </div>
               <div class="col-md-3">
                   <label for="telefono" class="form-label"><b>CELULAR</b></label>
-                  <input type="number" class="form-control" id="telefono" name="telefono" placeholder="ingrese su numero de celular" value="{{ $usuario->telefono }}" required>
+                  <input type="number" class="form-control" id="telefono" name="telefono" placeholder="ingrese su numero de celular" value="{{ $usuario->telefono }}" readonly required>
               </div>
               <div class="col-md-3">
                   <label for="dni" class="form-label"><b>DNI</b></label>
-                  <input type="number" class="form-control" id="dni" name="dni" placeholder="ingrese su dni" value="{{ $usuario->dni }}" required>
+                  <input type="number" class="form-control" id="dni" name="dni" placeholder="ingrese su dni" value="{{ $usuario->dni }}" readonly required>
               </div>
               <div class="col-md-3">
                 <label for="fecha_nac" class="form-label"><b>FECHA NACIMIENTO</b></label>
-                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" placeholder="ingrese su fecha de nacimiento" value="{{ $usuario->fecha_nacimiento }}" required>
+                <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" placeholder="ingrese su fecha de nacimiento" value="{{ $usuario->fecha_nacimiento }}" readonly required>
               </div>
               <div class="col-md-3">
                 <label for="obra_social" class="form-label"><b>OBRA SOCIAL</b></label>
-                <input type="text" class="form-control" id="obra_social" name="obra_social" placeholder="ingrese su obra_social" value="{{ $usuario->obra_social }}" required>
+                <input type="text" class="form-control" id="obra_social" name="obra_social" placeholder="ingrese su obra_social" value="{{ $usuario->obra_social }}" readonly required>
               </div>
               <div class="col-md-3">
                 <label for="nro_afiliado" class="form-label"><b>NUMERO DE AFILIADO</b></label>
-                <input type="number" class="form-control" id="nro_afiliado" name="nro_afiliado" placeholder="ingrese su nro de afiliado" value="{{ $usuario->nro_afiliado }}" required>
+                <input type="number" class="form-control" id="nro_afiliado" name="nro_afiliado" placeholder="ingrese su nro de afiliado" value="{{ $usuario->nro_afiliado }}" readonly required>
               </div>
-
-            <button type="submit" class="btn btn-primary btn-lg">EDITAR DATOS</button>
+              <div class="form-group" >
+                <div class='g-recaptcha' data-sitekey='6LfpoScUAAAAAA2usCdAwayw_KQiHe44y5e1Whk-'></div>
+                <div id='errorRecaptcha' style='display:none; color:#a94442' required>    <span class='glyphicon glyphicon-exclamation-sign'></span>    Por favor, verifica que no seas un robot.</div>
+              </div>
+                <div class="col-md-6 d-grid gap-2">
+                  <button type="button" class="btn btn-secondary btn-lg" onclick="sacarReadOnly()">Editar</button>
+                </div>
+                <div class="col-md-6 d-grid gap-2">
+                  <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                </div>
+              
+              
+              
+              
             </div>
           </form>           
 			</div>	
@@ -106,7 +118,7 @@
 @endsection
 
 @section('js')
-
+<script src='https://www.google.com/recaptcha/api.js?hl=es' async defer> </script>
 <script src="{{ asset('assets/moment/moment.min.js') }}"></script>
 <script src="{{ asset('/assets/jquery-ui/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('/assets/formvalidation/0.6.2-dev/js/formValidation.min.js') }}"></script>
@@ -114,13 +126,44 @@
 <script src='{{ asset("assets/toastr/toastr.min.js") }}'></script>
 <script src='{{ asset("assets/sweetalert/sweet-alert.min.js") }}'></script>
 
-
+<script>
+  function sacarReadOnly() {
+  document.getElementById("nombre_apellido").readOnly = false;
+  document.getElementById("email").readOnly = false;
+  document.getElementById("telefono").readOnly = false;
+  document.getElementById("dni").readOnly = false;
+  document.getElementById("fecha_nac").readOnly = false;
+  document.getElementById("obra_social").readOnly = false;
+  document.getElementById("nro_afiliado").readOnly = false;
+}
+</script>
+<script>
+  function miFuncion(a) {
+      var response = grecaptcha.getResponse();
+      if(response.length == 0){
+          // alert("Captcha no verificado");
+          
+          $("#errorRecaptcha").show();
+          toastr.error("validar reCAPTCHA", 'VERIFICA QUE NO SOS UN ROBOT', {
+                      // "progressBar": true,
+                      "closeButton": true,
+                      "positionClass": "toast-top-right",
+                      "timeOut": "10000",
+                  });  
+          return false;
+        event.preventDefault();
+      } else {
+      //   alert("Captcha verificado");
+        return true;
+      }
+    }
+  </script>
 <script>
     @if (Session::get('status_info'))
             toastr.info( '{{ session('message') }}', 'Informar', {
                 // "progressBar": true,
                 "closeButton": true,
-                "positionClass": "toast-bottom-right",
+                "positionClass": "toast-top-right",
                 "timeOut": "10000",
             });   
     @endif 
