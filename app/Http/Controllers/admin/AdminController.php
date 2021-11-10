@@ -467,6 +467,43 @@ class AdminController extends Controller
 	    return ($weekDay == 0 || $weekDay == 6);
 	}
 
+    public function agregarunturno(Request $request)
+    {
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+
+        if($result == "OK")
+        {
+            // return view('admin.agregarturno');
+            $especialidades =  DB::select("SELECT * FROM especialidades");
+            return view('admin.agregarunturno', compact('especialidades'));
+        }
+
+        $message = "Inicie Sesion";
+        $status_error = true;
+        $status_ok = false;
+        $esPasc = false;
+        
+        return redirect('admin')->with(['status_info' => $status_error, 'message' => $message,]);
+    }
+
+    public function getMedicos(Request $request)
+    {
+        $select_especialidad = $request->select_especialidad;
+        $especialidad = DB::select("SELECT * FROM especialidades WHERE id = " .$select_especialidad);
+        
+        $medicos = DB::select("SELECT * FROM turno_espec_medic WHERE id_especialidades = " .$select_especialidad);
+
+        $where_medico = "WHERE id = " . $medicos[0]->id_medico;
+        // dd($where_medico);
+        for ($i=1; $i < count($medicos); $i++) { 
+            $where_medico = $where_medico . " OR id = " . $medicos[$i]->id_medico;
+        }
+        
+        $data = DB::select("SELECT DISTINCT * FROM medico " . $where_medico);
+
+        return json_encode($data, JSON_UNESCAPED_UNICODE);
+    }
 
     public function cancelarturnos(Request $request)
     {
@@ -722,10 +759,10 @@ class AdminController extends Controller
     public function prueba(Type $var = null)
     {
                     $limit = " LIMIT 500";        
-                    $orderby = " ORDER BY imagenesDePortada.id DESC ";
+                    $orderby = " ORDER BY medico.id DESC ";
             
                     $data = DB::select(DB::raw("SELECT *
-                    FROM imagenesDePortada
+                    FROM medico
                         ".$orderby." ".$limit));
             return json_encode($data, JSON_UNESCAPED_UNICODE);
     }

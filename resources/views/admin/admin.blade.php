@@ -51,15 +51,24 @@
 
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><a class="dropdown-item" href="{{route('admin.turnos')}}">Turnos asignados</a></li>
-                              <li><a class="dropdown-item" href="{{route('admin.generarturnos')}}">Agregar un turno</a></li>
+                              <li><a class="dropdown-item" href="{{route('admin.agregarunturno')}}">Agregar un turno</a></li>
                               <li><a class="dropdown-item" href="{{route('admin.generarturnos')}}">Generar turnos</a></li>
                               <li><hr class="dropdown-divider"></li>
                               <li><a class="dropdown-item" href="{{route('admin.cancelarturnos')}}">Cancelar turnos</a></li>
                             </ul>
                             
                           </li>
-                          <li class="nav-item mx-auto mx-lg-0 px-lg-0">
-                            <a class="nav-link text-nowrap text-uppercase text-secondary px-1" href="{{-- {{route('')}} --}}">Galer&iacute;a</a>
+                          <li class="nav-item dropdown mx-auto mx-lg-0 px-lg-0">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMedico" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              MEDICOS
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMedico">
+                              <li><a class="dropdown-item" href="#">Agregar medico</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="#">Eliminar medico</a></li>
+                            </ul>
+                            
                           </li>
                           <li class="nav-item mx-auto mx-lg-0 px-lg-0">
                             <a class="nav-link text-nowrap text-uppercase px-3" href="{{route('admin.cerrarsesion')}}">Salir</a>

@@ -53,8 +53,9 @@ Route::group(array('prefix' => 'admin'), function(){
 	Route::post('/generarturnospost',	'admin\AdminController@generarturnospost')->name('admin.generarturnospost');
 	Route::get('/cancelarturnos',	'admin\AdminController@cancelarturnos')->name('admin.cancelarturnos');
 	Route::post('/cancelarturnospost',	'admin\AdminController@cancelarturnospost')->name('admin.cancelarturnospost');
-	
-	
+	Route::get('/agregarunturno',	'admin\AdminController@agregarunturno')->name('admin.agregarunturno');
+	Route::post('/getMedicos',	'admin\AdminController@getMedicos')->name('admin.getMedicos');
+
 	Route::get('/prueba',	'admin\AdminController@prueba')->name('admin.prueba');
 });
 

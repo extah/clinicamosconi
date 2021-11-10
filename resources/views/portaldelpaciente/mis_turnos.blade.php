@@ -76,7 +76,7 @@
                 <meta name="csrf-token_turnos" content="{{ csrf_token() }}">
                 <thead class="thead-dark text-center">
                     <tr>
-                        <th>ID COMPROBANTE</th>
+                        <th>N&#176 COMPROBANTE</th>
                         <th>ESPECIALIDAD</th>
                         <th>MÉDICO</th>
                         <th>FECHA</th>
