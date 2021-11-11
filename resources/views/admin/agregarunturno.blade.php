@@ -70,8 +70,8 @@
 
                 <label>&nbsp;</label>
 
-                <div class="row d-flex justify-content-center">
-                    <input type="submit" class='btn btn-primary btn-lg' value="Generar Turnos">
+                <div class="form-group d-flex justify-content-center">
+                    <input type="submit" class='btn btn-primary btn-lg' value="Agregar un turno">
                 </div>
 
             </form>

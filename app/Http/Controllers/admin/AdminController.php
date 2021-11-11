@@ -883,8 +883,9 @@ class AdminController extends Controller
                     break;
                 case 3: 
                     //borrar
-                    $id_comprobante = $request->id_comprobante;
-                    $turno  = Turnos::get_registro_por_comprobante($id_comprobante);
+                    $id = $request->id;
+                    $turno  = Turnos::get_registro($id);
+                    $comprobante  = Comprobante::get_registro($turno->id_comprobante);
                     DB::beginTransaction();
 
                     try{
@@ -894,7 +895,13 @@ class AdminController extends Controller
                         $turno->id_comprobante = 0;
                         $turno->save();
                         
+                        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+                        $date = $fecha_actual->format('Y/m/d');
+
+                        $comprobante->fecha_cancela = $date;
+                        $comprobante->save();
                         DB::commit();
+
                     }catch(\Exception $e)
                     {
                         DB::rollBack();
@@ -1055,27 +1062,8 @@ class AdminController extends Controller
 
     public function prueba(Type $var = null)
     {
-        $id_especialidad = 1;
-	    $id_medico =  1;
-        $fechaParam = "11/11/2021";
-
-        $id_especialidad = $request->id_especialidad;
-        $id_medico = $request->id_medico;
-        $fecha = $request->fecha;
-		$id_turno = $request->select_hora;
-        $id_persona = $request->personaID;
-
-		// $turno   = turno::get_registro($request->select_turno);
-        $turno  = Turnos::get_registro($id_turno);
-        // dd($turno);
-        $persona  = Users::get_registroID($id_persona);
-        // dd($persona);
-        $medico  = Medico::get_registro($id_medico);
-        $especialidad  = Especialidades::get_registro($id_especialidad);
-
-		$comprobante = 0;
-		$dni = $persona->dni;
-		$hora = $turno->hora;
+        $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+        $data = $fecha_actual->format('Y/m/d');
          return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 }

@@ -186,7 +186,7 @@ $(document).ready(function() {
                         "sProcessing":     "Procesando...",
                         "sLengthMenu":     "Mostrar _MENU_ registros",
                         "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                        "sEmptyTable":     "Ning�n dato disponible en esta tabla",
                         "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
                         "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
                         "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
@@ -195,7 +195,7 @@ $(document).ready(function() {
                         "sLoadingRecords": "Cargando...",
                         "oPaginate": {
                             "sFirst":    "Primero",
-                            "sLast":     "Último",
+                            "sLast":     "�ltimo",
                             "sNext":     "Siguiente",
                             "sPrevious": "Anterior"
                         },
@@ -254,9 +254,9 @@ $(document).ready(function() {
 
         var fila; //captura la fila, para editar o eliminar
 
-        //submit para el Alta y Actualización
+        //submit para el Alta y Actualizaci�n
         $('#formImagen').submit(function(e){                         
-                e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+                e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la p�gina
                 var form = this;
                 // id = $.trim($('#id').val());
                 // titulo =  $.trim($('#titulo').val());
@@ -333,7 +333,7 @@ $(document).ready(function() {
             // alert("Se ha seleccionado el ID: "+id);
             opcion = 3; //eliminar 
             swal({
-                  title: "¿Esta Seguro de Eliminar el ID: "+id+"?",
+                  title: "Esta seguro de eliminar el ID: "+id+"?",
                   // text: "Once deleted, you will not be able to recover this imaginary file!",
                   icon: "warning",
                   buttons: ["Cancelar", "Eliminar"],
@@ -352,7 +352,7 @@ $(document).ready(function() {
                                             opcion:opcion, id:id},    
                                         success: function() {
                                           tablaImagenes.row(this).remove().draw(); 
-                                            swal("Imagen Eliminada con Exito!!!", {
+                                            swal("Imagen eliminada con exito!!!", {
                                             icon: "success",
                                           });                
                                         }

@@ -22,7 +22,7 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex flex-column mx-auto p-0 my-2 gap-1">
         <div class="row g-2">
             <div class="col-md-2">
-                <a class="btn btn-primary btn-rounded" href='{{route("admin.agregarturno")}}'><i class="fas fa-plus-square"></i> Agregar Turno</a>
+                <a class="btn btn-primary btn-rounded" href='{{route("admin.agregarunturnopersona")}}'><i class="fas fa-plus-square"></i> Agregar Turno</a>
             </div>
             <div class="col-md-3">
                 <button id="btnBuscarporDNI" type="button" class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#modalTurnos">
@@ -163,7 +163,7 @@ $(document).ready(function() {
                         "sLoadingRecords": "Cargando...",
                         "oPaginate": {
                             "sFirst":    "Primero",
-                            "sLast":     "Último",
+                            "sLast":     "�ltimo",
                             "sNext":     "Siguiente",
                             "sPrevious": "Anterior"
                         },
@@ -215,9 +215,9 @@ $(document).ready(function() {
 
         var fila; //captura la fila, para editar o eliminar
 
-        //submit para el Alta y Actualización
+        //submit para el Alta y Actualizaci�n
         $('#formTurnos').submit(function(e){                         
-                e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la página
+                e.preventDefault(); //evita el comportambiento normal del submit, es decir, recarga total de la p�gina
                 var form = this;
 
                 $('#tablaTurnos').DataTable().clear().draw(); 
@@ -260,9 +260,9 @@ $(document).ready(function() {
 
             opcion = 3; //eliminar 
             swal({
-                  title: "¿Esta seguro de cancelar el turno de " + paciente + " con fecha: "+fecha+" y horario: "+ hora +"hs?",
+                  title: "Esta seguro de cancelar el turno de " + paciente + " con fecha: "+fecha+" y horario: "+ hora +"hs?",
                   icon: "warning",
-                  buttons: ["Cancelar", "Cancelar"],
+                  buttons: ["No", "Si"],
                 })
                 .then((willDelete) => {
                   if (willDelete) {

@@ -41,7 +41,7 @@
                         <input class="form-control text-center" type="number" id="dni" name="dni" placeholder="Ingrese el DNI del paciente" required>
                     </div>
                     <label>&nbsp;</label>
-                    <div class="row d-flex justify-content-center">
+                    <div class="form-group d-flex justify-content-center">
                         <input type="submit" class='btn btn-primary btn-lg' value="Buscar persona">
                     </div>
                 </form>
@@ -63,29 +63,29 @@
                 <form id="demoForm" method="post" action="{{ url('admin/registrarPaciente')  }}" class="needs-validation" novalidate data-toggle="validator" role="form">
                     @csrf
                     <div class="row g-3">
-                        <div class="col-md-3">
+                        <div class="col-md-4"
                             <label for="nombre" class="form-label"><b>NOMBRE</b></label>
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="ingrese el nombre" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="apellido" class="form-label"><b>APELLIDO</b></label>
                             <input type="text" class="form-control" id="apellido" name="apellido" placeholder="ingrese el apellido" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="email" class="form-label"><b>CORREO ELECTRONICO</b></label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="ingrese el correo electronico" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="telefono" class="form-label"><b>CELULAR</b></label>
                             <input type="number" class="form-control" id="telefono" name="telefono" placeholder="ingrese el numero de celular" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="dni" class="form-label"><b>DNI</b></label>
                             <input type="number" class="form-control" id="dni" name="dni" placeholder="ingrese el DNI" required>
                         </div>
 
-                          <div class="col-md-12 d-grid gap-2">
-                            <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                          <div class="form-group d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Registrar paciente</button>
                           </div>                     
                         
                       </div>
