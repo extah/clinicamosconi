@@ -2,11 +2,6 @@
 
 @section('css')
 
-<link href="{{ asset('/css/turnero.css') }}" rel="stylesheet">
-<link href="{{ asset('/css/sweetalert.css') }}" rel="stylesheet">
-
-
-<link href='{{ asset("css/sweetalert.css") }}' rel="stylesheet">
 <link href="{{ asset('/assets/select2/select2.min.css') }}" rel="stylesheet">
 <link href="{{ asset('/assets/toastr/toastr.min.css') }}" rel="stylesheet">
 
@@ -60,7 +55,7 @@
     		<div class="col-11 col-sm-11 col-md-4 col-lg-4 d-flex flex-column mx-auto p-0 my-4">
 				<div class="form-group">
 					<div class="input-group-prepend">
-						<div class="input-group-text"><b>N° DE COMPROBANTE: </b>  &nbsp; {{ $comprobante_id }}</div>
+						<div class="input-group-text"><b>N&deg; DE COMPROBANTE: </b>  &nbsp; {{ $comprobante_id }}</div>
 					</div>
 				</div>
         <div class="form-group">
@@ -80,7 +75,7 @@
 				</div>
 				<div class="form-group">
 					<div class="input-group-prepend">
-						<div class="input-group-text"><b>N° DE DOCUMENTO: </b>  &nbsp; {{ $dni }}</div>
+						<div class="input-group-text"><b>N&deg; DE DOCUMENTO: </b>  &nbsp; {{ $dni }}</div>
 					</div>
 				</div>
 				<div class="form-group">
@@ -123,11 +118,11 @@
 
 <script>
         @if ($status)
-                toastr.success(" {{ $message }}", '', {
+                toastr.success(" {{ "El turno se registro "}}", '&Eacute;xito!!!', {
                     "progressBar": true,
                     "closeButton": true,
                     "positionClass": "toast-bottom-right",
-                    "timeOut": "10000",
+                    "timeOut": "20000",
                 });   
 		@endif 
 </script>

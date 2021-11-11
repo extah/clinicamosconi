@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label class="formItem" for="select_especialidad"> <b>Especialidad</b></label>
                     <select name="select_especialidad" id="select_especialidad" class="form-control text-center" required>
-                        <option value="">-Seleccioná una Especialidad-</option>
+                        <option value="">-Seleccion&aacute una Especialidad-</option>
                         @foreach($especialidades as $especialidad)
                             <option value="{{ $especialidad->id }}" offset="1">{{ $especialidad->nombre }}</option>
                         
@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <label class="formItem" for="select_medico"> <b>Medico</b></label>
                     <select name="select_medico" id="select_medico" class="form-control text-center" required>
-                        <option value="">-Seleccioná un medico-</option>
+                        <option value="">-Seleccion&aacute un medico-</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -64,7 +64,7 @@
                 <div class="form-group">
                     <label class="formItem" for="select_hora"> <b>Hora</b></label>
                     <select name="select_hora" id="select_hora" class="form-control text-center" required>
-                        <option value="">-Seleccioná una hora-</option>
+                        <option value="">-Seleccion&aacute una hora-</option>
                     </select>
                 </div>
 
@@ -112,9 +112,9 @@
                         var obj = JSON.parse(data);
                         // console.log(obj.length);
                         $("#select_medico option").remove();
-                        $('#select_medico').append("<option value=''>-Seleccioná un medico-</option>");
+                        $('#select_medico').append("<option value=''>-Seleccion&aacute un medico-</option>");
                         $("#select_hora option").remove();
-                        $('#select_hora').append("<option value=''>-Seleccioná un medico-</option>");
+                        $('#select_hora').append("<option value=''>-Seleccion&aacute un medico-</option>");
                         $("#fecha_turno").datepicker("destroy");
                         $( "#fecha_turno" ).datepicker( "refresh" );
                         $( "#fecha_turno" ).val("dd/mm/aaaa");
@@ -146,7 +146,7 @@
                         $("#fecha_turno").datepicker("destroy");
                         $( "#fecha_turno" ).datepicker( "refresh" );
                         $("#select_hora option").remove();
-                        $('#select_hora').append("<option value=''>-Seleccioná un medico-</option>");
+                        $('#select_hora').append("<option value=''>-Seleccion&aacute un medico-</option>");
                         $("#fecha_turno").attr('readonly', false);
                         var dias = JSON.parse(data);
                         // var enableDays = ["08/06/2021","09/06/2021","10/06/2021","12/06/2021"];
@@ -191,19 +191,15 @@
                     },  
                     success:function(data) {
                         var horas = JSON.parse(data);
-                        console.log(horas);
+                        // console.log(horas);
                         $("#select_hora option").remove();
-                        $('#select_hora').append("<option value=''>-Seleccioná un medico-</option>");
+                        $('#select_hora').append("<option value=''>-Seleccion&aacute un medico-</option>");
 
                         for(i=0; i<horas.length; i++) {
                             $('#select_hora').append("<option value="+horas[i].id+">"+horas[i].hora+"</option>");                      
                         }
                     }   
             });  
-        }),
-        $("#select_hora").change(function(){
-            var fechaParam = $("#select_hora").val();
-            alert(fechaParam);
         })
 
     });
@@ -220,9 +216,9 @@
 			currentText: 'Hoy',
 			monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
 			monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-			dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-			dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+			dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacutercoles', 'Jueves', 'Viernes', 'S&aacutebado'],
+			dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mi&eacute', 'Juv', 'Vie', 'S&aacuteb'],
+			dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'S&aacute'],
 			weekHeader: 'Sm',
 			dateFormat: 'dd/mm/yy',
 			firstDay: 1,
@@ -258,7 +254,7 @@
   </script>
   <script>
     @if (Session::get('status_info'))
-            toastr.info( '{{ session('message') }}', 'ATENCIÓN', {
+            toastr.info( '{{ session('message') }}', 'ATENCI&oacuteN', {
                 // "progressBar": true,
                 "closeButton": true,
                 "positionClass": "toast-bottom-right",
