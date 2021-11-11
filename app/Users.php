@@ -26,4 +26,10 @@ class Users extends Model
 
             return $row;       
         }
+        public static function get_registroID($id)
+        {
+            $row = Users::where('id', '=', $id)->first();
+
+            return $row;       
+        }
 }

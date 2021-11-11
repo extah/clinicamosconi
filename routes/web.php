@@ -53,9 +53,15 @@ Route::group(array('prefix' => 'admin'), function(){
 	Route::post('/generarturnospost',	'admin\AdminController@generarturnospost')->name('admin.generarturnospost');
 	Route::get('/cancelarturnos',	'admin\AdminController@cancelarturnos')->name('admin.cancelarturnos');
 	Route::post('/cancelarturnospost',	'admin\AdminController@cancelarturnospost')->name('admin.cancelarturnospost');
-	Route::get('/agregarunturno',	'admin\AdminController@agregarunturno')->name('admin.agregarunturno');
-	Route::post('/getMedicos',	'admin\AdminController@getMedicos')->name('admin.getMedicos');
 
+	Route::get('/agregarunturnopersona',	'admin\AdminController@agregarunturnopersona')->name('admin.agregarunturnopersona');
+	Route::post('/agregarunturno',	'admin\AdminController@agregarunturno')->name('admin.agregarunturno');
+	Route::post('/registrarPaciente',	'admin\AdminController@registrarPaciente')->name('admin.registrarPaciente');
+	Route::post('/getMedicos',	'admin\AdminController@getMedicos')->name('admin.getMedicos');
+	Route::post('/getFechasDisponible',	'admin\AdminController@getFechasDisponible')->name('admin.getFechasDisponible');
+	Route::post('/getHorasDisponible',	'admin\AdminController@getHorasDisponible')->name('admin.getHorasDisponible');
+	Route::post('/agregarunturnoPost',	'admin\AdminController@agregarunturnoPost')->name('admin.agregarunturnoPost');
+	Route::get('descargarcomprobante/{id}/{nrodoc}',  	'admin\AdminController@imprimir_comprobante')->name('admin.imprimir_comprobante');
 	Route::get('/prueba',	'admin\AdminController@prueba')->name('admin.prueba');
 });
 

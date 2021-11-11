@@ -23,7 +23,7 @@
     <div class="col-8 col-sm-6 col-md-6 mx-auto">
         <div class="card text-black mb-3" style="max-width: 100rem;">
             <div class="card-body text-Black text-center">
-              <h4 class="card-title">Generar turnos</h4>
+              <h4 class="card-title">Agregar un turno</h4>
             </div>                  
         </div>
     </div>
@@ -32,10 +32,15 @@
     </div>
     <article class="container col-12 mx-auto p-0">
         <div class="col-11 col-sm-11 col-md-4 col-lg-4 d-flex flex-column mx-auto p-0 my-4">
-            <form id="demoForm" method="post" action="{{ url('admin/generarturnospost')  }}" data-toggle="validator" role="form">
-                {{-- {{ csrf_field() }} --}}
+            <form id="demoForm" method="post" action="{{ url('admin/agregarunturnoPost')  }}" data-toggle="validator" role="form">
+                @csrf
                 <meta name="csrf-token_medicos" content="{{ csrf_token() }}">
-                {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+                <div class="form-group">
+                    <label class="formItem" for="nombre_paciente"> <b>Paciente</b></label>
+                    <input  class="form-control text-center" type="text" name="nombre_paciente" id="nombre_paciente" value="{{ $persona->nombreyApellido}}/{{ $persona->dni}}" disabled>
+                </div>
+                <input id="personaID" name="personaID" type="hidden" value="{{ $persona->id}}">
+
                 <div class="form-group">
                     <label class="formItem" for="select_especialidad"> <b>Especialidad</b></label>
                     <select name="select_especialidad" id="select_especialidad" class="form-control text-center" required>
@@ -53,10 +58,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="formItem" for="select_fecha"> <b>Fecha</b></label>
-                    <select name="select_fecha" id="select_fecha" class="form-control text-center" required>
-                        <option value="">-Seleccioná una fecha-</option>
-                    </select>
+                    <label class="formItem" for="fecha_turno"> <b>Fecha</b></label>
+                    <input class="form-control text-center" data-date-format="dd/mm/yyyy" id="fecha_turno" name="fecha_turno" required>
                 </div>
                 <div class="form-group">
                     <label class="formItem" for="select_hora"> <b>Hora</b></label>
@@ -70,6 +73,7 @@
                 <div class="row d-flex justify-content-center">
                     <input type="submit" class='btn btn-primary btn-lg' value="Generar Turnos">
                 </div>
+
             </form>
         </div>	
     </article>
@@ -104,33 +108,133 @@
                         select_especialidad:id_especialidad, 
                     },  
                     success:function(data) {
-                        console.log(data);
+                        // console.log(data.length);
                         var obj = JSON.parse(data);
+                        // console.log(obj.length);
                         $("#select_medico option").remove();
-                        for(i=0; i<data.length; i++) {
+                        $('#select_medico').append("<option value=''>-Seleccioná un medico-</option>");
+                        $("#select_hora option").remove();
+                        $('#select_hora').append("<option value=''>-Seleccioná un medico-</option>");
+                        $("#fecha_turno").datepicker("destroy");
+                        $( "#fecha_turno" ).datepicker( "refresh" );
+                        $( "#fecha_turno" ).val("dd/mm/aaaa");
+                        $("#fecha_turno").attr('readonly', true);
+                        for(i=0; i<obj.length; i++) {
                             $('#select_medico').append("<option value="+obj[i].id+">"+obj[i].nombre+ " " + obj[i].apellido+"</option>");                      
                         }
+
+
                     }             
                     
                 });
+        }),
+        $("#select_medico").change(function(){
+            var id_especialidad = $("#select_especialidad").val();
+            var id_medico = $("#select_medico").val();
+            // alert(id_medico);
+            // alert(id_especialidad);
+            $.ajax({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token_medicos"]').attr('content') },
+                    url: "{{route('admin.getFechasDisponible')}}",
+                    type: "POST",
+                    datatype:"json",      
+                    data:  {
+                        '_token': $('input[name=_token]').val(),
+                        select_especialidad:id_especialidad, select_medico:id_medico,
+                    },  
+                    success:function(data) {
+                        $("#fecha_turno").datepicker("destroy");
+                        $( "#fecha_turno" ).datepicker( "refresh" );
+                        $("#select_hora option").remove();
+                        $('#select_hora').append("<option value=''>-Seleccioná un medico-</option>");
+                        $("#fecha_turno").attr('readonly', false);
+                        var dias = JSON.parse(data);
+                        // var enableDays = ["08/06/2021","09/06/2021","10/06/2021","12/06/2021"];
+                        var enableDays =  dias;
+                        
+                        function enableAllTheseDays(date) {
+                            var sdate = $.datepicker.formatDate( 'dd/mm/yy', date)
+                            // console.log(sdate)
+                            if($.inArray(sdate, enableDays) != -1) {
+                                return [true];
+                            }
+                            return [false];
+                        }
+                        $('#fecha_turno').datepicker(
+                        {
+                            dateFormat: 'dd/mm/yy', 
+                            weekStart: 1,
+                            todayHighlight: true,
+                            beforeShowDay: enableAllTheseDays,
+
+                        }); 
+                        $('#fecha_turno').datepicker("setDate", dias[0]);                              
+                    
+                    }
+            });        
+        }),
+
+        $("#fecha_turno").change(function(){
+            var id_especialidad = $("#select_especialidad").val();
+            var id_medico = $("#select_medico").val();
+            var fechaParam = $("#fecha_turno").val();
+
+            // alert(fechaParam);
+            $.ajax({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token_medicos"]').attr('content') },
+                    url: "{{route('admin.getHorasDisponible')}}",
+                    type: "POST",
+                    datatype:"json",      
+                    data:  {
+                        '_token': $('input[name=_token]').val(),
+                        select_especialidad:id_especialidad, select_medico:id_medico, fechaParam:fechaParam,
+                    },  
+                    success:function(data) {
+                        var horas = JSON.parse(data);
+                        console.log(horas);
+                        $("#select_hora option").remove();
+                        $('#select_hora').append("<option value=''>-Seleccioná un medico-</option>");
+
+                        for(i=0; i<horas.length; i++) {
+                            $('#select_hora').append("<option value="+horas[i].id+">"+horas[i].hora+"</option>");                      
+                        }
+                    }   
+            });  
+        }),
+        $("#select_hora").change(function(){
+            var fechaParam = $("#select_hora").val();
+            alert(fechaParam);
         })
-        /*$.ajax({
-                                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token_imagenes"]').attr('content') },
-                                        url: "{{route('admin.imageneseliminareditar')}}",
-                                        type: "POST",
-                                        datatype:"json",      
-                                        data:  {
-                                            '_token': $('input[name=_token]').val(),
-                                            select_especialidad:select_especialidad},    
-                                        success: function(response) {
-                                         
-                                            swal("Imagen Eliminada con Exito!!!", {
-                                            icon: "success",
-                                          });                
-                                        }
-                                    });*/
+
     });
 
+</script>
+
+<script>
+	jQuery(function(){
+
+		$.datepicker.regional['es'] = {
+			closeText: 'Cerrar',
+			prevText: '<Ant',
+			nextText: 'Sig>',
+			currentText: 'Hoy',
+			monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+			monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+			dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+			weekHeader: 'Sm',
+			dateFormat: 'dd/mm/yy',
+			firstDay: 1,
+			isRTL: false,
+			showMonthAfterYear: false,
+			yearSuffix: ''
+		};
+
+		$.datepicker.setDefaults($.datepicker.regional['es']);
+		
+
+});
 </script>
 
 <script>
