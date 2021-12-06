@@ -649,9 +649,9 @@ class PortaldelpacienteController extends Controller
     public function turnoseliminareditar(Request $request)
     {
 
-        // $usuario = $request->session()->get('usuario');
-        // $result = $this->isUsuario($usuario);
-        $result = "OK";
+        $usuario = $request->session()->get('usuario');
+        $result = $this->isUsuario($usuario);
+        // $result = "OK";
        
             
         if($result == "OK"){
@@ -702,6 +702,8 @@ class PortaldelpacienteController extends Controller
                     $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
                     $date = $fecha_actual->format('Y-m-d');
                     $hora_actual =  $fecha_actual->format('H:i');
+
+                    $id_persona = Users::get_registro($usuario);
             
                     $data = DB::select(DB::raw("SELECT turnos.id_comprobante as id_comprobante, especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, turnos.fecha, turnos.hora
                     FROM turnos
@@ -720,12 +722,15 @@ class PortaldelpacienteController extends Controller
                     $date = $fecha_actual->format('Y-m-d');
                     $hora_actual =  $fecha_actual->format('H:i');
             
+                    $id_persona = Users::get_ID($usuario);
+
                     $data = DB::select(DB::raw("SELECT turnos.id_comprobante as id_comprobante, especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, turnos.fecha, turnos.hora
                     FROM turnos
                     INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
                     INNER JOIN medico ON turnos.id_medico = medico.id
                     WHERE turnos.fecha >= '$date'
                     AND turnos.libre = 0
+                    AND turnos.id_persona = " . $id_persona .  " 
                     ".$orderby." ".$limit));
                     break;
                 
@@ -737,29 +742,24 @@ class PortaldelpacienteController extends Controller
     }
     public function prueba(Type $var = null)
     {
-        $id_comprobante = 5;
-        $turno  = Turnos::get_registro_por_comprobante($id_comprobante);
-        DB::beginTransaction();
+        // $limit = " LIMIT 500";        
+        // $orderby = " ORDER BY turnos.id DESC ";
 
-        try{
+        // $fecha_actual = Carbon::now('America/Argentina/Buenos_Aires');
+        // $date = $fecha_actual->format('Y-m-d');
+        // $hora_actual =  $fecha_actual->format('H:i');
 
-            $turno->id_persona = 0;
-            $turno->libre = 1;
-            $turno->id_comprobante = 0;
-            $turno->save();
-            
-            DB::commit();
-        }catch(\Exception $e)
-        {
-            DB::rollBack();
-            $error = "3";
-            $descError = "Error al grabar ".$e;
-            throw $e;
-            // $miArray = array("error"=>$error, "recaptchaValido"=>$recaptchaValido, "descError"=>$descError, "comprobante"=>$comprobante, "id_turno"=>$id_turno, "dni"=>$dni);
+        // $id_persona = Users::get_ID("extah23@gmail.com");
 
-            //return ($miArray);
-        }   
-        dd($turno);
+        // $data = DB::select(DB::raw("SELECT turnos.id_comprobante as id_comprobante, especialidades.nombre as especialidad, CONCAT(medico.nombre, ' ', medico.apellido) as medico, turnos.fecha, turnos.hora
+        // FROM turnos
+        // INNER JOIN especialidades ON turnos.id_especialidad = especialidades.id
+        // INNER JOIN medico ON turnos.id_medico = medico.id
+        // WHERE turnos.fecha >= '$date'
+        // AND turnos.libre = 0
+        // AND turnos.id_persona = " . $id_persona .  " 
+        // ".$orderby." ".$limit));
+        // return json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
     function isUsuario($usuario)

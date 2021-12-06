@@ -32,4 +32,10 @@ class Users extends Model
 
             return $row;       
         }
+        public static function get_ID($email)
+        {
+            $row = Users::where('email', '=', $email)->first();
+
+            return $row->id;       
+        }
 }
